@@ -16,7 +16,7 @@ Phase 2 (March 25 - April 7):
   
   Mimi and Katie:
   
-      - Plan ER diagram and cry
+      - Plan ER diagram and cry and die
 
 Phase 3 (April 8 - 21):
   
