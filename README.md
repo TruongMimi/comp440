@@ -38,6 +38,7 @@ Phase 4 (April 22 - May 1):
 
 	 
 Presentation date: 5/2/2024
+
 Project: Design and implement a publication-listing service.
 
 The Final Project will involve creating a database, with functionality based on the topic that has been approved by the instructor.
