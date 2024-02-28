@@ -1,3 +1,33 @@
+Phase 1 (From now until spring break March 18 - 24):
+  Mimi: 
+      - Find articles, papers, etc., and compile the list of links
+      - Learn how to do an ER diagram 
+      - https://www.connectedpapers.com/
+      - Links to peer-reviewed publications:
+          - https://iopscience.iop.org/article/10.3847/1538-4357/acec4d/meta
+  Katie: 
+      - Plan the DB architecture based on Zybooks 
+  
+Phase 2 (March 25 - April 7): 
+  Mimi: 
+      - Plan ER diagram and cry
+  Katie: 
+      - Create DB and Flask app and die
+
+Phase 3 (April 8 - 21):
+  Mimi: 
+      - Continue Flask app and DB
+  Katie: 
+      - Continue Flask app and DB
+
+Phase 4 (April 22 - May 1):
+  Mimi: 
+      - One-page paper and slides (3-5 slides)
+  Katie: 
+      - Slides (3-5 slides) and finishing touches
+
+
+
 Presentation date: 5/2/2024
 Project: Design and implement a publication-listing service.
 
@@ -17,4 +47,3 @@ What to submit (all zipped):
   - ER Diagram
   - Paper
   - Slide presentation
-  - 
