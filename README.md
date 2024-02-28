@@ -26,8 +26,7 @@ Phase 4 (April 22 - May 1):
   Katie: 
       - Slides (3-5 slides) and finishing touches
 
-
-
+	 
 Presentation date: 5/2/2024
 Project: Design and implement a publication-listing service.
 
