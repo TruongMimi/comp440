@@ -39,7 +39,7 @@ Phase 4 (April 22 - May 1):
 	 
 Presentation date: 5/2/2024
 
-Project: Design and implement a publication-listing service.
+Project: Design and implement a publication-listing service. The service should permit entering of information about publications, such as title, authors, year, where the publication appeared, and pages. Authors should be a separate entity with attributes such as name, institution, department, email, address, and home page. Your application should support multiple views on the same data. For instance, you should provide all publications by a given author (sorted by year, for example), or all publications by authors from a given institution or department. You should also support search by keywords, on the overall database as well as within each of the views.
 
 The Final Project will involve creating a database, with functionality based on the topic that has been approved by the instructor.
 Teams will be composed of two students and they will present their database interface, along with a slide presentation describing the functions. The presentation days will be scheduled randomly, per team, by the professor.
