@@ -57,3 +57,6 @@ What to submit (all zipped):
   - ER Diagram
   - Paper
   - Slide presentation
+
+
+# Docker Install Instructions 
