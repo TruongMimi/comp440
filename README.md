@@ -1,5 +1,31 @@
-Phase 1 (From now until spring break March 18 - 24):
+# Project Description 
 
+Presentation date: 5/2/2024
+
+Project: Design and implement a publication-listing service. The service should permit entering of information about publications, such as title, authors, year, where the publication appeared, and pages. Authors should be a separate entity with attributes such as name, institution, department, email, address, and home page. Your application should support multiple views on the same data. For instance, you should provide all publications by a given author (sorted by year, for example), or all publications by authors from a given institution or department. You should also support search by keywords, on the overall database as well as within each of the views.
+
+The Final Project will involve creating a database, with functionality based on the topic that has been approved by the instructor.
+Teams will be composed of two students and they will present their database interface, along with a slide presentation describing the functions. The presentation days will be scheduled randomly, per team, by the professor.
+
+Requirements:
+  - MySQL database with appropriate tables, keys, relations, etc.
+  - ER Diagram that describes your database (MySQL Workbench can help you with that)
+  - User Interface (web-browser or some form of GUI) to manipulate the database (to enter, delete, modify, search the data)
+  - One page paper describing your database functions in detail
+  - 3-5 slide presentation, which will accompany your class demonstration
+
+What to submit (all zipped):
+  - MySQL database file and supporting interface files/application
+    - Database and supporting files must be zipped and submitted to Canvas. If you prefer to implement remotely (repl.it, PHP, GitHub, etc.), you must provide the link and full access to the database file
+  - ER Diagram
+  - Paper
+  - Slide presentation
+    
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Timeline/Phases
+
+Phase 1 (From now until spring break March 18 - 24):
 
 Mimi:
 
@@ -36,27 +62,6 @@ Phase 4 (April 22 - May 1):
   
       - Slides (3-5 slides) and finishing touches
 
-	 
-Presentation date: 5/2/2024
-
-Project: Design and implement a publication-listing service. The service should permit entering of information about publications, such as title, authors, year, where the publication appeared, and pages. Authors should be a separate entity with attributes such as name, institution, department, email, address, and home page. Your application should support multiple views on the same data. For instance, you should provide all publications by a given author (sorted by year, for example), or all publications by authors from a given institution or department. You should also support search by keywords, on the overall database as well as within each of the views.
-
-The Final Project will involve creating a database, with functionality based on the topic that has been approved by the instructor.
-Teams will be composed of two students and they will present their database interface, along with a slide presentation describing the functions. The presentation days will be scheduled randomly, per team, by the professor.
-
-Requirements:
-  - MySQL database with appropriate tables, keys, relations, etc.
-  - ER Diagram that describes your database (MySQL Workbench can help you with that)
-  - User Interface (web-browser or some form of GUI) to manipulate the database (to enter, delete, modify, search the data)
-  - One page paper describing your database functions in detail
-  - 3-5 slide presentation, which will accompany your class demonstration
-
-What to submit (all zipped):
-  - MySQL database file and supporting interface files/application
-    - Database and supporting files must be zipped and submitted to Canvas. If you prefer to implement remotely (repl.it, PHP, GitHub, etc.), you must provide the link and full access to the database file
-  - ER Diagram
-  - Paper
-  - Slide presentation
-
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Docker Install Instructions 
+<u>Windows Installation</u>
