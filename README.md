@@ -111,14 +111,14 @@ Phase 4 (April 22 - May 1):
       - The port is also defined in app.py, so make sure to change that as well if you change the port number. You can find the example on the GitHub repo I sent in the previous section.
   5. The output will be a bunch of numbers or something like that (one line) if the creation/running of the docker container was successful
   6. Now, depending on what you've set as your homepage for the app, open a browser and put in the following URL: localhost:8000/
-  - This assumes that the port is 8000 for the container to run on and that there is a page available and routing available for '/' in the URL
+      - This assumes that the port is 8000 for the container to run on and that there is a page available and routing available for '/' in the URL
   7. If all is set up properly on the app side/code side, then you should see your app's page!
 
   # Removing Docker container and image
   1. Open the Docker Desktop application
   2. Click on the tab “Containers”
   3. Click the little trash can icon to the far right of the container that’s listed 
-  - You can delete while it’s still running but, if not, just click the stop icon before clicking the trash can icon.
+      - You can delete while it’s still running but, if not, just click the stop icon before clicking the trash can icon.
   4. Confirm 
   5. Click on the tab “Images”
   6. Click on the little trash can icon to the far right of the image that’s listed
