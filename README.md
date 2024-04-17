@@ -63,10 +63,13 @@ Phase 4 (April 22 - May 1):
       - Slides (3-5 slides) and finishing touches
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# Cloning Github
-To ensure that you have the github repository on the computer
-1) Using Windows powershell and use the following command
-     - git clone https://github.com/TruongMimi/comp440
+# Github
+- Github is an online platform that is utilized for hosting code to allow users to control the version and collaborate with other users. It also tracks the versions that got changed and which user changed them. 
+
+  # Cloning Github
+  To ensure that you have the github repository on the computer
+  1) Using Windows powershell and use the following command
+       - git clone https://github.com/TruongMimi/comp440
 
 # Docker Install Instructions 
 1) Click the link that corresponds with your computer.
@@ -81,6 +84,7 @@ To ensure that you have the github repository on the computer
           - CD => to change directory
           - dir => to look at the contents of the directory. 
 
+# Building a Docker image 
 
 
 
