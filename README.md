@@ -71,20 +71,22 @@ Phase 4 (April 22 - May 1):
   1) Using Windows powershell and use the following command
        - git clone https://github.com/TruongMimi/comp440
 
-# Docker Install Instructions 
-1) Click the link that corresponds with your computer.
-    - Windows download
-         - https://docs.docker.com/desktop/install/windows-install/
-    - Mac download
-         - https://docs.docker.com/desktop/install/mac-install/
-           
-3) Follow the installation instructions.
-4) Using Windows powershell navigate to the path of where your cloned repository is placed.
-    - example unix commands
-          - CD => to change directory
-          - dir => to look at the contents of the directory. 
-
-# Building a Docker image 
+# Docker
+- Docker is an online platform that is utilized for building, testing and deploying applications. It is useful for collaboration in projects. 
+  # Docker Install Instructions 
+  1) Click the link that corresponds with your computer.
+      - Windows download
+           - https://docs.docker.com/desktop/install/windows-install/
+      - Mac download
+           - https://docs.docker.com/desktop/install/mac-install/
+             
+  3) Follow the installation instructions.
+  4) Using Windows powershell navigate to the path of where your cloned repository is placed.
+      - example unix commands
+            - CD => to change directory
+            - dir => to look at the contents of the directory. 
+  
+  # Building a Docker image 
 
 
 
