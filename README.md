@@ -72,7 +72,8 @@ Phase 4 (April 22 - May 1):
        - git clone https://github.com/TruongMimi/comp440
 
 # Docker
-- Docker is an online platform that is utilized for building, testing and deploying applications. It is useful for collaboration in projects. 
+- Docker is an online platform that is utilized for building, testing and deploying applications. It is useful for collaboration in projects.
+- If there are a significant amount of changes, it is recommended to remove the container and image completely and rerun the commands to set up the image and container again. 
   # Docker Install Instructions 
   1) Click the link that corresponds with your computer.
       - Windows download
@@ -113,6 +114,15 @@ Phase 4 (April 22 - May 1):
   - This assumes that the port is 8000 for the container to run on and that there is a page available and routing available for '/' in the URL
   7. If all is set up properly on the app side/code side, then you should see your app's page!
 
+  # Removing Docker container and image
+  1. Open the Docker Desktop application
+  2. Click on the tab “Containers”
+  3. Click the little trash can icon to the far right of the container that’s listed 
+  - You can delete while it’s still running but, if not, just click the stop icon before clicking the trash can icon.
+  4. Confirm 
+  5. Click on the tab “Images”
+  6. Click on the little trash can icon to the far right of the image that’s listed
+  7. Confirm
 
 
 
