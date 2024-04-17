@@ -63,5 +63,39 @@ Phase 4 (April 22 - May 1):
       - Slides (3-5 slides) and finishing touches
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Cloning Github
+To ensure that you have the github repository on the computer
+1) Using Windows powershell and use the following command
+     - git clone https://github.com/TruongMimi/comp440
+
 # Docker Install Instructions 
-<u> Windows Installation </u>
+1) Click the link that corresponds with your computer.
+    - Windows download
+         - https://docs.docker.com/desktop/install/windows-install/
+    - Mac download
+         - https://docs.docker.com/desktop/install/mac-install/
+           
+3) Follow the installation instructions.
+4) Using Windows powershell navigate to the path of where your cloned repository is placed.
+    - example unix commands
+          - CD => to change directory
+          - dir => to look at the contents of the directory. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
