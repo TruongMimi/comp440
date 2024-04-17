@@ -84,11 +84,34 @@ Phase 4 (April 22 - May 1):
   4) Using Windows powershell navigate to the path of where your cloned repository is placed.
       - example unix commands
             - CD => to change directory
-            - dir => to look at the contents of the directory. 
-  
+            - dir => to look at the contents of the directory.
+  5) Once you have navigated to the docker directory and finished setting up the docker software, create a docker image 
+        
   # Building a Docker image 
+  1. Ensure that the Dockerfile is on the root of the project and has commands to copy the appropriate files to locations on the Docker container. 
+   - An example repo with the Dockerfile set up for a flask app can be found here: https://github.com/TruongMimi/comp440
+  2. Open a terminal
+  3. Within the terminal, navigate to the directory where your project is (this assumes you've cloned the GitHub repo to your computer)
+  4. Enter the following command: docker build -t [IMAGE_NAME]:[IMAGE_VERSION] .
+     - This is the command for our specific project. 
+         - docker build -t comp440:comp440 .
+     - Here is an example docker build command to use: docker build -t test:1.0 . 
+  5. There will be some output on the terminal where it will be completing each step specified within the Dockerfile
+     - You'll know if there are any errors because the errors are usually pretty specific
 
-
+  # Creating and Running a Docker Container
+  1. Open a terminal (if not already open from the previous section of building a Docker image)
+  2. Within the terminal, navigate to the directory where your project is (this assumes you've cloned the GitHub repo to your computer)
+  4. Enter the following command: docker run -d -p 8000:8000 --name [CONTAINER_NAME] [IMAGE_NAME]:[IMAGE_VERSION]
+      - This is the command for our specific project.
+          - docker run -d -p 8000:8000 --name comp440 comp440:comp440
+      - If you don't specify a name, it just assigns it's own ridiculous naming scheme. They're too hard to type or remember.
+      - You can change the ports that the container runs on. You can also have multiple running, as long as they are not on the same port (8000:8000 is used in the above command)
+      - The port is also defined in app.py, so make sure to change that as well if you change the port number. You can find the example on the GitHub repo I sent in the previous section.
+  5. The output will be a bunch of numbers or something like that (one line) if the creation/running of the docker container was successful
+  6. Now, depending on what you've set as your homepage for the app, open a browser and put in the following URL: localhost:8000/
+  - This assumes that the port is 8000 for the container to run on and that there is a page available and routing available for '/' in the URL
+  7. If all is set up properly on the app side/code side, then you should see your app's page!
 
 
 
