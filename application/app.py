@@ -1,26 +1,45 @@
-from flask import Flask, request, render_template, redirect, url_for, jsonify, flash
-import mysql.connector
+from flask import Flask, render_template, request
+import pymysql
 
 app = Flask(__name__)
 
-# Set the secret key for the application
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-
-# db connection settings
+# MySQL connection configuration
 db_config = {
-    'user': '', # need to set up a user to access DB
-    'password': '', # need to set up a password for the user
-    'host': '', # need to find what my host ip address is
+    'host': 'localhost',
+    'user': 'newuser',
+    'password': 'new_password',
     'database': 'publication_listings',
+    'cursorclass': pymysql.cursors.DictCursor  # Use dictionary cursor for easy access to query results
 }
 
-conn = mysql.connector.connect(**db_config)
-cursor = conn.cursor()
-
+# Routes
 @app.route('/')
 def index():
-    return render_template('index.html')
+    connection = pymysql.connect(**db_config)
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM Publication")
+        publications = cursor.fetchall()
+    connection.close()
+    return render_template('index.html', publications=publications)
 
+@app.route('/authors/<author_id>')
+def author_publications(author_id):
+    connection = pymysql.connect(**db_config)
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM Author WHERE author_ID = %s", (author_id,))
+        author = cursor.fetchone()
+    connection.close()
+    return render_template('author_publications.html', author=author)
+
+@app.route('/search')
+def search():
+    query = request.args.get('q')
+    connection = pymysql.connect(**db_config)
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM Publication WHERE Title LIKE %s", ('%' + query + '%',))
+        publications = cursor.fetchall()
+    connection.close()
+    return render_template('search_results.html', query=query, publications=publications)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8000)
+    app.run(debug=True)

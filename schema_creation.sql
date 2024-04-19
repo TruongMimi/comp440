@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `Publication` (
   PRIMARY KEY (`Pub_ID`)
 )
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `Author` (
   `author_ID` INT NOT NULL,
   `FirstName` VARCHAR(45) NOT NULL,
@@ -32,9 +33,9 @@ CREATE TABLE IF NOT EXISTS `Author` (
     FOREIGN KEY (`Publication_idPublication`)
     REFERENCES `Publication` (`Pub_ID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-COMMENT = 'fbf\n\n';
+    ON UPDATE NO ACTION
+)
+ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Users` (
   `User_ID` INT NOT NULL,
@@ -60,3 +61,13 @@ CREATE TABLE IF NOT EXISTS `Keywords` (
     ON UPDATE NO ACTION
 )
 ENGINE = InnoDB;
+
+-- Create a new user 'newuser' with appropriate hostname settings
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password' REQUIRE NONE;
+
+-- Grant privileges to newuser on publication_listings database
+GRANT ALL PRIVILEGES ON publication_listings.* TO 'newuser'@'localhost';
+
+-- Alter newuser to use mysql_native_password authentication plugin
+-- if needed: ALTER USER 'newuser'@'localhost' IDENTIFIED BY 'password' REQUIRE NONE;
+

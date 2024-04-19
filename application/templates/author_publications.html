@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Publication Listing Service</title>
+    <title>Publications by {{ author_name }}</title>
 </head>
 <body>
-    <h1>All Publications</h1>
+    <h1>Publications by {{ author_name }}</h1>
     <ul>
-        {% for publication in publications %}
+        {% for publication in author_publications %}
             <li>{{ publication.title }} ({{ publication.year }})</li>
         {% endfor %}
     </ul>

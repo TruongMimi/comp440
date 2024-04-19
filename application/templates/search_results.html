@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Publication Listing Service</title>
+    <title>Search Results for "{{ query }}"</title>
 </head>
 <body>
-    <h1>All Publications</h1>
+    <h1>Search Results for "{{ query }}"</h1>
     <ul>
-        {% for publication in publications %}
+        {% for publication in results %}
             <li>{{ publication.title }} ({{ publication.year }})</li>
         {% endfor %}
     </ul>
