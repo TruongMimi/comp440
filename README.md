@@ -1,3 +1,6 @@
+# Documentation link: https://docs.google.com/document/d/1slflqyFsyQEF16hjyRkONlbcwcmgUcdMiprGFqYdD08/edit?usp=sharing
+# Power point: https://docs.google.com/presentation/d/1FJu1dUK1uu6NG4D4IZ2k3OoIIug96sFK/edit?usp=sharing&ouid=105119885583782901381&rtpof=true&sd=true
+
 # Project Description 
 
 Presentation date: 5/2/2024
