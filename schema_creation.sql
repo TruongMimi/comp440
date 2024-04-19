@@ -52,11 +52,11 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Keywords` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `Keyword` VARCHAR(200) NULL,
-  `Publication_Pub_ID` INT NOT NULL,
+  `Publication_id` INT NOT NULL,
   `created_date` DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   CONSTRAINT `fk_Keywords_Publication1`
-    FOREIGN KEY (`Publication_Pub_ID`)
+    FOREIGN KEY (`Publication_id`)
     REFERENCES `Publication` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION

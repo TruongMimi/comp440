@@ -10,7 +10,16 @@
     </header>
     <main>
         <form action="/search" method="post">
-            <label for="search_query">Search:</label>
+            <label for="search_field">Search by:</label>
+            <select name="search_field" id="search_field">
+                <option value="Title">Title</option>
+                <option value="Author">Author</option>
+                <option value="Year">Year</option>
+                <option value="Link">Link</option>
+                <option value="Pages">Pages</option>
+                <option value="Keywords">Keywords</option>
+            </select>
+            <label for="search_query">Query:</label>
             <input type="text" id="search_query" name="search_query">
             <button type="submit">Search</button>
         </form>
@@ -19,6 +28,9 @@
                 <li>{{ publication.Title }} ({{ publication.DatePublished }})</li>
             {% endfor %}
         </ul>
+        <div class="back-button">
+            <a href="/homepage" class="button">Back</a>
+        </div>
     </main>
     <footer class="footer">
         &copy; 2024 Publication Listings

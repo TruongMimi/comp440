@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Publication</title>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
+</head>
+<body class="container">
+    <header class="header">
+        <h1>Add Publication</h1>
+    </header>
+    <main>
+        <form action="/add_publication" method="post">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" required><br>
+            <label for="date_published">Date Published:</label><br>
+            <input type="date" id="date_published" name="date_published" required><br>
+            <label for="pages">Pages:</label><br>
+            <input type="text" id="pages" name="pages"><br>
+            <label for="doi">DOI:</label><br>
+            <input type="text" id="doi" name="doi"><br>
+            <label for="link">Link:</label><br>
+            <input type="text" id="link" name="link"><br><br>
+            <input type="submit" value="Add Publication">
+        </form>
+        <div class="back-button">
+            <a href="/homepage" class="button">Back</a>
+        </div>
+    </main>
+    <footer class="footer">
+        &copy; 2024 Publication Listings
+    </footer>
+</body>
+</html>

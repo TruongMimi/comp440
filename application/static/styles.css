@@ -220,3 +220,18 @@ i{
   background-color: #0056b3; /* Darken the background color on hover */
   border-color: #0056b3; /* Darken the border color on hover */
 }
+
+.button {
+  background-color: #0074e4;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none; /* Remove underline from links */
+  margin: 10px; /* Add margin to space out buttons */
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}

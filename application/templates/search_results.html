@@ -11,7 +11,24 @@
     <main>
         <ul>
             {% for publication in results %}
-                <li>{{ publication.Title }} ({{ publication.DatePublished }})</li>
+                <li>
+                    <strong>Title:</strong> {{ publication.Title }} <br>
+                    <strong>Date Published:</strong> {{ publication.DatePublished }} <br>
+                    <strong>Author(s):</strong> 
+                    {% if publication.Authors %}
+                        {% set author_names = [] %}
+                        {% for author in publication.Authors.split(', ') %}
+                            {% set _ = author_names.append(author) %}
+                        {% endfor %}
+                        {{ author_names | join(', ') }} <br>
+                    {% else %}
+                        N/A <br>
+                    {% endif %}
+                    <strong>Keywords:</strong> {{ publication.Keywords }} <br>
+                    <strong>Link:</strong> <a href="{{ publication.Link }}">{{ publication.Link }}</a> <br>
+                    <strong>Pages:</strong> {{ publication.Pages }} <br>
+                </li>
+                <br> <!-- New line after each list entry -->
             {% endfor %}
         </ul>
         <div class="back-button">
