@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `Author` (
   `Email` VARCHAR(45) NULL,
   `Address` VARCHAR(45) NULL,
   `Homepage` VARCHAR(200) NULL,
-  `Publication_idPublication` INT NOT NULL,
+  `Publication_id` INT NOT NULL,
   `created_date` DATE NULL,
   `updated_date` DATE NULL,
   PRIMARY KEY (`author_ID`, `Publication_idPublication`),
