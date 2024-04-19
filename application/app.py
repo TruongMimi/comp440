@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import pymysql
 
 app = Flask(__name__)
@@ -19,24 +19,37 @@ def index():
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    # Get form data
-    firstName = request.form['firstName']
-    lastName = request.form['lastName']
-    address = request.form['address']
-    email = request.form['email']
+    # Handle user signup form submission and database insertion here
+    # This route will handle the form submission from index.html
 
-    # Insert user into Users table
-    connection = pymysql.connect(**db_config)
-    try:
-        with connection.cursor() as cursor:
-            # Execute the SQL command to insert the user into the Users table
-            sql = "INSERT INTO Users (FirstName, LastName, Address, Email) VALUES (%s, %s, %s, %s)"
-            cursor.execute(sql, (firstName, lastName, address, email))
-        connection.commit()  # Commit changes to the database
-    finally:
-        connection.close()  # Close database connection
+    return redirect('/search')  # Redirect to the home page after signup
 
-    return 'User signed up successfully!'
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'POST':
+        # Handle search form submission and database query here
+        # This route will handle the form submission from search_results.html
+        search_query = request.form['search_query']
+
+        # Perform database query based on search query
+        # Example: query the database for publications matching the search query
+
+        # Render search results page with the retrieved data
+        return render_template('search_results.html', search_query=search_query)
+    else:
+        # Render the search form page
+        return render_template('search.html')
+
+@app.route('/author/<int:author_id>')
+def author_publications(author_id):
+    # Handle retrieving author's publications from the database
+    # This route will display publications by a specific author
+
+    # Retrieve author's information and publications from the database
+    # Example: query the database for author's information and publications
+
+    # Render author publications page with the retrieved data
+    return render_template('author_publications.html', author_id=author_id)
 
 if __name__ == '__main__':
     app.run(debug=True)
