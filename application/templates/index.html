@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Publication Listing Service</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Signup</title>
 </head>
 <body>
-    <h1>All Publications</h1>
-    <ul>
-        {% for publication in publications %}
-            <li>{{ publication.title }} ({{ publication.year }})</li>
-        {% endfor %}
-    </ul>
+    <h1>User Signup</h1>
+    <form action="/signup" method="post">
+        <label for="firstName">First Name:</label><br>
+        <input type="text" id="firstName" name="firstName" required><br>
+        <label for="lastName">Last Name:</label><br>
+        <input type="text" id="lastName" name="lastName" required><br>
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address" required><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

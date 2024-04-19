@@ -9,37 +9,34 @@ db_config = {
     'user': 'newuser',
     'password': 'new_password',
     'database': 'publication_listings',
-    'cursorclass': pymysql.cursors.DictCursor  # Use dictionary cursor for easy access to query results
+    'cursorclass': pymysql.cursors.DictCursor
 }
 
 # Routes
 @app.route('/')
 def index():
-    connection = pymysql.connect(**db_config)
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM Publication")
-        publications = cursor.fetchall()
-    connection.close()
-    return render_template('index.html', publications=publications)
+    return render_template('index.html')
 
-@app.route('/authors/<author_id>')
-def author_publications(author_id):
-    connection = pymysql.connect(**db_config)
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM Author WHERE author_ID = %s", (author_id,))
-        author = cursor.fetchone()
-    connection.close()
-    return render_template('author_publications.html', author=author)
+@app.route('/signup', methods=['POST'])
+def signup():
+    # Get form data
+    firstName = request.form['firstName']
+    lastName = request.form['lastName']
+    address = request.form['address']
+    email = request.form['email']
 
-@app.route('/search')
-def search():
-    query = request.args.get('q')
+    # Insert user into Users table
     connection = pymysql.connect(**db_config)
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM Publication WHERE Title LIKE %s", ('%' + query + '%',))
-        publications = cursor.fetchall()
-    connection.close()
-    return render_template('search_results.html', query=query, publications=publications)
+    try:
+        with connection.cursor() as cursor:
+            # Execute the SQL command to insert the user into the Users table
+            sql = "INSERT INTO Users (FirstName, LastName, Address, Email) VALUES (%s, %s, %s, %s)"
+            cursor.execute(sql, (firstName, lastName, address, email))
+        connection.commit()  # Commit changes to the database
+    finally:
+        connection.close()  # Close database connection
+
+    return 'User signed up successfully!'
 
 if __name__ == '__main__':
     app.run(debug=True)
