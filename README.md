@@ -125,7 +125,10 @@ Phase 4 (April 22 - May 1):
   7. Confirm
 
 
-
+# If you want to see example datil Loading CSV files onto the database 
+     Order of CSV uploads 
+       1. Publication // since it has the foreign key for the other tables 
+       2. Then any file is fine after 
 
 
 
