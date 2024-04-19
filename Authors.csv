@@ -1,0 +1,138 @@
+author_ID,FirstName,LastName,Institution,Department,Email,Address,Homepage,,Publication_ID
+1,Shuyu,Wang,University of Chicago,Department of Astronomy and Astrophysics,shuyuwang.astro@gmail.com,NULL,https://orcid.org/0000-0001-6663-5605,,1
+2,Lina,Necib,Massachusetts Institute of Technology,Physics and Kavli Institute for Astrophysics and Space Research,NULL,NULL,https://orcid.org/0000-0003-2806-1414,,1
+3,Alexander,Ji,University of Chicago,Department of Astronomy and Astrophysics,NULL,NULL,https://orcid.org/0000-0002-4863-8842,,1
+4,Xiaowei,Ou,Massachusetts Institute of Technology,Physics and Kavli Institute for Astrophysics and Space Research,NULL,NULL,https://orcid.org/0000-0002-4669-9967,,1
+5,Mariangela,Lisanti,Princeton University,Department of Physics,NULL,NULL,https://orcid.org/0000-0002-8495-8659,,1
+6,Mithi,De los Reyes,Stanford University,Department of Physics,NULL,NULL,https://orcid.org/0000-0002-4739-046X,,1
+7,Allison,Strom,Northwestern University,Department of Astronomy and Astrophysics,allison.strom@northwestern.edu,NULL,https://orcid.org/0000-0001-6369-1636,,1
+8,Mimi,Truong,"California State University, Northridge",Department of Computer Science,NULL,NULL,https://orcid.org/0000-0001-9812-4957,,1
+9,Guilherme,Limberg,Universidade de Sao Paulo,Department of Astronomy and Astrophysics,guilherme.limberg@usp.br,NULL,https://orcid.org/0000-0002-9269-8287,,2
+10,Anna,Queiroz,Universitat Potsdam,Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0001-9209-7599,,2
+11,Helio,Perottoni,Universitat de Barcelona,Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0002-0537-4146,,2
+12,Silvia,Rossi,Universidade de Sao Paulo,Department of Astronomy,silvia.rossi@iag.usp.br,NULL,https://orcid.org/0000-0001-7479-5756,,2
+13,Joao,Amarante,Universitat de Barcelona,Department of Physics and Astronomy,amarante@icc.ub.edu,NULL,https://orcid.org/0000-0002-7662-5475,,2
+14,Rafael,Santucci,Universidade Federal de Goias,NULL,NULL,NULL,https://orcid.org/0000-0002-7529-1442,,2
+15,Cristina,Chiappini,Universitat Potsdam,Department of Physics and Astronomy,cristina.chiappini@aip.de,NULL,https://orcid.org/0000-0003-1269-7282,,2
+16,Angeles,Perez-Villegas,Universidad Nacional Autonoma de Mexico,Department of Astronmy,NULL,NULL,https://orcid.org/0000-0002-5974-3998,,2
+17,Young,Sun Lee,University of Notre Dame,Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0001-5297-4518,,2
+18,Sofia,Feltzing,Lund Observatory,Department of Astronomy and Theoretical Physics,sofia.feltzing@geol.lu.se,NULL,https://orcid.org/0000-0002-7539-1638,,3
+19,Diane,Feuillet,Lund Observatory,Department of Astronomy and Theoretical Physics,diane.feuillet@geol.lu.se,NULL,https://orcid.org/0000-0002-3101-5921,,3
+20,Yuri,Abuchaim,Universidade de Sao Paulo,Department of Astronmy,NULL,NULL,https://orcid.org/0000-0002-6838-2178,,4
+21,Helio,Perottoni,Universidade de Sao Paulo,Department of Astronmy,NULL,NULL,https://orcid.org/0000-0002-0537-4146,,4
+22,Silvia,Rossi,Universidade de Sao Paulo,Department of Astronmy,silvia.rossi@iag.usp.br,NULL,https://orcid.org/0000-0001-7479-5756,,4
+23,Guilherme,Limberg,Universidade de Sao Paulo,Department of Astronmy,NULL,NULL,https://orcid.org/0000-0002-9269-8287,,4
+24,Angeles,Perez-Villegas,Universidad Nacional Autónoma de Mexico,Department of Astronmy,NULL,NULL,https://orcid.org/0000-0002-5974-3998,,4
+25,Rafael,Santucci,Universidade Federal de Goias,Department of Socio-Environmental Studies,NULL,NULL,https://orcid.org/0000-0002-7529-1442,,4
+26,Vinicius,Placco,NSF's NOIRLab,NULL,NULL,NULL,https://orcid.org/0000-0003-4479-1265,,4
+27,Joao,Sales-Silva,Observatorio Nacional,NULL,NULL,NULL,https://orcid.org/0000-0003-0636-7463,,4
+28,Friedrich,Anders,Universitat de Barcelona,Department of Cosmos Sciences,NULL,NULL,https://orcid.org/0000-0003-4524-9363,,4
+29,Helio,Rocha-Pinto,Universidade Federal do Rio de Janeiro,NULL,NULL,NULL,https://orcid.org/0000-0002-5274-4955,,4
+30,Young,Kwang Kim,Chungnam National University,Department of Astronomy and Space Science,NULL,NULL,https://orcid.org/0000-0002-6411-5857,,5
+31,Young,Sun Lee,Chungnam National University,Department of Astronomy and Space Science,youngsun@cnu.ac.kr,NULL,https://orcid.org/0000-0001-5297-4518,,5
+32,Timothy,Beers,University of Notre Dame,Department of Physics,NULL,NULL,https://orcid.org/0000-0003-4573-6233,,5
+33,Jae-Rim,Koo,Chungnam National University,Department of Astronomy and Space Science,kkoojr@gmail.com,NULL,https://orcid.org/0000-0001-8969-0009,,5
+34,Rohan,Naidu,Harvard & Smithsonian,Department of  Astrophysics,rohan.naidu@cfa.harvard.edu,NULL,https://orcid.org/0000-0003-3997-5705,,6
+35,Alexander,Ji,University of Chicago,Department of Astronomy & Astrophysics,NULL,NULL,https://orcid.org/0000-0002-4863-8842,,6
+36,Charlie,Conroy,Harvard & Smithsonian,Department of  Astrophysics,NULL,NULL,https://orcid.org/0000-0002-1590-8551,,6
+37,Ana,Bonaca,Observatories of the Carnegie Institution for Science,NULL,NULL,NULL,https://orcid.org/0000-0002-7846-9787,,6
+38,Yuan-Sen,Ting,Australian National University,Department of Astronomy & Astrophysics,yuan-sen.ting@anu.edu.au,NULL,https://orcid.org/0000-0001-5082-9536,,6
+39,Dennis,Zaritsky,University of Arizona,NULL,NULL,NULL,https://orcid.org/0000-0002-5177-727X,,6
+40,Lieke,Van Son,University of Amsterdam,Department of Astronomy,NULL,NULL,https://orcid.org/0000-0001-5484-4987,,6
+41,Floor,Broekgaarden,Harvard & Smithsonian,Department of  Astrophysics,NULL,NULL,https://orcid.org/0000-0002-4421-4962,,6
+42,Sandro,Tacchella,Ulsan National Institute of Science and Technology,Department of Physics,st578@cam.ac.uk,NULL,https://orcid.org/0000-0002-8224-4505,,6
+43,Vedant,Chandra,Harvard & Smithsonian,Department of  Astrophysics,vedant.chandra@cfa.harvard.edu,NULL,https://orcid.org/0000-0002-0572-8012,,6
+44,Hans-Walter,Rix,"Max-Planck-Institut fur Astronomie, Konigstuhl",Department of Astronomy,rix@mpia.de,NULL,https://orcid.org/0000-0003-4996-9069,,7
+45,Vedant,Chandra,Harvard & Smithsonian,Department of  Astrophysics,vedant.chandra@cfa.harvard.edu,NULL,https://orcid.org/0000-0002-0572-8012,,7
+46,Rene,Andrae,"Max-Planck-Institut fur Astronomie, Konigstuhl",Department of Astronomy,NULL,NULL,https://orcid.org/0000-0001-8006-6365,,7
+47,Adrian,Price-Whelan,Flatiron Institute,Department of Computational Astrophysics,NULL,NULL,https://orcid.org/0000-0003-0872-7098,,7
+48,David,Weinberg,The Ohio State University,Department of Astronomy and Center for Cosmology and AstroParticle Physics,NULL,NULL,NULL,,7
+49,Charlie,Conroy,Harvard & Smithsonian,Department of  Astrophysics,NULL,NULL,https://orcid.org/0000-0002-1590-8551,,7
+50,Morgan,Fouesneau,"Max-Planck-Institut fur Astronomie, Konigstuhl",Department of Astronomy,NULL,NULL,NULL,,7
+51,David,Hogg,"Max-Planck-Institut fur Astronomie, Konigstuhl",Department of Astronomy,NULL,NULL,https://orcid.org/0000-0003-2866-9403,,7
+52,Francesca,De Angeli,University of Cambridge,Department of Astronomy,NULL,NULL,https://orcid.org/0000-0003-1879-0488,,7
+53,Rohan,Naidu,Massachusetts Institute of Technology,Astrophysics and Space Research,NULL,NULL,NULL,,7
+54,Derek,Shank,University of Notre Dame,Department of Physics and Astronomy,dshank1@nd.edu,NULL,https://orcid.org/0000-0001-9723-6121,,8
+55,Dante,Komater,University of Notre Dame,Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0003-2159-4760,,8
+56,Timothy,Beers,University of Notre Dame,Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0003-4573-6233,,8
+57,Vinicius,Placco,NSF's NOIRLab,NULL,NULL,NULL,https://orcid.org/0000-0003-4479-1265,,8
+58,Yang,Huang,Yunnan University,Astronomy Research,NULL,NULL,https://orcid.org/0000-0003-3250-2876,,8
+59,Lina,Necib,California Institute of Technology,Theoretical Physics,NULL,NULL,https://orcid.org/0000-0003-2806-1414,,9
+60,Mariangela,Lisanti,Princeton University,Department of Physics,NULL,NULL,NULL,,9
+61,Vasily,Belokurov,University of Cambridge,Department of Astronomy,NULL,NULL,https://orcid.org/0000-0002-0038-9584,,9
+62,Emily,Griffith,University of Colorado,Department of Astrophysical and Planetary Sciences,Emily.Griffith-1@colorado.edu,NULL,https://orcid.org/0000-0001-9345-9977,,10
+63,Jennifer,Johnson,The Ohio State University,Department of Astronomy and Center of Cosmology and AstroParticle Physics,NULL,NULL,https://orcid.org/0000-0001-7258-1834,,10
+64,David,Weinberg,The Ohio State University,Department of Astronomy and Center of Cosmology and AstroParticle Physics,NULL,NULL,https://orcid.org/0000-0001-7775-7261,,10
+65,Ilya,Ilyin,Leibniz-Institut for Astrophysics Potsdam,Department of Astronomy,NULL,NULL,https://orcid.org/0000-0002-0551-046X,,10
+66,James,Johnson,The Ohio State University,Department of Astronomy and Center of Cosmology and AstroParticle Physics,NULL,NULL,https://orcid.org/0000-0002-6534-8783,,10
+67,Romy,Rodriguez-Martinez,The Ohio State University,Department of Astronomy and Center of Cosmology and AstroParticle Physics,romy.rodriguez@cfa.harvard.edu,NULL,https://orcid.org/0000-0003-1445-9923,,10
+68,Klaus,Strassmeier,Leibniz-Institut for Astrophysics Potsdam,Department of Astronomy,NULL,NULL,https://orcid.org/0000-0002-6192-6494,,10
+69,Haifan,Zhu,University of Chinese Academy of Sciences,Department of Physical Sciences,NULL,NULL,NULL,,11
+70,Cuihua,Du,University of Chinese Academy of Sciences,Department of Astronomy and Space Sciences,ducuihua@ucas.ac.cn,NULL,https://orcid.org/0000-0002-3954-617X,,11
+71,Yepeng,Yan,Beijing Normal University,Department of Astronomy,NULL,NULL,NULL,,11
+72,Jianrong,Shi,University of Chinese Academy of Sciences,Department of Astronomy and Space Sciences,NULL,NULL,https://orcid.org/0000-0002-0349-7839,,11
+73,Jun,Ma,University of Chinese Academy of Sciences,Department of Astronomy and Space Sciences,NULL,NULL,https://orcid.org/0000-0001-6329-6644,,11
+74,Heidi,Newberg,Rensselaer Polytechnic Institute,Department of Physics,NULL,NULL,https://orcid.org/0000-0001-8348-0983,,11
+75,Danny,Horta,Flatiron Institute,Department of Computational Astrophysics,dhortadarrington@flatironinstitute.org,NULL,https://orcid.org/0000-0003-1856-2151,,12
+76,Emily,Cunningham,Columbia University,Department of Astrophysics,NULL,NULL,https://orcid.org/0000-0002-6993-0826,,12
+77,Robyn,Sanderson,University of Pennsylvania,Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0003-3939-3297,,12
+78,Kathryn,Johnston,Columbia University,Department of Astrophysics,NULL,NULL,https://orcid.org/0000-0001-6244-6727,,12
+79,Nondh,Panithanpaisal,University of Pennsylvania,Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0001-5214-8822,,12
+80,Arpit,Arora,University of Pennsylvania,Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0002-8354-7356,,12
+81,Lina,Necib,Department of Physics and Kavli Institute for Astrophysics and Space Research,Massachusetts Institute of Technology,NULL,NULL,https://orcid.org/0000-0003-2806-1414,,12
+82,Andrew,Wetzel,"University of California, Davis",Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0003-0603-8942,,12
+83,Jeremy,Bailin,University of Alabama,Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0001-6380-010X,,12
+84,Claude-Andre,Faucher-Giguere,Northwestern University,Department of Physics and Astronomy and CIERA,NULL,NULL,https://orcid.org/0000-0002-4900-6628,,12
+85,Yepeng,Yan,University of Chinese Academy of Sciences,Department of Physical Sciences,NULL,NULL,NULL,,13
+86,Cuihua,Du,University of Chinese Academy of Sciences,Department of Astronomy and Space Science,ducuihua@ucas.ac.cn,NULL,https://orcid.org/0000-0002-3954-617X,,13
+87,Hefan,Li,University of Chinese Academy of Sciences,Department of Physical Sciences,NULL,NULL,NULL,,13
+88,Jianrong,Shi,University of Chinese Academy of Sciences,Department of Astronomy and Space Science,NULL,NULL,https://orcid.org/0000-0002-0349-7839,,13
+89,Jun,Ma,University of Chinese Academy of Sciences,Department of Astronomy and Space Science,NULL,NULL,https://orcid.org/0000-0001-6329-6644,,13
+90,Heidi,Newberg,Rensselaer Polytechnic Institute,"Department of Physics, Applied Physics and Astronomy",NULL,NULL,https://orcid.org/0000-0001-8348-0983,,13
+91,Rohan,Naidu,Harvard & Smithsonian,Department of Astrophysics,rohan.naidu@cfa.harvard.edu,NULL,https://orcid.org/0000-0003-3997-5705,,14
+92,Charlie,Conroy,Harvard & Smithsonian,Department of Astrophysics,NULL,NULL,https://orcid.org/0000-0002-1590-8551,,14
+93,Ana,Bonaca,Harvard & Smithsonian,Department of Astrophysics,NULL,NULL,https://orcid.org/0000-0002-7846-9787,,14
+94,Benjamin,Johnson,Harvard & Smithsonian,Department of Astrophysics,NULL,NULL,https://orcid.org/0000-0002-9280-7594,,14
+95,Yuan-Sen,Ting,Princeton University,Department of Astrophysical Sciences,yuan-sen.ting@anu.edu.au,NULL,https://orcid.org/0000-0001-5082-9536,,14
+96,Nelson,Caldwell,Harvard & Smithsonian,Department of Astrophysics,NULL,NULL,https://orcid.org/0000-0003-2352-3202,,14
+97,Dennis,Zaritsky,University of Arizona,NULL,NULL,NULL,https://orcid.org/0000-0002-5177-727X,,14
+98,Phillip,Cargile,Harvard & Smithsonian,Department of Astrophysics,NULL,NULL,https://orcid.org/0000-0002-1617-8917,,14
+99,Joao,Amarante,Universitat de Barcelona,Department of Physics and Astronomy,amarante@icc.ub.edu,NULL,https://orcid.org/0000-0002-7662-5475,,15
+100,Victor,Debattista,University of Central Lancashire,NULL,NULL,NULL,https://orcid.org/0000-0001-7902-0116,,15
+101,Leandro Beraldo,Silva,University of Michigan,Department of Astronomy,NULL,NULL,https://orcid.org/0000-0002-0740-1507,,15
+102,Chervin,Laporte,Universitat de Barcelona,NULL,NULL,NULL,https://orcid.org/0000-0003-3922-7336,,15
+103,Nathan,Deg,Queen's University,"Department of Physics, Engineering Physics, and Astronomy",NULL,NULL,https://orcid.org/0000-0003-3523-7633,,15
+104,Emily,Cunningham,Flatiron Institute,Department of Computational Astrophysics,ecunningham@flatironinstitute.org,NULL,https://orcid.org/0000-0002-6993-0826,,16
+105,Robyn,Sanderson,University of Pennsylvania,Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0003-3939-3297,,16
+106,Kathryn,Johnston,Columbia University,Department of Astronomy,NULL,NULL,https://orcid.org/0000-0001-6244-6727,,16
+107,Nondh,Panithanpaisal,University of Pennsylvania,Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0001-5214-8822,,16
+108,Melissa,Ness,Columbia University,Department of Astronomy,NULL,NULL,https://orcid.org/0000-0001-5082-6693,,16
+109,Andrew,Wetzel,"University of California, Davis",Department of Physics & Astronomy,NULL,NULL,https://orcid.org/0000-0003-0603-8942,,16
+110,Sarah,Loebman,"University of California, Merced", Department of Physics,sloebman@ucmerced.edu,NULL,https://orcid.org/0000-0003-3217-5967,,16
+111,Ivanna,Escala,Northwestern University,Department of Physics and Astronomy and CIERA,NULL,NULL,https://orcid.org/0000-0002-9933-9551,,16
+112,Danny,Horta,Astrophysics Research Institute,Department of Astrophysics,NULL,NULL,NULL,,16
+113,Claude-Andre,Faucher-Giguere,Northwestern University,Department of Physics and Astronomy and CIERA,NULL,NULL,https://orcid.org/0000-0002-4900-6628,,16
+114,Deokkeun,An,Ewha Womans University,Department of Science Education,deokkeun@ewha.ac.kr,NULL,https://orcid.org/0000-0002-8072-7511,,17
+115,Timothy,Beers,University of Notre Dame,Department of Physics,NULL,NULL,https://orcid.org/0000-0003-4573-6233,,17
+116,Simon,Schuler,University of Tampa,NULL,sschuler@ut.edu,NULL,https://orcid.org/0000-0001-7203-8014,,18
+117,Jeff,Andrews,Center for Interdisciplinary Exploration and Research in Astrophysics,NULL,Jeffrey.andrews@ufl.edu,NULL,https://orcid.org/0000-0001-5261-3923,,18
+118,Vincent,Clanzy II,University of Tampa,NULL,NULL,NULL,NULL,,18
+119,Mohammed,Mourabit,University of Tampa,NULL,NULL,NULL,NULL,,18
+120,Julio,Chaname,Pontificia Universidad Catolica de Chile,NULL,NULL,NULL,https://orcid.org/0000-0003-2481-4546,,18
+121,Marcel,Agueros,Columbia University,NULL,NULL,NULL,https://orcid.org/0000-0001-7077-3664,,18
+122,David,Vokrouhlicky,Charles University,NULL,vokrouhl@cesnet.cz,NULL,https://orcid.org/0000-0002-6034-5452,,19
+123,David,Nesvorny,Southwest Research Institute,Department of Space Studies,NULL,NULL,https://orcid.org/0000-0002-4547-4301,,19
+124,Miroslav,Broz,Charles University,NULL,NULL,NULL,https://orcid.org/0000-0003-2763-1411,,19
+125,William,Bottke,Southwest Research Institute,Department of Space Studies,NULL,NULL,https://orcid.org/0000-0002-1804-7814,,19
+126,Rogerio,Deienno,Southwest Research Institute,Department of Space Studies,NULL,NULL,https://orcid.org/0000-0001-6730-7857,,19
+127,Carson,Fuls,The University of Arizona,NULL,NULL,NULL,NULL,,19
+128,Frank,Shelly,The University of Arizona,NULL,NULL,NULL,NULL,,19
+129,Jorge,Otero-Santos,Instituto de Astrofísica de Andalucía ,NULL,NULL,NULL,https://orcid.org/0000-0002-4241-5875,,20
+130,Vilppu,Piirola,"University of Turku, Finland",Department of Physics and Astronomy,NULL,NULL,https://orcid.org/0000-0003-0186-206X,,20
+131,Juan,Escudero Pedrosa,Instituto de Astrofísica de Andalucía ,NULL,NULL,NULL,https://orcid.org/0000-0002-4131-655X,,20
+132,Ivan,Agudo,Instituto de Astrofísica de Andalucía ,NULL,NULL,NULL,https://orcid.org/0000-0002-3777-6182,,20
+133,Daniel,Morcuende,Instituto de Astrofísica de Andalucía ,NULL,NULL,NULL,https://orcid.org/0000-0001-9400-0922,,20
+134,Alfredo,Sota,Instituto de Astrofísica de Andalucía ,NULL,NULL,NULL,https://orcid.org/0000-0002-9404-6952,,20
+135,Victor,Casanova,Instituto de Astrofísica de Andalucía ,NULL,NULL,NULL,https://orcid.org/0000-0003-2036-8999,,20
+136,Francisco,Aceituno,Instituto de Astrofísica de Andalucía ,NULL,NULL,NULL,https://orcid.org/0000-0001-8074-4760,,20
+137,Pablo,Santos-Sanz,Instituto de Astrofísica de Andalucía ,NULL,NULL,NULL,https://orcid.org/0000-0002-1123-983X,,20
