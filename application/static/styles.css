@@ -201,3 +201,22 @@ i{
   background-color: #4CAF50; /* Green background for active buttons */
   color: white; /* White text color for contrast */
 }
+
+.back-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-button .button {
+  background-color: #0074e4;
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid #0074e4; /* Add a border around the button */
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.back-button .button:hover {
+  background-color: #0056b3; /* Darken the background color on hover */
+  border-color: #0056b3; /* Darken the border color on hover */
+}

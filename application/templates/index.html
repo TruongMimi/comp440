@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Signup</title>
+    <title>User Sign Up</title>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
 </head>
-<body>
-    <h1>User Signup</h1>
-    <form action="/signup" method="post">
-        <label for="firstName">First Name:</label><br>
-        <input type="text" id="firstName" name="firstName" required><br>
-        <label for="lastName">Last Name:</label><br>
-        <input type="text" id="lastName" name="lastName" required><br>
-        <label for="address">Address:</label><br>
-        <input type="text" id="address" name="address" required><br>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
-        <input type="submit" value="Submit">
-    </form>
+<body class="container">
+    <header class="header">
+        <h1>User Signup</h1>
+    </header>
+    <main>
+        <form action="/signup" method="post">
+            <label for="firstName">First Name:</label><br>
+            <input type="text" id="firstName" name="firstName" required><br>
+            <label for="lastName">Last Name:</label><br>
+            <input type="text" id="lastName" name="lastName" required><br>
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" name="address" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+    <footer class="footer">
+        &copy; 2024 Publication Listings
+    </footer>
 </body>
 </html>

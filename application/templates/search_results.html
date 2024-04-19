@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Search Publications</title>
+    <title>Search Results for "{{ search_query }}"</title>
     <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
 </head>
 <body class="container">
     <header class="header">
-        <h1>Search Publications</h1>
+        <h1>Search Results for "{{ search_query }}"</h1>
     </header>
     <main>
-        <form action="/search" method="post">
-            <label for="search_query">Search:</label>
-            <input type="text" id="search_query" name="search_query">
-            <button type="submit">Search</button>
-        </form>
         <ul>
             {% for publication in results %}
                 <li>{{ publication.Title }} ({{ publication.DatePublished }})</li>
             {% endfor %}
         </ul>
+        <div class="back-button">
+            <a href="/search" class="button">Back</a>
+        </div>
     </main>
     <footer class="footer">
         &copy; 2024 Publication Listings

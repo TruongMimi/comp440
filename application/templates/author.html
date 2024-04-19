@@ -2,13 +2,21 @@
 <html>
 <head>
     <title>Publications by {{ author_name }}</title>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
 </head>
-<body>
-    <h1>Publications by {{ author_name }}</h1>
-    <ul>
-        {% for publication in author_publications %}
-            <li>{{ publication.title }} ({{ publication.year }})</li>
-        {% endfor %}
-    </ul>
+<body class="container">
+    <header class="header">
+        <h1>Publications by {{ author_name }}</h1>
+    </header>
+    <main>
+        <ul>
+            {% for publication in author_publications %}
+                <li>{{ publication.title }} ({{ publication.year }})</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer class="footer">
+        &copy; 2024 Publication Listings
+    </footer>
 </body>
 </html>
