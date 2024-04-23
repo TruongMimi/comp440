@@ -114,7 +114,7 @@ Phase 4 (April 22 - May 1):
       - The port is also defined in app.py, so make sure to change that as well if you change the port number. You can find the example on the GitHub repo I sent in the previous section.
   5. The output will be a bunch of numbers or something like that (one line) if the creation/running of the docker container was successful
   6. Now, depending on what you've set as your homepage for the app, open a browser and put in the following URL: 127.0.0.1:5000
-      - This assumes that the port is 8000 for the container to run on and that there is a page available and routing available for '/' in the URL
+      - This assumes that the port is 5000 for the container to run on and that there is a page available and routing available for '/' in the URL
   7. If all is set up properly on the app side/code side, then you should see your app's page!
 
   # Removing Docker container and image
@@ -127,8 +127,17 @@ Phase 4 (April 22 - May 1):
   6. Click on the little trash can icon to the far right of the image that’s listed
   7. Confirm
 
+# How to import the database 
 
-# If you want to see example datil Loading CSV files onto the database 
+# Add Publication 
+
+# Search Pulication 
+
+# Delete Publication 
+
+
+
+# If you want to see example data Loading CSV files onto the database 
      Order of CSV uploads 
        1. Publication // since it has the foreign key for the other tables 
        2. Then any file is fine after 
