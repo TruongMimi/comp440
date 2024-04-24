@@ -127,7 +127,7 @@ Phase 4 (April 22 - May 1):
   6. Click on the little trash can icon to the far right of the image that’s listed
   7. Confirm
 
-# How to import the database
+# How to import the database into MySQL 
   - To enter a csv file into the database, you would go to your schema in MySQL
   - find the publication_listing
   - Expand table
@@ -138,19 +138,38 @@ Phase 4 (April 22 - May 1):
         - Author 
         - Keywords 
 
-# Add Publication 
-
-# Search Pulication 
-
-# Delete Publication 
-
-
 
 # If you want to see example data Loading CSV files onto the database 
      Order of CSV uploads 
        1. Publication // since it has the foreign key for the other tables 
        2. Then any file is fine after 
 
+# Running locally 
+   - Locate to the path that you run the following code in the windows powershell
+        - python app.py
+   - open the brower and put in your IP address
+        - http://127.0.0.1:5000/
+# User sign up 
+   - Needs First name, Last Name, address, and Email (error handling @)
+
+# Add Publication 
+    - Needed for adding a publiation 
+       - Title 
+       - Date Published 
+       - Pages
+       - DOI
+       - Link 
+       
+# Search Pulication 
+    - Can search by the following values 
+       - Title 
+       - Author
+       - Year 
+       - Link 
+       - Pages
+       - Keywords
+       
+# Delete Publication 
 
 
 cat app.py
