@@ -9,18 +9,18 @@
         <h1>Search Results for "{{ search_query }}"</h1>
     </header>
     <main>
+        <div class="modify-message">
+            <strong><h3>**Click on a publication's title to modify that publication**</h3></strong>
+        </div>
         <ul>
             {% for publication in results %}
                 <li>
-                    <strong>Title:</strong> {{ publication.Title }} <br>
+                    <strong>Title:</strong> 
+                    <a href="/modify_publication/{{ publication.ID }}">{{ publication.Title }}</a> <br>
                     <strong>Date Published:</strong> {{ publication.DatePublished }} <br>
                     <strong>Author(s):</strong> 
                     {% if publication.Authors %}
-                        {% set author_names = [] %}
-                        {% for author in publication.Authors.split(', ') %}
-                            {% set _ = author_names.append(author) %}
-                        {% endfor %}
-                        {{ author_names | join(', ') }} <br>
+                        {{ publication.Authors }} <br>
                     {% else %}
                         N/A <br>
                     {% endif %}

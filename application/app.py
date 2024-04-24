@@ -11,7 +11,7 @@
 # You should also support search by keywords, on the overall database as well as within each of the views.
 # add functionality to delete and modify and maybe keep a copy if they want to undo
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import pymysql
 
 app = Flask(__name__)
@@ -148,6 +148,81 @@ def add_publication():
     else:
         return render_template('add_publication.html')  # Render the add publication form page
 
+
+@app.route('/modify_publication/<int:publication_id>', methods=['GET', 'POST'])
+def modify_publication(publication_id):
+    if request.method == 'POST':
+        # Get form data
+        title = request.form['title']
+        date_published = request.form['date_published']
+        pages = request.form['pages']
+        doi = request.form['doi']
+        link = request.form['link']
+        authors = request.form['authors']  # Assuming the authors are entered as a single string separated by commas
+        keywords = request.form['keywords']  # Assuming the authors are entered as a single string separated by commas
+
+        # Update publication in Publication table
+        connection = pymysql.connect(**db_config)
+        try:
+            with connection.cursor() as cursor:
+                # Execute the SQL command to update the publication in the Publication table
+                sql = "UPDATE Publication SET Title = %s, DatePublished = %s, Pages = %s, DOI = %s, Link = %s WHERE ID = %s"
+                cursor.execute(sql, (title, date_published, pages, doi, link, publication_id))
+
+                # Delete existing authors and keywords
+                sql_delete_authors = "DELETE FROM Author WHERE Publication_id = %s"
+                cursor.execute(sql_delete_authors, (publication_id,))
+                sql_delete_keywords = "DELETE FROM Keywords WHERE Publication_id = %s"
+                cursor.execute(sql_delete_keywords, (publication_id,))
+
+                # Insert authors into Author table
+                if authors.strip():  # Check if the author's name is not empty
+                    author_parts = authors.split()
+                    if len(author_parts) == 1:
+                        first_name = author_parts[0]
+                        last_name = ""  # Set last name to empty if only one name is provided
+                    else:
+                        first_name = author_parts[0]
+                        last_name = ' '.join(author_parts[1:])  # Join all parts after the first one as the last name
+                    sql_insert_author = "INSERT INTO Author (Publication_id, FirstName, LastName) VALUES (%s, %s, %s)"
+                    cursor.execute(sql_insert_author, (publication_id, first_name, last_name))
+
+
+                # Split keywords input string into individual keywords
+                keywords_list = [keyword.strip() for keyword in keywords.split(',')]  # Split keywords by comma and remove leading/trailing whitespace
+
+                # Insert keywords into Keywords table
+                for keyword in keywords_list:
+                    sql_insert_keyword = "INSERT INTO Keywords (Publication_id, Keyword) VALUES (%s, %s)"
+                    cursor.execute(sql_insert_keyword, (publication_id, keyword))
+
+            connection.commit()  # Commit changes to the database
+        finally:
+            connection.close()  # Close database connection
+
+        return redirect(url_for('homepage'))  # Redirect to the homepage after modifying publication
+    else:
+        # Retrieve publication details from the database
+        connection = pymysql.connect(**db_config)
+        try:
+            with connection.cursor() as cursor:
+                # Execute the SQL command to retrieve publication details
+                sql = "SELECT * FROM Publication WHERE ID = %s"
+                cursor.execute(sql, (publication_id,))
+                publication = cursor.fetchone()
+                # Get authors
+                sql_authors = "SELECT FirstName, LastName FROM Author WHERE Publication_id = %s"
+                cursor.execute(sql_authors, (publication_id,))
+                authors = cursor.fetchall()
+                # Get keywords
+                sql_keywords = "SELECT Keyword FROM Keywords WHERE Publication_id = %s"
+                cursor.execute(sql_keywords, (publication_id,))
+                keywords = cursor.fetchall()
+        finally:
+            connection.close()  # Close database connection
+
+        return render_template('modify_publication.html', publication=publication, authors=authors, keywords=keywords)
+    
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
