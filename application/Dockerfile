@@ -3,7 +3,7 @@
 FROM python:3.9-slim
 
 # Install Flask and Jinja2 (if not already installed)
-RUN pip install Flask mysql-connector-python
+RUN pip install Flask mysql-connector-python pymysql
 
 # Install Nginx and MariaDB client
 RUN apt-get update && apt-get install -y nginx nano && rm -rf /var/lib/apt/lists/*
@@ -16,7 +16,7 @@ COPY static /opt/static/
 
 # Expose the necessary port(s)
 EXPOSE 8000
-EXPOSE 8080
+EXPOSE 5000
 EXPOSE 3306
 
 WORKDIR /opt/

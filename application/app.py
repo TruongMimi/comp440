@@ -1,5 +1,9 @@
 
 # add error handling and messages to tell the user that stuff was successful
+# year in search is broken
+
+# add author and keywords to add publication section
+# Change the button for add publication
 
 # 9.13 Design and implement a publication-listing service. 
 # The service should permit entering of information about publications, such as title, authors, year, where the publication appeared, and pages. 
@@ -128,4 +132,4 @@ def add_publication():
         return render_template('add_publication.html')  # Render the add publication form page
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
