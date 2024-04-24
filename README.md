@@ -127,7 +127,16 @@ Phase 4 (April 22 - May 1):
   6. Click on the little trash can icon to the far right of the image that’s listed
   7. Confirm
 
-# How to import the database 
+# How to import the database
+  - To enter a csv file into the database, you would go to your schema in MySQL
+  - find the publication_listing
+  - Expand table
+  - Find publication and right click
+  - select 'table data import wizard'
+  - Do this for all 3 csv files in this order
+        - Publication (must be first since it has the primary key and foreign keys for each table, order after this doesn't matter) 
+        - Author 
+        - Keywords 
 
 # Add Publication 
 
