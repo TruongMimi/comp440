@@ -1,4 +1,3 @@
-
 # add error handling and messages to tell the user that stuff was successful
 # year in search is broken
 
@@ -115,6 +114,8 @@ def add_publication():
         pages = request.form['pages']
         doi = request.form['doi']
         link = request.form['link']
+        authors = request.form['authors']  # Assuming the authors are entered as a single string separated by commas
+        keywords = request.form['keywords']  # Assuming the authors are entered as a single string separated by commas
 
         # Insert publication into Publication table
         connection = pymysql.connect(**db_config)
@@ -123,6 +124,22 @@ def add_publication():
                 # Execute the SQL command to insert the publication into the Publication table
                 sql = "INSERT INTO Publication (Title, DatePublished, Pages, DOI, Link) VALUES (%s, %s, %s, %s, %s)"
                 cursor.execute(sql, (title, date_published, pages, doi, link))
+                publication_id = cursor.lastrowid  # Get the ID of the newly inserted publication
+
+                # Insert authors into Author table
+                authors_list = [author.strip() for author in authors.split(',')]  # Split authors by comma and remove leading/trailing whitespace
+                for author in authors_list:
+                    sql = "INSERT INTO Author (Publication_id, FirstName, LastName) VALUES (%s, %s, %s)"
+                    cursor.execute(sql, (publication_id, author.split()[0], ' '.join(author.split()[1:])))  # Split author into first name and last name
+                    
+                 # Split keywords input string into individual keywords
+                keywords = request.form['keywords'].split(',')
+
+                # Insert keywords into Keywords table
+                for keyword in keywords:
+                    sql = "INSERT INTO Keywords (Publication_id, Keyword) VALUES (%s, %s)"
+                    cursor.execute(sql, (publication_id, keyword.strip()))
+
             connection.commit()  # Commit changes to the database
         finally:
             connection.close()  # Close database connection
@@ -130,6 +147,7 @@ def add_publication():
         return redirect('/homepage')  # Redirect to the homepage after adding publication
     else:
         return render_template('add_publication.html')  # Render the add publication form page
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
