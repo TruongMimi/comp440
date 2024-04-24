@@ -127,14 +127,16 @@ Phase 4 (April 22 - May 1):
   6. Click on the little trash can icon to the far right of the image that’s listed
   7. Confirm
 
-# How to import the database 
-
-# Add Publication 
-
-# Search Pulication 
-
-# Delete Publication 
-
+# How to import the database into MySQL 
+  - To enter a csv file into the database, you would go to your schema in MySQL
+  - find the publication_listing
+  - Expand table
+  - Find publication and right click
+  - select 'table data import wizard'
+  - Do this for all 3 csv files in this order
+        - Publication (must be first since it has the primary key and foreign keys for each table, order after this doesn't matter) 
+        - Author 
+        - Keywords 
 
 
 # If you want to see example data Loading CSV files onto the database 
@@ -142,6 +144,54 @@ Phase 4 (April 22 - May 1):
        1. Publication // since it has the foreign key for the other tables 
        2. Then any file is fine after 
 
+# Running locally 
+   - Locate to the path that you run the following code in the windows powershell
+        - python app.py
+   - open the brower and put in your IP address
+        - http://127.0.0.1:5000/
+# User sign up 
+   - Needs First name, Last Name, address, and Email (error handling @)
+
+# Add Publication 
+    - Needed for adding a publiation 
+       - Title 
+       - Date Published 
+       - Pages
+       - DOI
+       - Link 
+       
+# Search Pulication 
+    - Can search by the following values 
+       - Title 
+       - Author
+       - Year 
+       - Link 
+       - Pages
+       - Keywords
+       
+# Delete Publication 
+
+
+cat app.py
+git pull
+git stash
+git pull
+docker build -t comp440:comp440 .
+docker run -d -p 8000:8000 --name comp440 comp440:comp440
+docker build -t comp440:comp440 .
+docker run -d -p 8000:8000 --name comp440 comp440:comp440
+docker build -t comp440:comp440 .
+docker run -d -p 5000:5000 --name comp440 comp440:comp440
+docker build -t comp440:comp440 .
+docker run -d -p 5000:5000 --name comp440 comp440:comp440
+docker build -t comp440:comp440 .
+docker run -d -p 5000:5000 --name comp440 comp440:comp440
+docker run -d -p 5000:5000 -p 3306:3306 --name comp440 comp440:comp440
+docker run -d -p 5000:5000 -p 3307:3306 --name comp440 comp440:comp440
+python app.py
+pip install flask
+pip install pymysql
+python app.py
 
 
 
