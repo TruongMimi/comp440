@@ -171,6 +171,12 @@ Phase 4 (April 22 - May 1):
        
 # Delete Publication 
 
+# Modify Publication 
+    - Search for the specific publication you want to modify 
+    - Click the title of the publication you want to modify 
+    - Change what you want 
+    - Submit
+
 
 
 
