@@ -172,29 +172,6 @@ Phase 4 (April 22 - May 1):
 # Delete Publication 
 
 
-cat app.py
-git pull
-git stash
-git pull
-docker build -t comp440:comp440 .
-docker run -d -p 8000:8000 --name comp440 comp440:comp440
-docker build -t comp440:comp440 .
-docker run -d -p 8000:8000 --name comp440 comp440:comp440
-docker build -t comp440:comp440 .
-docker run -d -p 5000:5000 --name comp440 comp440:comp440
-docker build -t comp440:comp440 .
-docker run -d -p 5000:5000 --name comp440 comp440:comp440
-docker build -t comp440:comp440 .
-docker run -d -p 5000:5000 --name comp440 comp440:comp440
-docker run -d -p 5000:5000 -p 3306:3306 --name comp440 comp440:comp440
-docker run -d -p 5000:5000 -p 3307:3306 --name comp440 comp440:comp440
-python app.py
-pip install flask
-pip install pymysql
-python app.py
-
-
-
 
 
 
