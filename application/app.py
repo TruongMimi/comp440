@@ -50,7 +50,7 @@ def signup():
         with connection.cursor() as cursor:
             # Execute the SQL command to insert the user into the Users table
             sql = "INSERT INTO Users (FirstName, LastName, password, Email) VALUES (%s, %s, %s, %s)"
-            cursor.execute(sql, (firstName, lastName, address, email))
+            cursor.execute(sql, (firstName, lastName, password, email))
         connection.commit()  # Commit changes to the database
     finally:
         connection.close()  # Close database connection
