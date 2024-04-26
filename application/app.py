@@ -41,7 +41,7 @@ def signup():
     # Get form data
     firstName = request.form['firstName']
     lastName = request.form['lastName']
-    address = request.form['address']
+    password = request.form['password']
     email = request.form['email']
 
     # Insert user into Users table
@@ -49,7 +49,7 @@ def signup():
     try:
         with connection.cursor() as cursor:
             # Execute the SQL command to insert the user into the Users table
-            sql = "INSERT INTO Users (FirstName, LastName, Address, Email) VALUES (%s, %s, %s, %s)"
+            sql = "INSERT INTO Users (FirstName, LastName, password, Email) VALUES (%s, %s, %s, %s)"
             cursor.execute(sql, (firstName, lastName, address, email))
         connection.commit()  # Commit changes to the database
     finally:
