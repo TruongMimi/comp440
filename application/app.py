@@ -1,15 +1,10 @@
 # add error handling and messages to tell the user that stuff was successful
 # year in search is broken
+# add success to modification 
+# add green color to success message for when publication is deleted
 
-# add author and keywords to add publication section
-# Change the button for add publication
-
-# 9.13 Design and implement a publication-listing service. 
-# The service should permit entering of information about publications, such as title, authors, year, where the publication appeared, and pages. 
-# Authors should be a separate entity with attributes such as name, institution, department, email, address, and home page. 
 # Your application should support multiple views on the same data. For instance, you should provide all publications by a given author (sorted by year, for example), or all publications by authors from a given institution or department. 
 # You should also support search by keywords, on the overall database as well as within each of the views.
-# add functionality to delete and modify and maybe keep a copy if they want to undo
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import pymysql
