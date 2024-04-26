@@ -11,12 +11,15 @@
 # You should also support search by keywords, on the overall database as well as within each of the views.
 # add functionality to delete and modify and maybe keep a copy if they want to undo
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import pymysql
 from collections import defaultdict
 from flask import abort
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
+
+app.secret_key = 's3CretK3y'  # Set a secret key for session management
 
 # MySQL connection configuration
 db_config = {
@@ -30,32 +33,87 @@ db_config = {
 # Routes
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/homepage')
 def homepage():
-    return render_template('homepage.html')
+    login_success = request.args.get('login_success', False)
+    return render_template('homepage.html', login_success=login_success)
+
+@app.route('/signup_page')
+def signup_page():
+    return render_template('index.html')
+
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        # Query the database to find user by email
+        connection = pymysql.connect(**db_config)
+        try:
+            with connection.cursor() as cursor:
+                sql = "SELECT * FROM Users WHERE Email = %s"
+                cursor.execute(sql, (email,))
+                user = cursor.fetchone()
+
+                if user:
+                    # Check if the entered password matches the hashed password in the database
+                    if check_password_hash(user['Password'], password):
+                        # Store user ID in session
+                        session['user_id'] = user['ID']
+                        return redirect(url_for('homepage', login_success=True))
+                    else:
+                        return "Invalid email or password. Please try again."
+                else:
+                    return "Invalid email or password. Please try again."
+        finally:
+            connection.close()
+
+    return render_template('login.html')
+
+
+
 
 @app.route('/signup', methods=['POST'])
 def signup():
     # Get form data
     firstName = request.form['firstName']
     lastName = request.form['lastName']
-    address = request.form['address']
     email = request.form['email']
+    password = request.form['password']
+    confirmPassword = request.form['confirmPassword']
+
+    # Check if passwords match
+    if password != confirmPassword:
+        flash("Passwords do not match. Please try again.", "error")
+        return redirect(url_for('signup_page'))
+
+    # Hash the password
+    hashed_password = generate_password_hash(password)
 
     # Insert user into Users table
     connection = pymysql.connect(**db_config)
     try:
         with connection.cursor() as cursor:
             # Execute the SQL command to insert the user into the Users table
-            sql = "INSERT INTO Users (FirstName, LastName, Address, Email) VALUES (%s, %s, %s, %s)"
-            cursor.execute(sql, (firstName, lastName, address, email))
+            sql = "INSERT INTO Users (FirstName, LastName, Email, Password) VALUES (%s, %s, %s, %s)"
+            cursor.execute(sql, (firstName, lastName, email, hashed_password))
         connection.commit()  # Commit changes to the database
+    except pymysql.Error as e:
+        # Handle database errors
+        flash("An error occurred. Please try again later.", "error")
+        return redirect(url_for('signup_page'))
     finally:
         connection.close()  # Close database connection
 
-    return render_template('homepage.html')
+    flash("Signup successful! You can now login.", "success")
+    return redirect(url_for('login'))
+
+
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
