@@ -15,6 +15,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import pymysql
 from collections import defaultdict
 from flask import abort
+import re
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -29,6 +30,10 @@ db_config = {
     'database': 'publication_listings',
     'cursorclass': pymysql.cursors.DictCursor
 }
+
+# Function to validate email format
+def validate_email(email):
+    return re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email)
 
 # Routes
 @app.route('/')
@@ -84,44 +89,59 @@ def login():
 @app.route('/signup', methods=['POST'])
 def signup():
  
-    # Get form data
-    firstName = request.form['firstName']
-    lastName = request.form['lastName']
-    email = request.form['email']
-    password = request.form['password']
-    confirmPassword = request.form['confirmPassword']
-
-    # Check if passwords match
-    if password != confirmPassword:
-        return render_template('signup.html', Password_mismatch=True)
-
-    # Hash the password
-    hashed_password = generate_password_hash(password)
-
-    # Check if the email already exists
-    connection = pymysql.connect(**db_config)
     try:
-        with connection.cursor() as cursor:
-            # Execute SQL query to check if the email exists
-            sql = "SELECT * FROM Users WHERE Email = %s"
-            cursor.execute(sql, (email,))
-            existing_user = cursor.fetchone()
+        # Get form data
+        firstName = request.form['firstName']
+        lastName = request.form['lastName']
+        email = request.form['email']
+        password = request.form['password']
+        confirmPassword = request.form['confirmPassword']
 
-            if existing_user:
-                return render_template('signup.html', Signup_failure=True)
+        # Validate password length ADD ERROR MESSAGE FOR THIS
+        if len(password) < 6:
+            flash('Password should be at least 6 characters long.', 'error')
+            return redirect(url_for('homepage'))
+        
+        # Validate email format ADD ERROR MESSAGE FOR THIS
+        if not validate_email(email):
+            flash('Invalid email format.', 'error')
+            return redirect(url_for('homepage'))
+            
+        # Check if passwords match
+        if password != confirmPassword:
+            return render_template('signup.html', Password_mismatch=True)
 
-            # If the email doesn't exist, insert the new user into the Users table
-            sql_insert = "INSERT INTO Users (FirstName, LastName, Email, Password) VALUES (%s, %s, %s, %s)"
-            cursor.execute(sql_insert, (firstName, lastName, email, hashed_password))
-            connection.commit()
+        # Hash the password
+        hashed_password = generate_password_hash(password)
 
-    except pymysql.Error as e:
-        # Handle database errors
-        flash("An error occurred. Please try again later.", "error")
-        return redirect(url_for('signup_page'))
+        # Check if the email already exists
+        connection = pymysql.connect(**db_config)
+        try:
+            with connection.cursor() as cursor:
+                # Execute SQL query to check if the email exists
+                sql = "SELECT * FROM Users WHERE Email = %s"
+                cursor.execute(sql, (email,))
+                existing_user = cursor.fetchone()
 
-    finally:
-        connection.close()  # Close database connection
+                if existing_user:
+                    return render_template('signup.html', Signup_failure=True)
+
+                # If the email doesn't exist, insert the new user into the Users table
+                sql_insert = "INSERT INTO Users (FirstName, LastName, Email, Password) VALUES (%s, %s, %s, %s)"
+                cursor.execute(sql_insert, (firstName, lastName, email, hashed_password))
+                connection.commit()
+
+        except pymysql.Error as e:
+            # Handle database errors
+            flash("An error occurred. Please try again later.", "error")
+            return redirect(url_for('signup_page'))
+
+        finally:
+            connection.close()  # Close database connection
+        
+    except Exception as e: # ADD ERROR MESSAGE
+        # Handle any exceptions that occur during the signup process
+        flash('An error occurred during signup: {}'.format(str(e)), 'error')  # Flash error message
 
     return redirect(url_for('login', Signup_success=True))
 
