@@ -11,7 +11,7 @@
 # You should also support search by keywords, on the overall database as well as within each of the views.
 # add functionality to delete and modify and maybe keep a copy if they want to undo
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 import pymysql
 from collections import defaultdict
 from flask import abort
