@@ -17,6 +17,7 @@ from collections import defaultdict
 from flask import abort
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Set a secret key for flash messages
 
 # MySQL connection configuration
 db_config = {
