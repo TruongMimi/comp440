@@ -38,24 +38,29 @@ def homepage():
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    # Get form data
-    firstName = request.form['firstName']
-    lastName = request.form['lastName']
-    password = request.form['password']
-    email = request.form['email']
-
-    # Insert user into Users table
-    connection = pymysql.connect(**db_config)
     try:
-        with connection.cursor() as cursor:
-            # Execute the SQL command to insert the user into the Users table
-            sql = "INSERT INTO Users (FirstName, LastName, password, Email) VALUES (%s, %s, %s, %s)"
-            cursor.execute(sql, (firstName, lastName, password, email))
-        connection.commit()  # Commit changes to the database
-    finally:
-        connection.close()  # Close database connection
+        # Get form data
+        firstName = request.form['firstName']
+        lastName = request.form['lastName']
+        password = request.form['password']
+        email = request.form['email']
 
-    return render_template('homepage.html')
+        # Insert user into Users table
+        connection = pymysql.connect(**db_config)
+        try:
+            with connection.cursor() as cursor:
+                # Execute the SQL command to insert the user into the Users table
+                sql = "INSERT INTO Users (FirstName, LastName, password, Email) VALUES (%s, %s, %s, %s)"
+                cursor.execute(sql, (firstName, lastName, password, email))
+            connection.commit()  # Commit changes to the database
+            flash('User registered successfully!', 'success')  # Flash success message
+        finally:
+            connection.close()  # Close database connection
+    except Exception as e:
+        # Handle any exceptions that occur during the signup process
+        flash('An error occurred during signup: {}'.format(str(e)), 'error')  # Flash error message
+
+    return redirect(url_for('homepage'))
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
