@@ -28,6 +28,14 @@
                 <input class="button" type="submit" value="Modify Publication">
             </div>
         </form>
+        
+        <!-- Button to delete publication -->
+        <div class="back-button">
+            <form action="/confirm_delete_publication/{{ publication.ID }}" method="post">
+                <input class="button delete-button" type="submit" value="Delete Publication">
+            </form>
+        </div>
+        
         <div class="back-button">
             <a href="/homepage" class="button">Back</a>
         </div>

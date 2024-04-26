@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deletion Successful</title>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
+</head>
+<body class="container">
+    <header class="header">
+        <h1>Deletion Successful</h1>
+    </header>
+    <main>
+        <p>The publication has been successfully deleted.</p>
+        <form action="/undo_delete_publication/{{ publication_id }}" method="post">
+            <input type="hidden" name="_method" value="POST">
+            <input class="button" type="submit" value="Undo Deletion">
+        </form>
+        <div class="back-button">
+            <a href="/homepage" class="button">Back to Homepage</a>
+        </div>
+    </main>
+    <footer class="footer">
+        &copy; 2024 Publication Listings
+    </footer>
+</body>
+</html>
