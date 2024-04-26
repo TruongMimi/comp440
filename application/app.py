@@ -97,15 +97,13 @@ def signup():
         password = request.form['password']
         confirmPassword = request.form['confirmPassword']
 
-        # Validate password length ADD ERROR MESSAGE FOR THIS
+        # Validate password length
         if len(password) < 6:
-            flash('Password should be at least 6 characters long.', 'error')
-            return redirect(url_for('homepage'))
+            return render_template('signup.html', Password_error=True)
         
-        # Validate email format ADD ERROR MESSAGE FOR THIS
+        # Validate email format
         if not validate_email(email):
-            flash('Invalid email format.', 'error')
-            return redirect(url_for('homepage'))
+            return render_template('signup.html', Email_error=True)
             
         # Check if passwords match
         if password != confirmPassword:
