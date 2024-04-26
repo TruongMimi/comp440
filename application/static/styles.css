@@ -235,3 +235,12 @@ i{
 .button:hover {
   background-color: #0056b3; /* Darker color on hover */
 }
+
+.modify-message {
+  background-color: #18181c;
+  border: 1px solid #18181c;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  color: white;
+}
