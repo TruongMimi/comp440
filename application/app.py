@@ -15,6 +15,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import pymysql
 from collections import defaultdict
 from flask import abort
+import re
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Set a secret key for flash messages
@@ -27,6 +28,10 @@ db_config = {
     'database': 'publication_listings',
     'cursorclass': pymysql.cursors.DictCursor
 }
+
+# Function to validate email format
+def validate_email(email):
+    return re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email)
 
 # Routes
 @app.route('/')
@@ -46,6 +51,16 @@ def signup():
         password = request.form['password']
         email = request.form['email']
 
+        # Validate password length
+        if len(password) < 6:
+            flash('Password should be at least 6 characters long.', 'error')
+            return redirect(url_for('homepage'))
+
+        # Validate email format
+        if not validate_email(email):
+            flash('Invalid email format.', 'error')
+            return redirect(url_for('homepage'))
+            
         # Insert user into Users table
         connection = pymysql.connect(**db_config)
         try:
