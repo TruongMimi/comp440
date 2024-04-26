@@ -42,12 +42,16 @@ def homepage():
 
 @app.route('/signup_page')
 def signup_page():
-    return render_template('index.html')
-
+    signup_failure = request.args.get('signup_failure', False)
+    password_mismatch = request.args.get('password_mismatch', False)
+    return render_template('index.html', Password_mismatch=password_mismatch, Signup_failure=signup_failure )
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    signup_success = request.args.get('Signup_success', False)
+    login_failure = request.args.get('Login_failure', False)
+   
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -67,19 +71,19 @@ def login():
                         session['user_id'] = user['ID']
                         return redirect(url_for('homepage', login_success=True))
                     else:
-                        return "Invalid email or password. Please try again."
+                        return render_template('login.html', Login_failure=True, Signup_success=signup_success)
                 else:
-                    return "Invalid email or password. Please try again."
+                    return render_template('login.html', Login_failure=True, Signup_success=signup_success)
         finally:
             connection.close()
 
-    return render_template('login.html')
-
+    return render_template('login.html', Signup_success=signup_success)
 
 
 
 @app.route('/signup', methods=['POST'])
 def signup():
+ 
     # Get form data
     firstName = request.form['firstName']
     lastName = request.form['lastName']
@@ -89,29 +93,39 @@ def signup():
 
     # Check if passwords match
     if password != confirmPassword:
-        flash("Passwords do not match. Please try again.", "error")
-        return redirect(url_for('signup_page'))
+        return render_template('signup.html', Password_mismatch=True)
 
     # Hash the password
     hashed_password = generate_password_hash(password)
 
-    # Insert user into Users table
+    # Check if the email already exists
     connection = pymysql.connect(**db_config)
     try:
         with connection.cursor() as cursor:
-            # Execute the SQL command to insert the user into the Users table
-            sql = "INSERT INTO Users (FirstName, LastName, Email, Password) VALUES (%s, %s, %s, %s)"
-            cursor.execute(sql, (firstName, lastName, email, hashed_password))
-        connection.commit()  # Commit changes to the database
+            # Execute SQL query to check if the email exists
+            sql = "SELECT * FROM Users WHERE Email = %s"
+            cursor.execute(sql, (email,))
+            existing_user = cursor.fetchone()
+
+            if existing_user:
+                return render_template('signup.html', Signup_failure=True)
+
+            # If the email doesn't exist, insert the new user into the Users table
+            sql_insert = "INSERT INTO Users (FirstName, LastName, Email, Password) VALUES (%s, %s, %s, %s)"
+            cursor.execute(sql_insert, (firstName, lastName, email, hashed_password))
+            connection.commit()
+
     except pymysql.Error as e:
         # Handle database errors
         flash("An error occurred. Please try again later.", "error")
         return redirect(url_for('signup_page'))
+
     finally:
         connection.close()  # Close database connection
 
-    flash("Signup successful! You can now login.", "success")
-    return redirect(url_for('login'))
+    return redirect(url_for('login', Signup_success=True))
+
+
 
 
 

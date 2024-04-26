@@ -9,6 +9,24 @@
         <h1>User Signup</h1>
     </header>
     <main>
+
+    <p>
+        {% if Signup_failure %}
+            <div class="alert alert-error" style="color: red;">
+                Email already exists. Please use a different email.
+            </div>
+        {% endif %}
+
+    </p>
+
+    <p>
+        {% if Password_mismatch %}
+            <div class="alert alert-error" style="color: red;">
+                Passwords do not match. Please try again.
+            </div>
+        {% endif %}
+
+    </p>
         <form action="/signup" method="post">
             <label for="firstName">First Name:</label><br>
             <input type="text" id="firstName" name="firstName" required><br>
@@ -20,7 +38,9 @@
             <input type="password" id="password" name="password" required><br>
             <label for="confirmPassword">Confirm Password:</label><br>
             <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
-            <input type="submit" value="Submit">
+            <div class="back-button">
+                <input class="button" type="submit" value="Signup">
+            </div>
         </form>
         <p>Already have an account? <a href="/login">Login</a></p>
     </main>
