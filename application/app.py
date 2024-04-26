@@ -359,7 +359,7 @@ def undo_delete_publication(publication_id):
         # Restore the deleted publication
         restore_publication(publication_details)
     
-    return redirect(url_for('homepage'))  # Redirect to the homepage after undoing delete
+    return render_template('undo_delete_success.html') # Redirect to the homepage after undoing delete
 
 
 if __name__ == '__main__':

@@ -1,0 +1,19 @@
+<!-- undo_delete_success.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Undo Delete Success</title>
+    <script>
+        // JavaScript function to show a popup message
+        function showPopup() {
+            alert("Publication successfully restored!");
+            // Redirect to the homepage after a delay
+            setTimeout(function(){
+                window.location.href = "/homepage";
+            }, 0); // Redirect immediately 
+        }
+        // Call the showPopup function when the page loads
+        window.onload = showPopup;
+    </script>
+</head>
+</html>
