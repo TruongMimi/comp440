@@ -1,6 +1,8 @@
 /* User Loging page*/
 body {
-    background-color: black; /* Set background color to black */
+    background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0='); /* Add the background image URL */
+    background-size: cover;
+    background-repeat: no-repeat;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -30,7 +32,7 @@ body {
 }
 
 .content-wrapper {
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    background-color: black; /* Solid black background */
     padding: 20px;
     border-radius: 10px;
 }
@@ -50,8 +52,8 @@ input[type="password"] {
     margin-bottom: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #333; /* Darker gray background for text inputs */
-    color: white;
+    background-color: #ffffff; /* White background for text inputs */
+    color: black; /* Change text color to black */
 }
 
 .button {
@@ -81,6 +83,10 @@ a:hover {
     text-align: center;
     padding: 20px 0;
 }
+
+
+
+
 /*homepage*/
 .three-sections-page {
   display: flex;
