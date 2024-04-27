@@ -13,6 +13,8 @@ body {
 .container {
     display: flex;
     flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
     min-height: 100vh;
 }
 
@@ -33,9 +35,6 @@ body {
 
 .main {
     flex: 1;
-    display: flex;
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
 }
 
 .content-wrapper {
@@ -80,6 +79,7 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
 
 /*homepage*/
 .three-sections-page {
