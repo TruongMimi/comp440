@@ -35,7 +35,7 @@ body {
     flex: 1;
     display: flex;
     justify-content: center; /* Center content horizontally */
-    align-items: flex-start; /* Align items at the top */
+    align-items: center; /* Center content vertically */
 }
 
 .content-wrapper {
