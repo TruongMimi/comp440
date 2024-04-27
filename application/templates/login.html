@@ -5,45 +5,55 @@
     <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
 </head>
 <body class="container">
-    <header class="header">
-        <h1>User Login</h1>
-    </header>
-    <main>
-        <div class="content-wrapper">
-            <p>
-                {% if Signup_success %}
-                    <div class="alert alert-success" style="color: green;">
-                        Signup successful! You can now login.
+    <div class="black-box">
+        <header class="header">
+            <h1>User Login</h1>
+        </header>
+        <main>
+            <div class="content-wrapper">
+                {% if Signup_failure %}
+                    <div class="alert">
+                        Email already exists. Please use a different email.
                     </div>
                 {% endif %}
-            </p>
-
-            <p>
-                {% if Login_failure %}
-                    <div class="alert alert-error" style="color: red;">
-                        Invalid email or password. Please try again.
+        
+                {% if Password_mismatch %}
+                    <div class="alert">
+                        Passwords do not match. Please try again.
                     </div>
                 {% endif %}
-            </p>
-
-            <form action="/login" method="post">
-                <div class="input-group">
-                    <label for="email">Email:</label><br>
-                    <input type="email" id="email" name="email" required><br>
-                </div>
-                <div class="input-group">
-                    <label for="password">Password:</label><br>
-                    <input type="password" id="password" name="password" required><br><br>
-                </div>
-                <div class="back-button">
-                    <input class="button" type="submit" value="Login">
-                </div>
-            </form>
-            <p>Don't have an account? <a href="/signup_page" style="color: #0074e4;">Sign Up</a></p>
-        </div>
-    </main>
-    <footer class="footer">
-        &copy; 2024 Publication Listings
-    </footer>
+        
+                {% if Password_error %}
+                    <div class="alert">
+                        Password should be at least 6 characters long.
+                    </div>
+                {% endif %}
+        
+                {% if Email_error %}
+                    <div class="alert">
+                        Invalid email format.
+                    </div>
+                {% endif %}
+        
+                <form action="/signup" method="post">
+                    <div class="input-group">
+                        <label for="email">Email:</label><br>
+                        <input type="email" id="email" name="email" required><br>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password:</label><br>
+                        <input type="password" id="password" name="password" required><br><br>
+                    </div>
+                    <div class="back-button">
+                        <input class="button" type="submit" value="Login">
+                    </div>
+                </form>
+                <p>Don't have an account? <a href="/signup_page">Sign Up</a></p>
+            </div>
+        </main>
+        <footer class="footer">
+            &copy; 2024 Publication Listings
+        </footer>
+    </div>
 </body>
 </html>
