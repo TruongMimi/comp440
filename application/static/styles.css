@@ -1,3 +1,4 @@
+/* User Loging page*/
 body {
     background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
     background-size: cover;
@@ -5,14 +6,14 @@ body {
     background-position: center;
     font-family: Arial, sans-serif;
     color: white;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
 }
 
 .container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
 }
 
 .header, .footer {
@@ -22,33 +23,36 @@ body {
     padding: 10px;
 }
 
+.header h1 {
+    margin: 0; /* Remove margin for h1 */
+}
+
+.footer {
+    margin-top: auto; /* Push footer to the bottom */
+}
+
 .main {
     flex: 1;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align items at the top */
 }
 
 .content-wrapper {
     background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
-    border: 2px solid black;
+    border: 2px solid black; /* Solid black border around content */
     border-radius: 10px;
 }
 
-.alert {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-.alert-success {
-    background-color: rgba(0, 128, 0, 0.5);
-}
-
-.alert-error {
-    background-color: rgba(255, 0, 0, 0.5);
+.input-group {
+    margin-bottom: 20px; /* Add space between input groups */
 }
 
 label {
     color: white;
+    display: block; /* Ensure labels appear on their own line */
+    margin-bottom: 5px; /* Add space below labels */
 }
 
 input[type="email"],
@@ -66,7 +70,7 @@ input[type="password"],
 }
 
 a {
-    color: white;
+    color: #0074e4; /* Bright blue color for links */
     text-decoration: none;
 }
 
