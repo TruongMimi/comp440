@@ -3,81 +3,80 @@ body {
     background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
     font-family: Arial, sans-serif;
-    color: white;
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
+    padding: 0;
+    margin: 0;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    min-height: 100vh;
-}
-
-.header, .footer {
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
-
-.header h1 {
-    margin: 0; /* Remove margin for h1 */
-}
-
-.footer {
-    margin-top: auto; /* Push footer to the bottom */
-}
-
-.main {
-    flex: 1;
-}
-
-.content-wrapper {
-    background-color: black; /* Solid black background */
+    width: 80%;
+    margin: auto;
     padding: 20px;
-    border: 2px solid black; /* Solid black border around content */
-    border-radius: 10px;
-    width: 50%; /* Set content width to 50% of the page */
-    max-width: 400px; /* Limit content width to 400px */
-    box-sizing: border-box; /* Include padding and border in the width */
 }
 
-.input-group {
-    margin-bottom: 20px; /* Add space between input groups */
+.header {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: white;
+}
+
+.alert {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+form {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
 }
 
 label {
-    color: white;
-    display: block; /* Ensure labels appear on their own line */
-    margin-bottom: 5px; /* Add space below labels */
+    display: block;
+    margin-bottom: 5px;
+    color: white; /* Set label text color to white */
 }
 
-input[type="email"],
-input[type="password"],
-.button {
+input[type=text],
+input[type=email],
+input[type=password] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: none;
     border-radius: 5px;
+    background-color: #555;
+    color: white;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .back-button {
     text-align: center;
+    margin-top: 20px;
 }
 
-a {
-    color: #0074e4; /* Bright blue color for links */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
 
