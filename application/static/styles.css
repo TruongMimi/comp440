@@ -1,72 +1,77 @@
 body {
-  display: flex;
-  flex-direction: column; /* Change to column */
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: black;
-  color: white;
+    background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    color: white;
 }
 
-.header {
-  background-color: #18181c; /* Set the background color here */
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar {
-  display: flex;
-  align-items: center;
-}
-
-.navbar h1 {
-  color: #ffffff;
-  margin: 0;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center; /* Center the list items vertically */
-}
-
-nav ul li {
-  margin-left: 520px; /* Increase the margin to add more space */
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #ffffff;
-}
-
-main {
-  padding: 20px;
-}
-
-button {
-  background-color: #0074e4;
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  flex: 1; /* Make the container take the available vertical space */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
 }
-.footer {
-  background-color: #18181c;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  margin-top: auto; /* Push the footer to the bottom */
+
+.header, .footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.main {
+    flex: 1;
+}
+
+.content-wrapper {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.alert-success {
+    background-color: rgba(0, 128, 0, 0.5);
+}
+
+.alert-error {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+label {
+    color: white;
+}
+
+input[type="email"],
+input[type="password"],
+.button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.back-button {
+    text-align: center;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /*homepage*/
