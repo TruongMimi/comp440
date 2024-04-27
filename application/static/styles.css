@@ -1,58 +1,56 @@
 /* User Loging page*/
 body {
-    background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: black; /* Set background color to black */
     font-family: Arial, sans-serif;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 .container {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-.header {
-    text-align: center;
-    padding: 20px;
-}
-
-h1 {
-    color: white;
-}
-
-.alert {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-form {
-    background-color: rgba(0, 0, 0, 0.7);
+.black-box {
+    background-color: black;
     padding: 20px;
     border-radius: 10px;
     color: white;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: white; /* Set label text color to white */
+.header {
+    text-align: center;
+    padding: 20px 0;
 }
 
-input[type=text],
-input[type=email],
-input[type=password] {
+.header h1 {
+    margin: 0;
+}
+
+.content-wrapper {
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    color: white;
+}
+
+input[type="email"],
+input[type="password"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #555;
+    background-color: #333; /* Darker gray background for text inputs */
     color: white;
 }
 
@@ -63,6 +61,7 @@ input[type=password] {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 100%;
 }
 
 .back-button {
@@ -70,15 +69,18 @@ input[type=password] {
     margin-top: 20px;
 }
 
-.footer {
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    border-radius: 10px;
-    margin-top: 20px;
+a {
+    color: #0074e4;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px 0;
+}
 
 /*homepage*/
 .three-sections-page {
