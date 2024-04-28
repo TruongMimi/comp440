@@ -31,6 +31,7 @@
         h2.signup-heading {
             color: white;
             text-align: center;
+            margin-top: 20px; /* Adjusted margin to position it at the top */
             margin-bottom: 20px;
         }
 
@@ -94,9 +95,9 @@
     <header class="header">
         <h1>User Signup</h1>
     </header>
+    <h2 class="signup-heading">User Sign Up</h2> <!-- Moved outside the container -->
     <div class="container">
         <main>
-            <h2 class="signup-heading">User Sign Up</h2>
             {% if Signup_failure %}
                 <div class="alert">
                     Email already exists. Please use a different email.
