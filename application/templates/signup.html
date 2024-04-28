@@ -4,66 +4,68 @@
     <title>User Sign Up</title>
     <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
 </head>
-<body class="container">
-    <header class="header">
-        <h1>User Signup</h1>
-    </header>
-    <main>
+<body>
+    <div class="black-overlay">
+        <header class="header">
+            <h1>User Signup</h1>
+        </header>
+        <main class="main-content">
 
-    <p>
-        {% if Signup_failure %}
-            <div class="alert alert-error" style="color: red;">
-                Email already exists. Please use a different email.
-            </div>
-        {% endif %}
+        <p>
+            {% if Signup_failure %}
+                <div class="alert alert-error" style="color: red;">
+                    Email already exists. Please use a different email.
+                </div>
+            {% endif %}
 
-    </p>
+        </p>
 
-    <p>
-        {% if Password_mismatch %}
-            <div class="alert alert-error" style="color: red;">
-                Passwords do not match. Please try again.
-            </div>
-        {% endif %}
+        <p>
+            {% if Password_mismatch %}
+                <div class="alert alert-error" style="color: red;">
+                    Passwords do not match. Please try again.
+                </div>
+            {% endif %}
 
-    </p>
+        </p>
 
-    <p>
-        {% if Password_error %}
-            <div class="alert alert-error" style="color: red;">
-                Password should be at least 6 characters long.
-            </div>
-        {% endif %}
+        <p>
+            {% if Password_error %}
+                <div class="alert alert-error" style="color: red;">
+                    Password should be at least 6 characters long.
+                </div>
+            {% endif %}
 
-    </p>
+        </p>
 
-    <p>
-        {% if Email_error %}
-            <div class="alert alert-error" style="color: red;">
-                Invalid email format.
-            </div>
-        {% endif %}
+        <p>
+            {% if Email_error %}
+                <div class="alert alert-error" style="color: red;">
+                    Invalid email format.
+                </div>
+            {% endif %}
 
-    </p>
-        <form action="/signup" method="post">
-            <label for="firstName">First Name:</label><br>
-            <input type="text" id="firstName" name="firstName" required><br>
-            <label for="lastName">Last Name:</label><br>
-            <input type="text" id="lastName" name="lastName" required><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required><br>
-            <label for="confirmPassword">Confirm Password:</label><br>
-            <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
-            <div class="back-button">
-                <input class="button" type="submit" value="Signup">
-            </div>
-        </form>
-        <p>Already have an account? <a href="/login">Login</a></p>
-    </main>
-    <footer class="footer">
-        &copy; 2024 Publication Listings
-    </footer>
+        </p>
+            <form action="/signup" method="post">
+                <label for="firstName">First Name:</label><br>
+                <input type="text" id="firstName" name="firstName" required><br>
+                <label for="lastName">Last Name:</label><br>
+                <input type="text" id="lastName" name="lastName" required><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required><br>
+                <label for="confirmPassword">Confirm Password:</label><br>
+                <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+                <div class="back-button">
+                    <input class="button" type="submit" value="Signup">
+                </div>
+            </form>
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </main>
+        <footer class="footer">
+            &copy; 2024 Publication Listings
+        </footer>
+    </div>
 </body>
 </html>
