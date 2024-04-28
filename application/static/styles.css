@@ -1,271 +1,420 @@
 /* User Loging page*/
 body {
-    background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0='); /* Add the background image URL */
+    /* Set background image */
+    background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
+    /* Scale background image to cover entire container */
     background-size: cover;
+    /* Prevent background image from repeating */
     background-repeat: no-repeat;
+    /* Specify font family for the entire page */
     font-family: Arial, sans-serif;
+    /* Remove default margin */
     margin: 0;
+    /* Remove default padding */
     padding: 0;
 }
 
+/* Container to center content vertically and horizontally */
 .container {
+    /* Use flexbox to center content */
     display: flex;
+    /* Center content horizontally */
     justify-content: center;
+    /* Center content vertically */
     align-items: center;
+    /* Ensure container takes up at least the full height of the viewport */
     min-height: 100vh;
 }
 
+/* Styling for black box */
 .black-box {
+    /* Set background color to black */
     background-color: black;
+    /* Add padding around the content */
     padding: 20px;
+    /* Add rounded corners to the box */
     border-radius: 10px;
+    /* Set text color to white */
     color: white;
 }
 
+/* Styling for header */
 .header {
-    text-align: center; /* Center-align the header content */
-    padding: 50px 0 20px; /* Add padding to the top and bottom of the header */
-    position: fixed; /* Position the header fixed */
-    top: 0; /* Stick the header to the top of the viewport */
-    width: 100%; /* Set the header width to full viewport width */
-    background-color: rgba(0, 0, 0, 0.7); /* Add background color with some transparency */
-    z-index: 1000; /* Set a high z-index to ensure the header stays on top of other elements */
+    /* Center-align the header content */
+    text-align: center;
+    /* Add padding to the top and bottom of the header */
+    padding: 50px 0 20px;
+    /* Position the header fixed */
+    position: fixed;
+    /* Stick the header to the top of the viewport */
+    top: 0;
+    /* Set the header width to full viewport width */
+    width: 100%;
+    /* Add background color with some transparency */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Set a high z-index to ensure the header stays on top of other elements */
+    z-index: 1000;
 }
 
+/* Styling for header h1 */
 .header h1 {
-    margin: 0; /* Remove default margin for h1 */
-    color: white; /* Set text color to white */
+    /* Remove default margin for h1 */
+    margin: 0;
+    /* Set text color to white */
+    color: white;
 }
 
-
-.content-wrapper {
-    background-color: black; /* Solid black background */
-    padding: 20px;
-    border-radius: 10px;
+/* Styling for content wrapper */
+.content-wrapper h1,
+input[type="text"] + h1,
+input[type="email"] + h1,
+input[type="password"] + h1 {
+    /* Center-align all titles */
+    text-align: center;
 }
 
+/* Styling for input groups */
 .input-group {
+    /* Add margin below each input group */
     margin-bottom: 20px;
 }
 
+/* Styling for labels */
 label {
+    /* Set text color to white */
     color: white;
 }
 
+/* Styling for text inputs */
 input[type="email"],
 input[type="password"] {
+    /* Set width to 100% of container */
     width: 100%;
+    /* Add padding around the text inputs */
     padding: 10px;
+    /* Add margin below each text input */
     margin-bottom: 10px;
+    /* Remove default border */
     border: none;
+    /* Add rounded corners to the text inputs */
     border-radius: 5px;
-    background-color: #ffffff; /* White background for text inputs */
-    color: black; /* Change text color to black */
+    /* Set background color to white */
+    background-color: #ffffff;
+    /* Change text color to black */
+    color: black;
 }
 
+/* Styling for buttons */
 .button {
+    /* Set background color */
     background-color: #4CAF50;
+    /* Set text color to white */
     color: white;
+    /* Add padding around the buttons */
     padding: 15px 20px;
+    /* Remove default border */
     border: none;
+    /* Add rounded corners to the buttons */
     border-radius: 5px;
+    /* Specify cursor style */
     cursor: pointer;
+    /* Set width to 100% of container */
     width: 100%;
 }
 
+/* Styling for back buttons */
 .back-button {
+    /* Center-align back buttons */
     text-align: center;
+    /* Add margin above back buttons */
     margin-top: 20px;
 }
 
+/* Styling for links */
 a {
+    /* Set link color */
     color: #0074e4;
 }
 
+/* Styling for links on hover */
 a:hover {
+    /* Add underline on hover */
     text-decoration: underline;
 }
 
+/* Styling for footer */
 .footer {
+    /* Center-align footer content */
     text-align: center;
+    /* Add padding to top and bottom of footer */
     padding: 20px 0;
 }
 
-
-
-
-/*homepage*/
+/* Styling for homepage */
 .three-sections-page {
-  display: flex;
-  flex-direction: row;
-  min-height: 100vh;
-  background-color: black;
+    /* Use flexbox to create three sections */
+    display: flex;
+    /* Arrange sections in a row */
+    flex-direction: row;
+    /* Ensure minimum height of page is viewport height */
+    min-height: 100vh;
+    /* Set background color to black */
+    background-color: black;
 }
+
+/* Styling for left section */
 #left-section {
-  flex: 1;
-  background-color: #18181c;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 150px;
+    /* Flex basis for left section */
+    flex: 1;
+    /* Set background color */
+    background-color: #18181c;
+    /* Set height of left section to viewport height */
+    height: 100vh;
+    /* Use flexbox to arrange items in a column */
+    display: flex;
+    /* Align items to the start of the cross axis */
+    align-items: flex-start;
+    /* Add margin to the left of the section */
+    margin-left: 150px;
 }
 
+/* Styling for collapsible elements */
 .collapsible {
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: background-color 0.3s;
+    /* Set background color */
+    background-color: black;
+    /* Set text color to white */
+    color: white;
+    /* Set cursor to pointer */
+    cursor: pointer;
+    /* Add padding around the collapsible elements */
+    padding: 18px;
+    /* Set width to 100% of container */
+    width: 100%;
+    /* Remove default border */
+    border: none;
+    /* Align text to the left */
+    text-align: left;
+    /* Remove default outline */
+    outline: none;
+    /* Set font size */
+    font-size: 15px;
+    /* Add transition effect for background color */
+    transition: background-color 0.3s;
 }
 
+/* Styling for collapsible elements on hover */
 .collapsible:hover {
-  background-color: #18181c;
+    /* Change background color on hover */
+    background-color: #18181c;
 }
 
+/* Styling for content inside collapsible elements */
 .content {
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
+    /* Add padding around content */
+    padding: 0 18px;
+    /* Hide content by default */
+    display: none;
+    /* Hide overflowing content */
+    overflow: hidden;
+    /* Set background color */
+    background-color: #f1f1f1;
 }
 
+/* Styling for middle section */
 #middle-section {
-  flex: 2;
-  background-color: black;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align content at the top */
+    /* Flex basis for middle section */
+    flex: 2;
+    /* Set background color */
+    background-color: black;
+    /* Add padding around content */
+    padding: 20px;
+    /* Use flexbox to arrange items in a column */
+    display: flex;
+    /* Align items to the start of the cross axis */
+    align-items: flex-start;
 }
 
+/* Styling for search bar */
 #search-bar {
-  width: 80%;
-  padding: 10px;
-  margin-bottom: 20px; /* Add margin to separate search bar from collapsible buttons */
+    /* Set width of search bar */
+    width: 80%;
+    /* Add padding around search bar */
+    padding: 10px;
+    /* Add margin below search bar */
+    margin-bottom: 20px;
 }
 
+/* Styling for right section */
 #right-section {
-  flex: 1;
-  background-color: #18181c;
-  height: 100vh;
-  padding: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start; /* Align items at the top */
-  margin-right: 150px;
+    /* Flex basis for right section */
+    flex: 1;
+    /* Set background color */
+    background-color: #18181c;
+    /* Set height of right section to viewport height */
+    height: 100vh;
+    /* Add padding around content */
+    padding: 20px;
+    /* Use flexbox to arrange items in a row */
+    display: flex;
+    /* Align items to the start of the cross axis */
+    align-items: flex-start;
+    /* Add margin to the right of the section */
+    margin-right: 150px;
 }
 
-/*.menu-button {
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-  padding: 18px;
-  border: none;
-  text-align: center;
-  outline: none;
-  font-size: 15px;
-  margin-right: 10px; Add margin between buttons//
-  transition: background-color 0.3s;
+/* Styling for icons */
+i {
+    /* Set text color to white */
+    color: white;
+    /* Add padding around icons */
+    padding: 15px;
+    /* Set font size */
+    font-size: 20px;
 }
 
-.menu-button:hover {
-  background-color: #45a049;
-}*/
-
-i{
-  color: white;
-  padding: 15px;
-  font-size: 20px;
-}
-
-
+/* Styling for preferences */
 .preferences {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    /* Use flexbox to wrap preferences */
+    display: flex;
+    /* Wrap preferences to next line when there's not enough space */
+    flex-wrap: wrap;
+    /* Set gap between preferences */
+    gap: 10px;
+    /* Add margin above and below preferences */
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
+/* Styling for preference buttons */
 .preference-button {
-  background-color: #777;
-  color: white;
-  cursor: pointer;
-  padding: 10px;
-  border: none;
-  outline: none;
-  font-size: 15px;
-  border-radius: 5px;
+    /* Set background color for preference buttons */
+    background-color: #777;
+    /* Set text color for preference buttons */
+    color: white;
+    /* Set cursor to pointer */
+    cursor: pointer;
+    /* Add padding around preference buttons */
+    padding: 10px;
+    /* Remove default border */
+    border: none;
+    /* Remove default outline */
+    outline: none;
+    /* Set font size for preference buttons */
+    font-size: 15px;
+    /* Add rounded corners to preference buttons */
+    border-radius: 5px;
 }
 
+/* Styling for submit filters button */
 .submit-filters {
-  background-color: hsl(209, 100%, 45%);
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    /* Set background color for submit filters button */
+    background-color: hsl(209, 100%, 45%);
+    /* Set text color for submit filters button */
+    color: white;
+    /* Add padding around submit filters button */
+    padding: 10px 20px;
+    /* Remove default border */
+    border: none;
+    /* Add rounded corners to submit filters button */
+    border-radius: 5px;
+    /* Set cursor to pointer */
+    cursor: pointer;
 }
 
+/* Styling for reset filters button */
 .reset-filters {
-  background-color: #777;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+    /* Set background color for reset filters button */
+    background-color: #777;
+    /* Set text color for reset filters button */
+    color: white;
+    /* Add padding around reset filters button */
+    padding: 10px 20px;
+    /* Remove default border */
+    border: none;
+    /* Add rounded corners to reset filters button */
+    border-radius: 5px;
+    /* Set cursor to pointer */
+    cursor: pointer;
 }
 
+/* Styling for active preference buttons */
 .preference-button.active {
-  background-color: #4CAF50; /* Green background for active buttons */
-  color: white; /* White text color for contrast */
+    /* Set background color for active preference buttons */
+    background-color: #4CAF50;
+    /* Set text color for active preference buttons */
+    color: white;
 }
 
+/* Styling for back button */
 .back-button {
-  text-align: center;
-  margin-top: 20px;
+    /* Center-align back button */
+    text-align: center;
+    /* Add margin above back button */
+    margin-top: 20px;
 }
 
+/* Styling for back button with class button */
 .back-button .button {
-  background-color: #0074e4;
-  color: white;
-  padding: 10px 20px;
-  border: 2px solid #0074e4; /* Add a border around the button */
-  border-radius: 5px;
-  text-decoration: none;
+    /* Set background color for back button */
+    background-color: #0074e4;
+    /* Set text color for back button */
+    color: white;
+    /* Add padding around back button */
+    padding: 10px 20px;
+    /* Add border around back button */
+    border: 2px solid #0074e4;
+    /* Add rounded corners to back button */
+    border-radius: 5px;
+    /* Remove underline from text */
+    text-decoration: none;
 }
 
+/* Styling for back button hover state */
 .back-button .button:hover {
-  background-color: #0056b3; /* Darken the background color on hover */
-  border-color: #0056b3; /* Darken the border color on hover */
+    /* Change background color on hover */
+    background-color: #0056b3;
+    /* Change border color on hover */
+    border-color: #0056b3;
 }
 
+/* Styling for generic button */
 .button {
-  background-color: #0074e4;
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none; /* Remove underline from links */
-  margin: 10px; /* Add margin to space out buttons */
+    /* Set background color for buttons */
+    background-color: #0074e4;
+    /* Set text color for buttons */
+    color: #ffffff;
+    /* Add padding around buttons */
+    padding: 10px 20px;
+    /* Remove default border */
+    border: none;
+    /* Add rounded corners to buttons */
+    border-radius: 5px;
+    /* Set cursor to pointer */
+    cursor: pointer;
+    /* Remove underline from text */
+    text-decoration: none;
+    /* Add margin around buttons */
+    margin: 10px;
 }
 
+/* Styling for button hover state */
 .button:hover {
-  background-color: #0056b3; /* Darker color on hover */
+    /* Darken background color on hover */
+    background-color: #0056b3;
 }
 
+/* Styling for modify message */
 .modify-message {
-  background-color: #18181c;
-  border: 1px solid #18181c;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 20px;
-  color: white;
+    /* Set background color for modify message */
+    background-color: #18181c;
+    /* Add border around modify message */
+    border: 1px solid #18181c;
+    /* Add rounded corners to modify message */
+    border-radius: 5px;
+    /* Add padding around modify message */
+    padding: 10px;
+    /* Add margin below modify message */
+    margin-bottom: 20px;
+    /* Set text color for modify message */
+    color: white;
 }
