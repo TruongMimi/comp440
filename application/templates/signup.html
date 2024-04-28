@@ -8,14 +8,15 @@
             background-size: cover;
             background-repeat: no-repeat;
             font-family: Arial, sans-serif;
-            padding: 0;
             margin: 0;
+            padding: 0;
         }
 
         .container {
             width: 80%;
             margin: auto;
             padding: 20px;
+            position: relative; /* Ensure relative positioning for absolute child */
         }
 
         .header {
@@ -33,6 +34,10 @@
             text-align: center;
             margin-top: 50px; /* Adjusted margin to position it at the top */
             margin-bottom: 20px;
+            position: absolute; /* Position absolute to place it at the top */
+            top: 0; /* Align to the top */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for centering */
         }
 
         .alert {
