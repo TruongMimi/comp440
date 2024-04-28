@@ -1,19 +1,53 @@
 body {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Change to column */
   min-height: 100vh;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: black;
   color: white;
-  background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
-  background-size: cover; /* Cover the entire background */
 }
 
-.header, .footer {
+.black-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
   background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header,
+.footer {
   color: white;
+}
+
+.main-content {
+  z-index: 1;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Additional styling for the background image */
+html {
+  background: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.header {
+  background-color: #18181c; /* Set the background color here */
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar {
@@ -55,19 +89,20 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-
 .container {
   max-width: 800px;
   margin: 0 auto;
   flex: 1; /* Make the container take the available vertical space */
 }
-
 .footer {
+  background-color: #18181c;
+  color: white;
   padding: 10px;
   text-align: center;
   margin-top: auto; /* Push the footer to the bottom */
 }
 
+/*homepage*/
 .three-sections-page {
   display: flex;
   flex-direction: row;
@@ -111,7 +146,7 @@ button {
 
 #middle-section {
   flex: 2;
-  background-color: rgba(0, 0, 0, 0.7); /* Transparent black */
+  background-color: black;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -133,6 +168,29 @@ button {
   flex-direction: row;
   align-items: flex-start; /* Align items at the top */
   margin-right: 150px;
+}
+
+/*.menu-button {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  margin-right: 10px; Add margin between buttons//
+  transition: background-color 0.3s;
+}
+
+.menu-button:hover {
+  background-color: #45a049;
+}*/
+
+i {
+  color: white;
+  padding: 15px;
+  font-size: 20px;
 }
 
 .preferences {
