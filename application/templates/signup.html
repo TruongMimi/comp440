@@ -2,151 +2,68 @@
 <html>
 <head>
     <title>User Sign Up</title>
-    <style>
-        body {
-            background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
-            background-size: cover;
-            background-repeat: no-repeat;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            position: relative; /* Ensure relative positioning for absolute child */
-        }
-
-        .header {
-            text-align: center;
-            padding: 20px;
-        }
-
-        h1 {
-            color: white;
-            margin-top: 0;
-        }
-
-        h2.signup-heading {
-            color: white;
-            text-align: center;
-            margin-top: 50px; /* Adjusted margin to position it at the top */
-            margin-bottom: 20px;
-            position: absolute; /* Position absolute to place it at the top */
-            top: 0; /* Align to the top */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%); /* Adjust for centering */
-        }
-
-        .alert {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        form {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
-            text-align: center;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            text-align: left;
-        }
-
-        input[type=text], input[type=email], input[type=password] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #555;
-            color: white;
-        }
-
-        .button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .back-button {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
 </head>
-<body>
+<body class="container">
     <header class="header">
         <h1>User Signup</h1>
     </header>
-    <h2 class="signup-heading">User Sign Up</h2> <!-- Moved outside the container -->
-    <div class="container">
-        <main>
-            {% if Signup_failure %}
-                <div class="alert">
-                    Email already exists. Please use a different email.
-                </div>
-            {% endif %}
+    <main>
 
-            {% if Password_mismatch %}
-                <div class="alert">
-                    Passwords do not match. Please try again.
-                </div>
-            {% endif %}
+    <p>
+        {% if Signup_failure %}
+            <div class="alert alert-error" style="color: red;">
+                Email already exists. Please use a different email.
+            </div>
+        {% endif %}
 
-            {% if Password_error %}
-                <div class="alert">
-                    Password should be at least 6 characters long.
-                </div>
-            {% endif %}
+    </p>
 
-            {% if Email_error %}
-                <div class="alert">
-                    Invalid email format.
-                </div>
-            {% endif %}
+    <p>
+        {% if Password_mismatch %}
+            <div class="alert alert-error" style="color: red;">
+                Passwords do not match. Please try again.
+            </div>
+        {% endif %}
 
-            <form action="/signup" method="post">
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required>
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <label for="confirmPassword">Confirm Password:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-                <div class="back-button">
-                    <input class="button" type="submit" value="Signup">
-                </div>
-            </form>
-            <p>Already have an account? <a href="/login">Login</a></p>
-        </main>
-        <footer class="footer">
-            &copy; 2024 Publication Listings
-        </footer>
-    </div>
+    </p>
+
+    <p>
+        {% if Password_error %}
+            <div class="alert alert-error" style="color: red;">
+                Password should be at least 6 characters long.
+            </div>
+        {% endif %}
+
+    </p>
+
+    <p>
+        {% if Email_error %}
+            <div class="alert alert-error" style="color: red;">
+                Invalid email format.
+            </div>
+        {% endif %}
+
+    </p>
+        <form action="/signup" method="post">
+            <label for="firstName">First Name:</label><br>
+            <input type="text" id="firstName" name="firstName" required><br>
+            <label for="lastName">Last Name:</label><br>
+            <input type="text" id="lastName" name="lastName" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br>
+            <label for="confirmPassword">Confirm Password:</label><br>
+            <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+            <div class="back-button">
+                <input class="button" type="submit" value="Signup">
+            </div>
+        </form>
+        <p>Already have an account? <a href="/login">Login</a></p>
+    </main>
+    <footer class="footer">
+        &copy; 2024 Publication Listings
+    </footer>
 </body>
 </html>
