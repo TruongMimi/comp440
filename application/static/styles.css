@@ -50,7 +50,7 @@ html {
 }
 
 .header {
-  background-color: #18181c; /* Set the background color here */
+  background-color: black; 
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -96,13 +96,30 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.button {
+            background-color: blue; /* Change button background color to blue */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline from links */
+            margin: 10px; /* Add margin to space out buttons */
+        }
+
+        .button:hover {
+            background-color: blue; /* Keep button background color blue on hover */
+        }
+
+
 .container {
   max-width: 800px;
   margin: 0 auto;
   flex: 1; /* Make the container take the available vertical space */
 }
 .footer {
-  background-color: #18181c;
+  background-color: black;
   color: white;
   padding: 10px;
   text-align: center;
@@ -119,7 +136,7 @@ button {
 
 #left-section {
   flex: 1;
-  background-color: #18181c;
+  background-color: black;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -238,7 +255,7 @@ i {
 }
 
 .preference-button.active {
-  background-color: #4CAF50; /* Green background for active buttons */
+  background-color: #0074e4; /* Green background for active buttons */
   color: white; /* White text color for contrast */
 }
 
