@@ -90,41 +90,38 @@
         </header>
         <main class="main-content">
 
-        <p>
-            {% if Signup_failure %}
+        {% if Signup_failure %}
+            <p>
                 <div class="alert alert-error" style="color: red;">
                     Email already exists. Please use a different email.
-                </div>
-            {% endif %}
+                </div>           
+            </p>
+        {% endif %}
 
-        </p>
-
-        <p>
-            {% if Password_mismatch %}
+        {% if Password_mismatch %}
+            <p>
                 <div class="alert alert-error" style="color: red;">
                     Passwords do not match. Please try again.
-                </div>
-            {% endif %}
+                </div>          
+            </p>
+        {% endif %}
 
-        </p>
-
-        <p>
-            {% if Password_error %}
+        {% if Password_error %}
+            <p>            
                 <div class="alert alert-error" style="color: red;">
                     Password should be at least 6 characters long.
-                </div>
-            {% endif %}
+                </div>          
+            </p>
+        {% endif %}
 
-        </p>
-
-        <p>
-            {% if Email_error %}
+        {% if Email_error %}
+            <p>            
                 <div class="alert alert-error" style="color: red;">
                     Invalid email format.
-                </div>
-            {% endif %}
+                </div>         
+            </p>
+        {% endif %}
 
-        </p>
             <form action="/signup" method="post">
                 <label for="firstName">First Name:</label><br>
                 <input type="text" id="firstName" name="firstName" required><br>

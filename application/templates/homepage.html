@@ -89,16 +89,31 @@
     <header class="header">
         <h1>Publication Listings Homepage</h1>     
     </header>
-    <p>
-        {% if login_success %}
-            <div style="color: green;">
-                You have been logged in successfully!
-            </div>
-        {% endif %}
-
+    {% if login_success %}
+    <p>       
+        <div style="color: green;">
+            You have been logged in successfully!
+        </div>        
     </p>
-    <main>
-      
+    {% endif %}
+
+    {% if pub_mod_success %}
+    <p>        
+        <div style="color: green;">
+            The publication was modified successfully!
+        </div>
+    </p>
+    {% endif %}
+
+    {% if add_mod_success %}
+    <p>        
+        <div style="color: green;">
+            The publication was added successfully!
+        </div>
+    </p>
+    {% endif %}
+
+    <main>      
         <div class="homepage-buttons">
             <a href="/search" class="button">Search Publications</a>
             <a href="/add_publication" class="button">Add Publication</a>
