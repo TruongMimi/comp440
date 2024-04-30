@@ -30,11 +30,18 @@ body {
   z-index: 1;
 }
 
+
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
 }
+
+.scrollable-results {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
+}
+
 
 /* Additional styling for the background image */
 html {
