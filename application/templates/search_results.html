@@ -3,6 +3,16 @@
 <head>
     <title>Search Results for "{{ search_query }}"</title>
     <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
+    <style>
+        /* Additional styling for scrollability */
+        .black-overlay {
+            overflow: auto; /* Enable scrolling when content exceeds viewport */
+            height: 100vh; /* Set black-overlay height to 100% of viewport height */
+        }
+        main {
+            padding: 20px; /* Add padding to main content */
+        }
+    </style>
 </head>
 <body class="container">
     <div class="black-overlay">
