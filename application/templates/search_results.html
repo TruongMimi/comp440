@@ -6,11 +6,23 @@
     <style>
         /* Additional styling for scrollability */
         .black-overlay {
-            overflow: auto; /* Enable scrolling when content exceeds viewport */
+            overflow-y: auto; /* Enable vertical scrolling */
+            overflow-x: hidden; /* Hide horizontal scrollbar */
             height: 100vh; /* Set black-overlay height to 100% of viewport height */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Arrange children vertically */
+            justify-content: space-between; /* Space evenly between header and footer */
+            align-items: center; /* Center items horizontally */
         }
         main {
+            flex-grow: 1; /* Allow main content to grow and take remaining space */
+            width: 100%; /* Ensure main content takes full width */
             padding: 20px; /* Add padding to main content */
+            overflow-y: auto; /* Enable vertical scrolling for main content */
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+        }
+        .footer {
+            width: 100%; /* Ensure footer takes full width */
         }
     </style>
 </head>
