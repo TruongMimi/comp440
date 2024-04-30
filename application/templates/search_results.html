@@ -4,39 +4,41 @@
     <title>Search Results for "{{ search_query }}"</title>
     <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
 </head>
-<div class="black-overlay">
-    <header class="header">
-        <h1>Search Results for "{{ search_query }}"</h1>
-    </header>
-    <main>
-        <div class="modify-message">
-            <strong><h3>**Click on a publication's title to modify that publication**</h3></strong>
-        </div>
-        <ul>
-            {% for publication in results %}
-                <li>
-                    <strong>Title:</strong> 
-                    <a href="/modify_publication/{{ publication.ID }}">{{ publication.Title }}</a> <br>
-                    <strong>Date Published:</strong> {{ publication.DatePublished }} <br>
-                    <strong>Author(s):</strong> 
-                    {% if publication.Authors %}
-                        {{ publication.Authors }} <br>
-                    {% else %}
-                        N/A <br>
-                    {% endif %}
-                    <strong>Keywords:</strong> {{ publication.Keywords }} <br>
-                    <strong>Link:</strong> <a href="{{ publication.Link }}">{{ publication.Link }}</a> <br>
-                    <strong>Pages:</strong> {{ publication.Pages }} <br>
-                </li>
-                <br> <!-- New line after each list entry -->
-            {% endfor %}
-        </ul>
-        <div class="back-button">
-            <a href="/search" class="button">Back</a>
-        </div>
-    </main>
-    <footer class="footer">
-        &copy; 2024 Publication Listings
-    </footer>
+<body class="container">
+    <div class="black-overlay">
+        <header class="header">
+            <h1>Search Results for "{{ search_query }}"</h1>
+        </header>
+        <main>
+            <div class="modify-message">
+                <strong><h3>**Click on a publication's title to modify that publication**</h3></strong>
+            </div>
+            <ul>
+                {% for publication in results %}
+                    <li>
+                        <strong>Title:</strong> 
+                        <a href="/modify_publication/{{ publication.ID }}">{{ publication.Title }}</a> <br>
+                        <strong>Date Published:</strong> {{ publication.DatePublished }} <br>
+                        <strong>Author(s):</strong> 
+                        {% if publication.Authors %}
+                            {{ publication.Authors }} <br>
+                        {% else %}
+                            N/A <br>
+                        {% endif %}
+                        <strong>Keywords:</strong> {{ publication.Keywords }} <br>
+                        <strong>Link:</strong> <a href="{{ publication.Link }}">{{ publication.Link }}</a> <br>
+                        <strong>Pages:</strong> {{ publication.Pages }} <br>
+                    </li>
+                    <br> <!-- New line after each list entry -->
+                {% endfor %}
+            </ul>
+            <div class="back-button">
+                <a href="/search" class="button">Back</a>
+            </div>
+        </main>
+        <footer class="footer">
+            &copy; 2024 Publication Listings
+        </footer>
+    </div> <!-- Close the black-overlay div -->
 </body>
 </html>
