@@ -14,13 +14,16 @@
             justify-content: space-between; /* Space evenly between header and footer */
             align-items: center; /* Center items horizontally */
             position: relative; /* Position relative for absolute positioning of footer */
-            width: 80%; /* Set the width to 80% of the viewport */
+            width: 90%; /* Set the width to 90% of the viewport */
+            max-width: 800px; /* Set a maximum width for the black-overlay */
             margin: 0 auto; /* Center the black-overlay box */
+            padding: 20px; /* Add padding */
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            border-radius: 10px; /* Rounded corners */
         }
         main {
             flex-grow: 1; /* Allow main content to grow and take remaining space */
             width: 100%; /* Ensure main content takes full width */
-            padding: 20px; /* Add padding to main content */
             overflow-y: auto; /* Enable vertical scrolling for main content */
             overflow-x: hidden; /* Hide horizontal scrollbar */
         }
