@@ -13,6 +13,7 @@
             flex-direction: column; /* Arrange children vertically */
             justify-content: space-between; /* Space evenly between header and footer */
             align-items: center; /* Center items horizontally */
+            position: relative; /* Position relative for absolute positioning of footer */
         }
         main {
             flex-grow: 1; /* Allow main content to grow and take remaining space */
@@ -21,8 +22,10 @@
             overflow-y: auto; /* Enable vertical scrolling for main content */
             overflow-x: hidden; /* Hide horizontal scrollbar */
         }
-        .footer {
-            width: 100%; /* Ensure footer takes full width */
+        .back-button {
+            position: absolute; /* Position the button absolutely */
+            bottom: 20px; /* Distance from bottom */
+            right: 20px; /* Distance from right */
         }
     </style>
 </head>
@@ -54,13 +57,13 @@
                     <br> <!-- New line after each list entry -->
                 {% endfor %}
             </ul>
-            <div class="back-button">
-                <a href="/search" class="button">Back</a>
-            </div>
         </main>
         <footer class="footer">
             &copy; 2024 Publication Listings
         </footer>
+        <div class="back-button">
+            <a href="/search" class="button">Back</a>
+        </div>
     </div> <!-- Close the black-overlay div -->
 </body>
 </html>
