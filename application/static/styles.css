@@ -5,8 +5,48 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: black;
   color: white;
+}
+
+.black-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header,
+.footer {
+  color: white;
+}
+
+.main-content {
+  z-index: 1;
+}
+
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.scrollable-results {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
+}
+
+
+/* Additional styling for the background image */
+html {
+  background: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=') no-repeat center center fixed;
+  background-size: cover;
 }
 
 .header {
@@ -76,6 +116,7 @@ button {
   min-height: 100vh;
   background-color: black;
 }
+
 #left-section {
   flex: 1;
   background-color: #18181c;
@@ -153,12 +194,11 @@ button {
   background-color: #45a049;
 }*/
 
-i{
+i {
   color: white;
   padding: 15px;
   font-size: 20px;
 }
-
 
 .preferences {
   display: flex;
