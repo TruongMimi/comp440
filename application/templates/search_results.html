@@ -6,7 +6,7 @@
     <style>
         /* Additional styling for scrollability */
         .black-overlay {
-            overflow-y: hidden; /* Enable vertical scrolling */
+            overflow-y: auto; /* Enable vertical scrolling */
             overflow-x: hidden; /* Hide horizontal scrollbar */
             height: 100vh; /* Set black-overlay height to 100% of viewport height */
             display: flex; /* Use flexbox for layout */
@@ -19,12 +19,14 @@
             margin: 0 auto; /* Center the black-overlay box */
             padding: 20px; /* Add padding */
             border-radius: 10px; /* Rounded corners */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
         }
         main {
             flex-grow: 1; /* Allow main content to grow and take remaining space */
             width: 100%; /* Ensure main content takes full width */
-            overflow-y: hidden; /* Enable vertical scrolling for main content */
+            overflow-y: auto; /* Enable vertical scrolling for main content */
             overflow-x: hidden; /* Hide horizontal scrollbar */
+            padding-bottom: 100px; /* Extra padding initially to allow scrolling */
         }
         .back-button {
             position: absolute; /* Position the button absolutely */
@@ -34,11 +36,11 @@
     </style>
 </head>
 <body class="container">
-    <div class="black-overlay">
+    <div class="black-overlay" id="black-overlay">
         <header class="header">
             <h1>Search Results for "{{ search_query }}"</h1>
         </header>
-        <main>
+        <main id="main-content">
             <div class="modify-message">
                 <strong><h3>**Click on a publication's title to modify that publication**</h3></strong>
             </div>
@@ -69,5 +71,22 @@
             <a href="/search" class="button">Back</a>
         </div>
     </div> <!-- Close the black-overlay div -->
+
+    <script>
+        // JavaScript to add extra padding after the last data is displayed
+        window.onload = function() {
+            var mainContent = document.getElementById('main-content');
+            var blackOverlay = document.getElementById('black-overlay');
+            var footerHeight = document.querySelector('.footer').offsetHeight;
+            var mainContentHeight = mainContent.scrollHeight;
+            var viewportHeight = window.innerHeight;
+
+            if (mainContentHeight < viewportHeight - footerHeight) {
+                var extraPadding = viewportHeight - footerHeight - mainContentHeight;
+                mainContent.style.paddingBottom = extraPadding + 'px';
+                blackOverlay.style.overflowY = 'hidden'; // Prevent double scrollbars
+            }
+        };
+    </script>
 </body>
 </html>
