@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Search Results for "{{ search_query }}"</title>
+    <title>Modify Publication</title>
     <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
 </head>
-<body>
-    <div class="black-overlay">
-        <header class="header">
-            <h1>Search Results for "{{ search_query }}"</h1>
-        </header>
-        <main>
-            <div class="modify-message">
-                <strong><h3>**Click on a publication's title to modify that publication**</h3></strong>
-            </div>
-            <div class="scrollable-results">
-                <ul>
-                    {% for publication in results %}
-                        <li>
-                            <strong>Title:</strong> 
-                            <a href="/modify_publication/{{ publication.ID }}">{{ publication.Title }}</a> <br>
-                            <strong>Date Published:</strong> {{ publication.DatePublished }} <br>
-                            <strong>Author(s):</strong> 
-                            {% if publication.Authors %}
-                                {{ publication.Authors }} <br>
-                            {% else %}
-                                N/A <br>
-                            {% endif %}
-                            <strong>Keywords:</strong> {{ publication.Keywords }} <br>
-                            <strong>Link:</strong> <a href="{{ publication.Link }}">{{ publication.Link }}</a> <br>
-                            <strong>Pages:</strong> {{ publication.Pages }} <br>
-                        </li>
-                        <br> <!-- New line after each list entry -->
-                    {% endfor %}
-                </ul>
-            </div>
+<body class="container">
+    <header class="header">
+        <h1>Modify Publication</h1>
+    </header>
+    <main>
+        <form action="/modify_publication/{{ publication.ID }}" method="post">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" value="{{ publication.Title }}" required><br>
+            <label for="date_published">Date Published:</label><br>
+            <input type="date" id="date_published" name="date_published" value="{{ publication.DatePublished }}" required><br>
+            <label for="pages">Pages:</label><br>
+            <input type="text" id="pages" name="pages" value="{{ publication.Pages }}"><br>
+            <label for="doi">DOI:</label><br>
+            <input type="text" id="doi" name="doi" value="{{ publication.DOI }}"><br>
+            <label for="link">Link:</label><br>
+            <input type="text" id="link" name="link" value="{{ publication.Link }}"><br>
+            <label for="authors">Authors:</label><br>
+            <input type="text" id="authors" name="authors" value="{% for author in authors %}{{ author.FirstName }} {{ author.LastName }}{% if not loop.last %}, {% endif %}{% endfor %}"><br>
+            <label for="keywords">Keywords:</label><br>
+            <input type="text" id="keywords" name="keywords" value="{% for keyword in keywords %}{{ keyword.Keyword }}{% if not loop.last %}, {% endif %}{% endfor %}"><br><br>
             <div class="back-button">
-                <a href="/search" class="button">Back</a>
+                <input class="button" type="submit" value="Modify Publication">
             </div>
-        </main>
-        <footer class="footer">
-            &copy; 2024 Publication Listings
-        </footer>
-    </div>
+        </form>
+        
+        <!-- Button to delete publication -->
+        <div class="back-button">
+            <form action="/confirm_delete_publication/{{ publication.ID }}" method="post">
+                <input class="button delete-button" type="submit" value="Delete Publication">
+            </form>
+        </div>
+        
+        <div class="back-button">
+            <a href="/homepage" class="button">Back</a>
+        </div>
+    </main>
+    <footer class="footer">
+        &copy; 2024 Publication Listings
+    </footer>
 </body>
 </html>
-
