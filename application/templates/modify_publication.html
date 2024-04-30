@@ -1,121 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Modify Publication</title>
+    <title>Search Results for "{{ search_query }}"</title>
     <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
-    <style>
-        body {
-            background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
-        /* Style for the text input boxes */
-        input[type=text], input[type=email], input[type=password], input[type=date] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 3px 0; /* Adjusted margin-top to move the text boxes higher */
-            display: inline-block;
-            background-color: white; /* White background for the text boxes */
-            color: black; /* Black text color */
-            border: 1px solid black; /* Black border */
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        /* Style for the submit button */
-        .button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 3px 8px; /* Adjusted margin-top to move the buttons higher */
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        /* Style for the back button */
-        .back-button {
-            text-align: center;
-        }
-
-        /* Style for the alerts */
-        .alert {
-            padding: 20px;
-            background-color: #f44336;
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        /* Style for the header */
-        .header {
-            background-color: black; /* Solid black background */
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px;
-        }
-
-        /* Style for the main content */
-        main {
-            background-color: black; /* Solid black background */
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 50px;
-        }
-
-        /* Style for the footer */
-        .footer {
-            background-color: black; /* Solid black background */
-            padding: 10px;
-            text-align: center;
-            border-radius: 10px;
-            color: white; /* White text color */
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* Style for the h1 tag */
-        h1 {
-            color: white; /* White text color */
-        }
-    </style>
 </head>
 <body>
-<div class="black-overlay">
-    <header class="header">
-        <h1>Modify Publication</h1>
-    </header>
-    <main>
-        <form action="/modify_publication/{{ publication.ID }}" method="post">
-            <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title" value="{{ publication.Title }}" required><br>
-            <label for="date_published">Date Published:</label><br>
-            <input type="date" id="date_published" name="date_published" value="{{ publication.DatePublished }}" required><br>
-            <label for="pages">Pages:</label><br>
-            <input type="text" id="pages" name="pages" value="{{ publication.Pages }}"><br>
-            <label for="doi">DOI:</label><br>
-            <input type="text" id="doi" name="doi" value="{{ publication.DOI }}"><br>
-            <label for="link">Link:</label><br>
-            <input type="text" id="link" name="link" value="{{ publication.Link }}"><br>
-            <label for="authors">Authors:</label><br>
-            <input type="text" id="authors" name="authors" value="{% for author in authors %}{{ author.FirstName }} {{ author.LastName }}{% if not loop.last %}, {% endif %}{% endfor %}"><br>
-            <label for="keywords">Keywords:</label><br>
-            <input type="text" id="keywords" name="keywords" value="{% for keyword in keywords %}{{ keyword.Keyword }}{% if not loop.last %}, {% endif %}{% endfor %}"><br><br>
-            <div class="back-button">
-                <input class="button" type="submit" value="Modify Publication">
-                <form action="/confirm_delete_publication/{{ publication.ID }}" method="post">
-                    <input class="button delete-button" type="submit" value="Delete Publication">
-                </form>
-                <a href="/homepage" class="button">Back</a>
+    <div class="black-overlay">
+        <header class="header">
+            <h1>Search Results for "{{ search_query }}"</h1>
+        </header>
+        <main>
+            <div class="modify-message">
+                <strong><h3>**Click on a publication's title to modify that publication**</h3></strong>
             </div>
-        </form>
-    </main>
-    <footer class="footer">
-        &copy; 2024 Publication Listings
-    </footer>
-</div>
+            <div class="scrollable-results">
+                <ul>
+                    {% for publication in results %}
+                        <li>
+                            <strong>Title:</strong> 
+                            <a href="/modify_publication/{{ publication.ID }}">{{ publication.Title }}</a> <br>
+                            <strong>Date Published:</strong> {{ publication.DatePublished }} <br>
+                            <strong>Author(s):</strong> 
+                            {% if publication.Authors %}
+                                {{ publication.Authors }} <br>
+                            {% else %}
+                                N/A <br>
+                            {% endif %}
+                            <strong>Keywords:</strong> {{ publication.Keywords }} <br>
+                            <strong>Link:</strong> <a href="{{ publication.Link }}">{{ publication.Link }}</a> <br>
+                            <strong>Pages:</strong> {{ publication.Pages }} <br>
+                        </li>
+                        <br> <!-- New line after each list entry -->
+                    {% endfor %}
+                </ul>
+                {% if modification_success %}
+                    <div class="modification-success">
+                        <p>Modification was successful!</p>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="back-button">
+                <a href="/search" class="button">Back</a>
+            </div>
+        </main>
+        <footer class="footer">
+            &copy; 2024 Publication Listings
+        </footer>
+    </div>
 </body>
 </html>
