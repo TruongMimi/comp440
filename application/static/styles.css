@@ -97,10 +97,6 @@ main {
   margin: 10px; /* Add margin to space out buttons */
 }
 
-.button:hover {
-  background-color: blue; /* Keep button background color blue on hover */
-}
-
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -278,9 +274,6 @@ i {
   margin: 10px; /* Add margin to space out buttons */
 }
 
-.button:hover {
-  background-color: #0056b3; /* Darker color on hover */
-}
 
 .modify-message {
   background-color: #18181c;
