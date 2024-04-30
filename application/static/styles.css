@@ -30,6 +30,7 @@ body {
   z-index: 1;
 }
 
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -37,9 +38,10 @@ body {
 }
 
 .scrollable-results {
-  max-height: 400px; /* Adjust the height as needed */
-  overflow-y: auto;
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
 }
+
 
 /* Additional styling for the background image */
 html {
@@ -86,23 +88,36 @@ main {
   padding: 20px;
 }
 
-.button {
-  background-color: blue; /* Change button background color to blue */
-  color: white;
+button {
+  background-color: #0074e4;
+  color: #ffffff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  text-decoration: none; /* Remove underline from links */
-  margin: 10px; /* Add margin to space out buttons */
 }
+
+.button {
+            background-color: blue; /* Change button background color to blue */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline from links */
+            margin: 10px; /* Add margin to space out buttons */
+        }
+
+        .button:hover {
+            background-color: blue; /* Keep button background color blue on hover */
+        }
+
 
 .container {
   max-width: 800px;
   margin: 0 auto;
   flex: 1; /* Make the container take the available vertical space */
 }
-
 .footer {
   background-color: #18181c;
   color: white;
@@ -274,6 +289,9 @@ i {
   margin: 10px; /* Add margin to space out buttons */
 }
 
+.button:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}
 
 .modify-message {
   background-color: #18181c;
