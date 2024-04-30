@@ -12,19 +12,19 @@
     <main>
         <form action="/modify_publication/{{ publication.ID }}" method="post">
             <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title" value="{{ publication.Title }}" required><br>
+            <input type="text" id="title" name="title" value="{{ publication.Title }}" required class="input-box"><br>
             <label for="date_published">Date Published:</label><br>
-            <input type="date" id="date_published" name="date_published" value="{{ publication.DatePublished }}" required><br>
+            <input type="date" id="date_published" name="date_published" value="{{ publication.DatePublished }}" required class="input-box"><br>
             <label for="pages">Pages:</label><br>
-            <input type="text" id="pages" name="pages" value="{{ publication.Pages }}"><br>
+            <input type="text" id="pages" name="pages" value="{{ publication.Pages }}" class="input-box"><br>
             <label for="doi">DOI:</label><br>
-            <input type="text" id="doi" name="doi" value="{{ publication.DOI }}"><br>
+            <input type="text" id="doi" name="doi" value="{{ publication.DOI }}" class="input-box"><br>
             <label for="link">Link:</label><br>
-            <input type="text" id="link" name="link" value="{{ publication.Link }}"><br>
+            <input type="text" id="link" name="link" value="{{ publication.Link }}" class="input-box"><br>
             <label for="authors">Authors:</label><br>
-            <input type="text" id="authors" name="authors" value="{% for author in authors %}{{ author.FirstName }} {{ author.LastName }}{% if not loop.last %}, {% endif %}{% endfor %}"><br>
+            <input type="text" id="authors" name="authors" value="{% for author in authors %}{{ author.FirstName }} {{ author.LastName }}{% if not loop.last %}, {% endif %}{% endfor %}" class="input-box"><br>
             <label for="keywords">Keywords:</label><br>
-            <input type="text" id="keywords" name="keywords" value="{% for keyword in keywords %}{{ keyword.Keyword }}{% if not loop.last %}, {% endif %}{% endfor %}"><br><br>
+            <input type="text" id="keywords" name="keywords" value="{% for keyword in keywords %}{{ keyword.Keyword }}{% if not loop.last %}, {% endif %}{% endfor %}" class="input-box"><br><br>
             <div class="back-button">
                 <input class="button" type="submit" value="Modify Publication">
             </div>
