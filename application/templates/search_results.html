@@ -3,90 +3,40 @@
 <head>
     <title>Search Results for "{{ search_query }}"</title>
     <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
-    <style>
-        /* Additional styling for scrollability */
-        .black-overlay {
-            overflow-y: auto; /* Enable vertical scrolling */
-            overflow-x: hidden; /* Hide horizontal scrollbar */
-            height: 100vh; /* Set black-overlay height to 100% of viewport height */
-            display: flex; /* Use flexbox for layout */
-            flex-direction: column; /* Arrange children vertically */
-            justify-content: space-between; /* Space evenly between header and footer */
-            align-items: center; /* Center items horizontally */
-            position: relative; /* Position relative for absolute positioning of footer */
-            width: 90%; /* Set the width to 90% of the viewport */
-            max-width: 800px; /* Set a maximum width for the black-overlay */
-            margin: 0 auto; /* Center the black-overlay box */
-            padding: 20px; /* Add padding */
-            border-radius: 10px; /* Rounded corners */
-            box-sizing: border-box; /* Include padding and border in element's total width and height */
-        }
-        main {
-            flex-grow: 1; /* Allow main content to grow and take remaining space */
-            width: 100%; /* Ensure main content takes full width */
-            overflow-y: auto; /* Enable vertical scrolling for main content */
-            overflow-x: hidden; /* Hide horizontal scrollbar */
-            padding-bottom: 100px; /* Extra padding initially to allow scrolling */
-        }
-        .back-button {
-            position: absolute; /* Position the button absolutely */
-            bottom: 20px; /* Distance from bottom */
-            right: 20px; /* Distance from right */
-        }
-    </style>
 </head>
 <body class="container">
-    <div class="black-overlay" id="black-overlay">
-        <header class="header">
-            <h1>Search Results for "{{ search_query }}"</h1>
-        </header>
-        <main id="main-content">
-            <div class="modify-message">
-                <strong><h3>**Click on a publication's title to modify that publication**</h3></strong>
-            </div>
-            <ul>
-                {% for publication in results %}
-                    <li>
-                        <strong>Title:</strong> 
-                        <a href="/modify_publication/{{ publication.ID }}">{{ publication.Title }}</a> <br>
-                        <strong>Date Published:</strong> {{ publication.DatePublished }} <br>
-                        <strong>Author(s):</strong> 
-                        {% if publication.Authors %}
-                            {{ publication.Authors }} <br>
-                        {% else %}
-                            N/A <br>
-                        {% endif %}
-                        <strong>Keywords:</strong> {{ publication.Keywords }} <br>
-                        <strong>Link:</strong> <a href="{{ publication.Link }}">{{ publication.Link }}</a> <br>
-                        <strong>Pages:</strong> {{ publication.Pages }} <br>
-                    </li>
-                    <br> <!-- New line after each list entry -->
-                {% endfor %}
-            </ul>
-        </main>
-        <footer class="footer">
-            &copy; 2024 Publication Listings
-        </footer>
+    <header class="header">
+        <h1>Search Results for "{{ search_query }}"</h1>
+    </header>
+    <main>
+        <div class="modify-message">
+            <strong><h3>**Click on a publication's title to modify that publication**</h3></strong>
+        </div>
+        <ul>
+            {% for publication in results %}
+                <li>
+                    <strong>Title:</strong> 
+                    <a href="/modify_publication/{{ publication.ID }}">{{ publication.Title }}</a> <br>
+                    <strong>Date Published:</strong> {{ publication.DatePublished }} <br>
+                    <strong>Author(s):</strong> 
+                    {% if publication.Authors %}
+                        {{ publication.Authors }} <br>
+                    {% else %}
+                        N/A <br>
+                    {% endif %}
+                    <strong>Keywords:</strong> {{ publication.Keywords }} <br>
+                    <strong>Link:</strong> <a href="{{ publication.Link }}">{{ publication.Link }}</a> <br>
+                    <strong>Pages:</strong> {{ publication.Pages }} <br>
+                </li>
+                <br> <!-- New line after each list entry -->
+            {% endfor %}
+        </ul>
         <div class="back-button">
             <a href="/search" class="button">Back</a>
         </div>
-    </div> <!-- Close the black-overlay div -->
-
-    <script>
-        // JavaScript to add extra padding after the last data is displayed
-        window.onload = function() {
-            var mainContent = document.getElementById('main-content');
-            var blackOverlay = document.getElementById('black-overlay');
-            var footerHeight = document.querySelector('.footer').offsetHeight;
-            var mainContentHeight = mainContent.scrollHeight;
-            var viewportHeight = window.innerHeight;
-
-            if (mainContentHeight < viewportHeight - footerHeight) {
-                var extraPadding = viewportHeight - footerHeight - mainContentHeight;
-                mainContent.style.paddingBottom = extraPadding + 'px';
-                blackOverlay.style.overflowY = 'hidden'; // Prevent double scrollbars
-            }
-        };
-    </script>
+    </main>
+    <footer class="footer">
+        &copy; 2024 Publication Listings
+    </footer>
 </body>
 </html>
