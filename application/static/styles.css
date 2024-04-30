@@ -96,6 +96,23 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.button {
+            background-color: blue; /* Change button background color to blue */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline from links */
+            margin: 10px; /* Add margin to space out buttons */
+        }
+
+        .button:hover {
+            background-color: blue; /* Keep button background color blue on hover */
+        }
+
+
 .container {
   max-width: 800px;
   margin: 0 auto;
