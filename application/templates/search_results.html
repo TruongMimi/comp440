@@ -6,7 +6,7 @@
     <style>
         /* Additional styling for scrollability */
         .black-overlay {
-            overflow-y: auto; /* Enable vertical scrolling */
+            overflow-y: hidden; /* Enable vertical scrolling */
             overflow-x: hidden; /* Hide horizontal scrollbar */
             height: 100vh; /* Set black-overlay height to 100% of viewport height */
             display: flex; /* Use flexbox for layout */
@@ -18,13 +18,12 @@
             max-width: 800px; /* Set a maximum width for the black-overlay */
             margin: 0 auto; /* Center the black-overlay box */
             padding: 20px; /* Add padding */
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
             border-radius: 10px; /* Rounded corners */
         }
         main {
             flex-grow: 1; /* Allow main content to grow and take remaining space */
             width: 100%; /* Ensure main content takes full width */
-            overflow-y: auto; /* Enable vertical scrolling for main content */
+            overflow-y: hidden; /* Enable vertical scrolling for main content */
             overflow-x: hidden; /* Hide horizontal scrollbar */
         }
         .back-button {
