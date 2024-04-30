@@ -89,23 +89,21 @@
             <h1>User Login</h1>
         </header>
         <main class="main-content">
-            <p>
-                {% if Signup_success %}
-                    <div class="alert alert-success" style="color: green;">
-                        Signup successful! You can now login.
-                    </div>
-                {% endif %}
-        
+            {% if Signup_success %}
+            <p>                
+                <div class="alert alert-success" style="color: green;">
+                    Signup successful! You can now login.
+                </div>             
             </p>
+            {% endif %}
 
-            <p>
-                {% if Login_failure %}
-                    <div class="alert alert-error" style="color: red;">
-                        Invalid email or password. Please try again.
-                    </div>
-                {% endif %}
-        
+            {% if Login_failure %}
+            <p>                
+                <div class="alert alert-error" style="color: red;">
+                    Invalid email or password. Please try again.
+                </div>             
             </p>
+            {% endif %}
 
             <form action="/login" method="post">
                 <label for="email">Email:</label><br>

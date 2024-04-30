@@ -9,7 +9,11 @@
         <h1>Deletion Successful</h1>
     </header>
     <main>
-        <p>The publication has been successfully deleted.</p>
+        <p>
+            <div style="color: green;">
+                The publication has been successfully deleted!
+            </div>
+        </p>
         <form action="/undo_delete_publication/{{ publication_id }}" method="post">
             <input type="hidden" name="_method" value="POST">
             <input class="button" type="submit" value="Undo Deletion">

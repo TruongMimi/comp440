@@ -38,7 +38,9 @@ def index():
 @app.route('/homepage')
 def homepage():
     login_success = request.args.get('login_success', False)
-    return render_template('homepage.html', login_success=login_success)
+    pub_mod_success = request.args.get('pub_mod_success', False)
+    add_mod_success = request.args.get('add_mod_success', False)
+    return render_template('homepage.html', login_success=login_success, pub_mod_success=pub_mod_success, add_mod_success=add_mod_success)
 
 @app.route('/signup_page')
 def signup_page():
@@ -231,7 +233,7 @@ def add_publication():
         finally:
             connection.close()  # Close database connection
 
-        return redirect('/homepage')  # Redirect to the homepage after adding publication
+        return render_template('homepage.html', add_mod_success=True)  # Redirect to the homepage after adding publication
     else:
         return render_template('add_publication.html')  # Render the add publication form page
 
@@ -287,7 +289,7 @@ def modify_publication(publication_id):
         finally:
             connection.close()  # Close database connection
 
-        return redirect(url_for('homepage'))  # Redirect to the homepage after modifying publication
+        return redirect(url_for('homepage', pub_mod_success=True))  # Redirect to the homepage after modifying publication
     else:
         # Retrieve publication details from the database
         connection = pymysql.connect(**db_config)
