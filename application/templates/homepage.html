@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> /* makes the viewport responsive*/
     <title>Publication Listings Homepage</title>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
+    <link rel="stylesheet" href="/static/styles.css"> /* calls the css file for design */ 
     <style>
         body {
             background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-size: cover; 
+            background-repeat: no-repeat; /* makes the background one while image */
+            background-attachment: fixed; /* prevents backgroun from moving*/
         }
 
-        /* Style for the text input boxes */
+        /* Creating the textboxes */
         input[type=text], input[type=email], input[type=password] {
             width: 100%;
             padding: 12px 20px;
@@ -26,7 +26,7 @@
             box-sizing: border-box;
         }
 
-        /* Style for the submit button */
+        /* submit button */
         .button {
             background-color: #0074e4;
             color: white;
@@ -37,12 +37,12 @@
             cursor: pointer;
         }
 
-        /* Style for the back button */
+        /* back button */
         .back-button {
             text-align: center;
         }
 
-        /* Style for the alerts */
+        /*  alert for homepage */
         .alert {
             padding: 20px;
             background-color: #f44336;
@@ -50,7 +50,7 @@
             margin-bottom: 15px;
         }
 
-        /* Style for the header */
+        /* keeping the header centered and one color */
         .header {
             background-color: black; /* Solid black background */
             padding: 20px;
@@ -58,17 +58,17 @@
             border-radius: 10px;
         }
 
-        /* Style for the main content */
+        /*  main content */
         main {
-            background-color: black; /* Solid black background */
+            background-color: black; 
             padding: 20px;
             border-radius: 10px;
             margin-top: 50px;
         }
 
-        /* Style for the footer */
+        /*footer */
         .footer {
-            background-color: black; /* Solid black background */
+            background-color: black; 
             padding: 10px;
             text-align: center;
             border-radius: 10px;
@@ -79,26 +79,27 @@
             width: 100%;
         }
 
-        /* Style for the h1 tag */
+        /* the h1 (title) of the page */
         h1 {
             color: white; /* White text color */
         }
     </style>
 </head>
-<div class="black-overlay">
+<div class="black-overlay">    /* calls the blackoverlay from the css file*/
     <header class="header">
-        <h1>Publication Listings Homepage</h1>     
+        <h1>Publication Listings Homepage</h1>  /* title of the page */   
     </header>
     {% if login_success %}
     <p>       
-        <div style="color: green;">
-            You have been logged in successfully!
+        <div style="color: green;"> /* portion for the successful login message*/
+            You have been logged in successfully!   
         </div>        
     </p>
     {% endif %}
 
     {% if pub_mod_success %}
     <p>        
+        /* publication modification/adding messages */
         <div style="color: green;">
             The publication was modified successfully!
         </div>
@@ -114,6 +115,7 @@
     {% endif %}
 
     <main>      
+        /* deals with the homepage buttons*/
         <div class="homepage-buttons">
             <a href="/search" class="button">Search Publications</a>
             <a href="/add_publication" class="button">Add Publication</a>
