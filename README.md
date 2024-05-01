@@ -111,7 +111,7 @@ What to submit (all zipped):
    - open the brower and put in your IP address
         - http://127.0.0.1:5000/
 # User sign up 
-   - Needs First name, Last Name, address, and Email (error handling @)
+   - Needs First name, Last Name, address, and Email (error handling @), Password is required (must be more than 6 characters)
 
 # Add Publication 
     - Needed for adding a publiation 
