@@ -83,63 +83,65 @@
         }
     </style>
 </head>
-<body class="container">
-    <header class="header">
-        <h1>User Signup</h1>
-    </header>
-    <main>
+<body>
+    <div class="black-overlay">
+        <header class="header">
+            <h1>User Signup</h1>
+        </header>
+        <main class="main-content">
 
-    {% if Signup_failure %}
-        <p>        
-            <div class="alert alert-error" style="color: red;">
-                Email already exists. Please use a different email.
-            </div>      
-        </p>
-    {% endif %}
+        {% if Signup_failure %}
+            <p>        
+                <div class="alert alert-error" style="color: red;">
+                    Email already exists. Please use a different email.
+                </div>      
+            </p>
+        {% endif %}
 
-    {% if Password_mismatch %}
-        <p>
-            <div class="alert alert-error" style="color: red;">
-                Passwords do not match. Please try again.
-            </div>
-        </p>
-    {% endif %}
+        {% if Password_mismatch %}
+            <p>
+                <div class="alert alert-error" style="color: red;">
+                    Passwords do not match. Please try again.
+                </div>
+            </p>
+        {% endif %}
 
-    {% if Password_error %}
-        <p>
-            <div class="alert alert-error" style="color: red;">
-                Password should be at least 6 characters long.
-            </div>
-        </p>
-    {% endif %}
+        {% if Password_error %}
+            <p>
+                <div class="alert alert-error" style="color: red;">
+                    Password should be at least 6 characters long.
+                </div>
+            </p>
+        {% endif %}
 
-    {% if Email_error %}
-        <p>
-            <div class="alert alert-error" style="color: red;">
-                Invalid email format.
-            </div>
-        </p>
-    {% endif %}
-    
-        <form action="/signup" method="post">
-            <label for="firstName">First Name:</label><br>
-            <input type="text" id="firstName" name="firstName" required><br>
-            <label for="lastName">Last Name:</label><br>
-            <input type="text" id="lastName" name="lastName" required><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" required><br>
-            <label for="confirmPassword">Confirm Password:</label><br>
-            <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
-            <div class="back-button">
-                <input class="button" type="submit" value="Sign Up">
-            </div>
-        </form>
-        <p>Already have an account? <a href="/login">Login</a></p>
-    </main>
-    <footer class="footer">
-        &copy; 2024 Publication Listings
-    </footer>
+        {% if Email_error %}
+            <p>
+                <div class="alert alert-error" style="color: red;">
+                    Invalid email format.
+                </div>
+            </p>
+        {% endif %}
+        
+            <form action="/signup" method="post">
+                <label for="firstName">First Name:</label><br>
+                <input type="text" id="firstName" name="firstName" required><br>
+                <label for="lastName">Last Name:</label><br>
+                <input type="text" id="lastName" name="lastName" required><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required><br>
+                <label for="confirmPassword">Confirm Password:</label><br>
+                <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+                <div class="back-button">
+                    <input class="button" type="submit" value="Sign Up">
+                </div>
+            </form>
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </main>
+        <footer class="footer">
+            &copy; 2024 Publication Listings
+        </footer>
+    </div>
 </body>
 </html>
