@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> /* makes the viewport responsive*/
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- makes the viewport responsive -->
     <title>Publication Listings Homepage</title>
-    <link rel="stylesheet" href="/static/styles.css"> /* calls the css file for design */ 
+    <link rel="stylesheet" href="/static/styles.css"> <!-- calls the css file for design --> 
     <style>
         body {
             background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
@@ -85,13 +85,13 @@
         }
     </style>
 </head>
-<div class="black-overlay">    /* calls the blackoverlay from the css file*/
+<div class="black-overlay">    <!-- calls the blackoverlay from the css file -->
     <header class="header">
-        <h1>Publication Listings Homepage</h1>  /* title of the page */   
+        <h1>Publication Listings Homepage</h1>  <!-- title of the page -->   
     </header>
     {% if login_success %}
     <p>       
-        <div style="color: green;"> /* portion for the successful login message*/
+        <div style="color: green;"> <!-- portion for the successful login message -->
             You have been logged in successfully!   
         </div>        
     </p>
@@ -99,7 +99,7 @@
 
     {% if pub_mod_success %}
     <p>        
-        /* publication modification/adding messages */
+        <!-- publication modification/adding messages -->
         <div style="color: green;">
             The publication was modified successfully!
         </div>
@@ -115,7 +115,7 @@
     {% endif %}
 
     <main>      
-        /* deals with the homepage buttons*/
+        <!-- deals with the homepage buttons -->
         <div class="homepage-buttons">
             <a href="/search" class="button">Search Publications</a>
             <a href="/add_publication" class="button">Add Publication</a>
