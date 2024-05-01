@@ -1,8 +1,3 @@
-# add error handling and messages to tell the user that stuff was successful
-# year in search is broken
-# add success to modification 
-# add green color to success message for when publication is deleted
-
 # Your application should support multiple views on the same data. For instance, you should provide all publications by a given author (sorted by year, for example), or all publications by authors from a given institution or department. 
 # You should also support search by keywords, on the overall database as well as within each of the views.
 
@@ -139,9 +134,6 @@ def signup():
         flash('An error occurred during signup: {}'.format(str(e)), 'error')  # Flash error message
 
     return redirect(url_for('login', Signup_success=True))
-
-
-
 
 
 @app.route('/search', methods=['GET', 'POST'])
