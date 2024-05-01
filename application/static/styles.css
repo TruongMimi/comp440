@@ -1,23 +1,23 @@
 body {
   display: flex;
-  flex-direction: column; /* Change to column */
+  flex-direction: column; /* makes the textboxes centered in the page */
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  color: white;
+  font-family: Arial, sans-serif;  /*Font changes */
+  color: white;   /*makex the text white */
 }
 
 .black-overlay {
-  position: fixed;
+  position: fixed; 
   top: 0;
   bottom: 0;
-  left: 25%;
+  left: 25%;  /* Positions fromt he left making a 25% margin for the black block in the middle of page */
   width: 50%;
   background-color: black;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;  /* makes the text boxes the center of the black cener box */
   justify-content: center;
 }
 
@@ -38,14 +38,14 @@ body {
 }
 
 .scrollable-results {
-    max-height: 400px; /* Adjust the height as needed */
-    overflow-y: auto;
+    max-height: 400px; /* needed to have the results able to scroll to show everything*/
+    overflow-y: auto; /* allows vertical scrolling */
 }
 
 
 /* Additional styling for the background image */
 html {
-  background: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=') no-repeat center center fixed;
+  background: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=') no-repeat center center fixed; // Stock photo used for each page
   background-size: cover;
 }
 
@@ -92,20 +92,20 @@ button {
   background-color: #0074e4;
   color: #ffffff;
   padding: 10px 20px;
-  border: none;
+  border: none; 
   border-radius: 5px;
-  cursor: pointer;
+  cursor: pointer;   /* changes the cursor to pointer */
 }
 
 .button {
-            background-color: blue; /* Change button background color to blue */
+            background-color: blue; 
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            text-decoration: none; /* Remove underline from links */
-            margin: 10px; /* Add margin to space out buttons */
+            text-decoration: none; 
+            margin: 10px; 
         }
 
         .button:hover {
@@ -114,15 +114,16 @@ button {
 
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  flex: 1; /* Make the container take the available vertical space */
+  max-width: 800px; 
+  margin: 0 auto; 
+  flex: 1;  
 }
+
 .footer {
-  background-color: black;
-  color: white;
-  padding: 10px;
-  text-align: center;
+  background-color: black; 
+  color: white; 
+  padding: 10px; 
+  text-align: center; 
   margin-top: auto; /* Push the footer to the bottom */
 }
 
@@ -174,23 +175,23 @@ button {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align content at the top */
+  align-items: flex-start; 
 }
 
 #search-bar {
   width: 80%;
   padding: 10px;
-  margin-bottom: 20px; /* Add margin to separate search bar from collapsible buttons */
+  margin-bottom: 20px; 
 }
 
 #right-section {
   flex: 1;
-  background-color: #18181c;
+  background-color: #18181c; /*set the background color to blue/grey*/
   height: 100vh;
   padding: 20px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start; /* Align items at the top */
+  align-items: flex-start;
   margin-right: 150px;
 }
 
@@ -255,8 +256,8 @@ i {
 }
 
 .preference-button.active {
-  background-color: #0074e4; /* Green background for active buttons */
-  color: white; /* White text color for contrast */
+  background-color: #0074e4; 
+  color: white;
 }
 
 .back-button {
@@ -268,7 +269,7 @@ i {
   background-color: #0074e4;
   color: white;
   padding: 10px 20px;
-  border: 2px solid #0074e4; /* Add a border around the button */
+  border: 2px solid #0074e4; 
   border-radius: 5px;
   text-decoration: none;
 }
@@ -294,10 +295,10 @@ i {
 }
 
 .modify-message {
-  background-color: #18181c;
-  border: 1px solid #18181c;
-  border-radius: 5px;
+  background-color: #18181c; /* Makes the color */
+  border: 1px solid #18181c;   /* Boarder around the message */
+  border-radius: 5px; 
   padding: 10px;
   margin-bottom: 20px;
-  color: white;
+  color: white;  /* makes the text white */
 }
