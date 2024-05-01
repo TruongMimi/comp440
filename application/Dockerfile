@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 # Install necessary modules
-RUN pip install Flask mysql-connector-python pymysql cryptography
+RUN pip install Flask pymysql cryptography
 
 # Install Nginx and MariaDB client
 RUN apt-get update && apt-get install -y nginx nano && rm -rf /var/lib/apt/lists/*
@@ -19,5 +19,5 @@ EXPOSE 3306
 
 WORKDIR /opt/
 
-# Start Nginx and your Flask application (replace 'app.py' with your Python file)
+# Start Nginx and your Flask application
 CMD service nginx start && python /opt/app.py

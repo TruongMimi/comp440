@@ -2,10 +2,9 @@
 # You should also support search by keywords, on the overall database as well as within each of the views.
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-import pymysql
+import pymysql, re
 from collections import defaultdict
 from flask import abort
-import re
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
