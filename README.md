@@ -52,8 +52,8 @@ What to submit (all zipped):
         
   # Building a Docker image 
   1. Ensure that the Dockerfile is on the root of the project and has commands to copy the appropriate files to locations on the Docker container. 
-   - This is the repo with your relevant code for this project with the Dockerfile set up for a flask app can be found here: https://github.com/TruongMimi/comp440
-   - Before building the docker image, please add your local IP address to the "host" section of dbconfig in app.py
+    - This is the repo with your relevant code for this project with the Dockerfile set up for a flask app can be found here: https://github.com/TruongMimi/comp440
+    - Before building the docker image, please add your local IP address to the "host" section of dbconfig in app.py
   2. Open a terminal
   3. Within the terminal, navigate to the directory where your project is (this assumes you've cloned the GitHub repo to your computer)
   4. Enter the following command: docker build -t [IMAGE_NAME]:[IMAGE_VERSION] .
