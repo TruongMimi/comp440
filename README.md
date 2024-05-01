@@ -94,6 +94,7 @@ Phase 4 (April 22 - May 1):
   # Building a Docker image 
   1. Ensure that the Dockerfile is on the root of the project and has commands to copy the appropriate files to locations on the Docker container. 
    - This is the repo with your relevant code for this project with the Dockerfile set up for a flask app can be found here: https://github.com/TruongMimi/comp440
+   - Before building the docker image, please add your local IP address to the "host" section of dbconfig in app.py
   2. Open a terminal
   3. Within the terminal, navigate to the directory where your project is (this assumes you've cloned the GitHub repo to your computer)
   4. Enter the following command: docker build -t [IMAGE_NAME]:[IMAGE_VERSION] .
@@ -106,9 +107,10 @@ Phase 4 (April 22 - May 1):
   # Creating and Running a Docker Container
   1. Open a terminal (if not already open from the previous section of building a Docker image)
   2. Within the terminal, navigate to the directory where your project is (this assumes you've cloned the GitHub repo to your computer)
-  4. Enter the following command: docker run -d -p 5000:5000 --name [CONTAINER_NAME] [IMAGE_NAME]:[IMAGE_VERSION]
+  3. Enter the following command to create a network for a local mysql database to be connected to: docker network create my-network
+  4. Enter the following command: docker run --name [CONTAINER_NAME] -d -p 5000:5000 --network=my-network [IMAGE_NAME]:[IMAGE_VERSION]
       - This is the command for our specific project.
-          - docker run -d -p 5000:5000 --name comp440 comp440:comp440
+          - docker run --name comp440 -d -p 5000:5000 --network=my-network comp440:comp440
       - If you don't specify a name, it just assigns it's own ridiculous naming scheme. They're too hard to type or remember.
       - You can change the ports that the container runs on. You can also have multiple running, as long as they are not on the same port (5000:5000 is used in the above command)
       - The port is also defined in app.py, so make sure to change that as well if you change the port number. You can find the example on the GitHub repo I sent in the previous section.
