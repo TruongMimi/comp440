@@ -131,7 +131,10 @@ What to submit (all zipped):
        - Keywords
        
 # Delete Publication 
-    - 
+    - Search for the specific publication
+    - Click the title of the publication
+    - Delete publication
+
 
 # Modify Publication 
     - Search for the specific publication you want to modify 
