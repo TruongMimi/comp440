@@ -133,6 +133,7 @@ What to submit (all zipped):
 # Delete Publication 
     - Search for the specific publication
     - Click the title of the publication
+    - Confirm deletion
     - Delete publication
 
 
