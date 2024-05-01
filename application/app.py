@@ -1,5 +1,9 @@
-# Your application should support multiple views on the same data. For instance, you should provide all publications by a given author (sorted by year, for example), or all publications by authors from a given institution or department. 
-# You should also support search by keywords, on the overall database as well as within each of the views.
+# SORT RESULTS BY YEAR
+
+# PyMySQL for docker because of its portabilty making it ideal for containerizing environments. You dont need to worry about installing additional libraries within the containers
+
+# Docker focuses on basic database (simplicity) interactiosn and doesn't require advanced features like connecting pooling, 
+# PyMySQL is more lighweight and easy-to-use nature becomes an advantage. It keeps the container image smaller and potentially simplfies your code.
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import pymysql, re
@@ -24,7 +28,6 @@ db_config = {
 def validate_email(email):
     return re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email)
 
-# Routes
 @app.route('/')
 def index():
     return render_template('login.html')

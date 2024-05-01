@@ -28,7 +28,6 @@
 
         /* Style for the submit button */
         .button {
-            background-color: #4CAF50;
             color: white;
             padding: 14px 20px;
             margin: 8px 0;
@@ -83,6 +82,17 @@
         h1 {
             color: white; /* White text color */
         }
+
+        /* New CSS */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button-container .back-button {
+            flex-grow: 1;
+            margin-right: 10px; /* Adjust spacing between buttons */
+        }
     </style>
 </head>
 <div class="black-overlay">
@@ -105,13 +115,17 @@
             <input type="text" id="authors" name="authors"><br>
             <label for="keywords">Keywords (separate by commas):</label><br>
             <input type="text" id="keywords" name="keywords"><br><br>
-            <div class="back-button">
+            
+            <div class="button-container">
+                <!-- Add Publication Button -->
                 <input class="button" type="submit" value="Add Publication">
+                
+                <!-- Back Button -->
+                <a href="/homepage" class="button">Back</a>
             </div>
+            
         </form>
-        <div class="back-button">
-            <a href="/homepage" class="button">Back</a>
-        </div>
+
     </main>
     <footer class="footer">
         &copy; 2024 Publication Listings
