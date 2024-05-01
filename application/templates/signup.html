@@ -1,3 +1,19 @@
+<!--
+Sets up the sign up page using css and html. 
+    - links the styles.css file to help format the page to be similar with all the other pages.
+    - needed to modify the css so that there is a black overlay container to match the other pages.
+    - Displays error messages for the sign up error handling 
+         - error handling for the sign up pages includes 
+               - if the email already exists
+               - email must have @ 
+               - password must be more than 6 characters 
+               - passwords do not match
+    - html creates the text boxes for the sign up page 
+         - First name, last name, email, password, and password confirmation 
+    - estabilishes and designs all the buttons for the sign up page. 
+-->
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +27,7 @@
             background-attachment: fixed;
         }
 
-        /* Style for the text input boxes */
+        /* text input boxes */
         input[type=text], input[type=email], input[type=password] {
             width: 100%;
             padding: 12px 20px;
@@ -24,7 +40,7 @@
             box-sizing: border-box;
         }
 
-        /* Style for the submit button */
+        /*  submit button */
         .button {
             background-color: #4CAF50;
             color: white;
@@ -35,12 +51,12 @@
             cursor: pointer;
         }
 
-        /* Style for the back button */
+        /*  back button */
         .back-button {
             text-align: center;
         }
 
-        /* Style for the alerts */
+        /* alerts */
         .alert {
             padding: 20px;
             background-color: #f44336;
@@ -48,7 +64,7 @@
             margin-bottom: 15px;
         }
 
-        /* Style for the header */
+        /* header */
         .header {
             background-color: black; /* Solid black background */
             padding: 20px;
@@ -56,17 +72,17 @@
             border-radius: 10px;
         }
 
-        /* Style for the main content */
+        /* main content */
         main {
-            background-color: black; /* Solid black background */
+            background-color: black; 
             padding: 20px;
             border-radius: 10px;
             margin-top: 50px;
         }
 
-        /* Style for the footer */
+        /* footer */
         .footer {
-            background-color: black; /* Solid black background */
+            background-color: black; 
             padding: 10px;
             text-align: center;
             border-radius: 10px;
@@ -77,7 +93,7 @@
             width: 100%;
         }
 
-        /* Style for the h1 tag */
+        /* h1 tag for title of the page */
         h1 {
             color: white; /* White text color */
         }
@@ -90,6 +106,7 @@
         </header>
         <main class="main-content">
 
+        <!-- error handing for the email and password-->
         {% if Signup_failure %}
             <p>
                 <div style="color: red;">
@@ -121,7 +138,7 @@
                 </div>         
             </p>
         {% endif %}
-
+            <!-- formats the text boxes for the required input -->
             <form action="/signup" method="post">
                 <label for="firstName">First Name:</label><br>
                 <input type="text" id="firstName" name="firstName" required><br>
