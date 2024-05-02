@@ -1,9 +1,10 @@
-# SORT RESULTS BY YEAR
+# We used PyMySQL its portabilty making it ideal for containerizing environments as we did in Docker.
+# There is no  need to install additional libraries within the containers
 
-# PyMySQL for docker because of its portabilty making it ideal for containerizing environments. You dont need to worry about installing additional libraries within the containers
+# Order of demo: (REORG FUNCTIONS)
+# 1. User sign up
+# 2. User login
 
-# Docker focuses on basic database (simplicity) interactiosn and doesn't require advanced features like connecting pooling, 
-# PyMySQL is more lighweight and easy-to-use nature becomes an advantage. It keeps the container image smaller and potentially simplfies your code.
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import pymysql, re
@@ -17,7 +18,7 @@ app.secret_key = 's3CretK3y'  # Set a secret key for session management
 
 # MySQL connection configuration
 db_config = {
-    'host': 'localhost',
+    'host': '192.168.86.61',
     'user': 'newuser',
     'password': 'new_password',
     'database': 'publication_listings',
@@ -150,34 +151,35 @@ def search():
         try:
             with connection.cursor() as cursor:
                 if search_field == 'Author':
-                    # Search by author name
-                    sql = "SELECT p.*, GROUP_CONCAT(DISTINCT CONCAT(a.FirstName, ' ', a.LastName) SEPARATOR ', ') AS Authors, GROUP_CONCAT(DISTINCT k.Keyword SEPARATOR ', ') AS Keywords " \
-                          "FROM Publication p " \
-                          "LEFT JOIN Author a ON p.ID = a.Publication_id " \
-                          "LEFT JOIN Keywords k ON p.ID = k.Publication_id " \
-                          "WHERE a.FirstName LIKE %s OR a.LastName LIKE %s " \
-                          "GROUP BY p.ID"
+                    sql = "SELECT p.*, GROUP_CONCAT(DISTINCT CONCAT(a.FirstName, ' ', a.LastName) SEPARATOR ', ') AS Authors, GROUP_CONCAT(DISTINCT k.Keyword SEPARATOR ', ') AS Keywords, GROUP_CONCAT(DISTINCT a.Institution SEPARATOR '|') AS Institutions, GROUP_CONCAT(DISTINCT a.Department SEPARATOR '|') AS Departments, GROUP_CONCAT(DISTINCT a.Email SEPARATOR '|') AS Emails, GROUP_CONCAT(DISTINCT a.Homepage SEPARATOR '|') AS Homepages " \
+                        "FROM (SELECT * FROM Publication WHERE ID IN (SELECT Publication_id FROM Author WHERE FirstName LIKE %s OR LastName LIKE %s)) AS p " \
+                        "LEFT JOIN Author a ON p.ID = a.Publication_id " \
+                        "LEFT JOIN Keywords k ON p.ID = k.Publication_id " \
+                        "GROUP BY p.ID " \
+                        "ORDER BY p.DatePublished DESC"
                     cursor.execute(sql, ('%' + search_query + '%', '%' + search_query + '%'))
                 elif search_field == 'Keywords':
-                    # Search by keywords
-                    sql = "SELECT p.*, GROUP_CONCAT(DISTINCT CONCAT(a.FirstName, ' ', a.LastName) SEPARATOR ', ') AS Authors, GROUP_CONCAT(DISTINCT k.Keyword SEPARATOR ', ') AS Keywords " \
-                          "FROM Publication p " \
-                          "LEFT JOIN Author a ON p.ID = a.Publication_id " \
-                          "LEFT JOIN Keywords k ON p.ID = k.Publication_id " \
-                          "WHERE k.Keyword LIKE %s " \
-                          "GROUP BY p.ID"
+                    sql = "SELECT p.*, GROUP_CONCAT(DISTINCT CONCAT(a.FirstName, ' ', a.LastName) SEPARATOR ', ') AS Authors, GROUP_CONCAT(DISTINCT k.Keyword SEPARATOR ', ') AS Keywords, GROUP_CONCAT(DISTINCT a.Institution SEPARATOR '|') AS Institutions, GROUP_CONCAT(DISTINCT a.Department SEPARATOR '|') AS Departments, GROUP_CONCAT(DISTINCT a.Email SEPARATOR '|') AS Emails, GROUP_CONCAT(DISTINCT a.Homepage SEPARATOR '|') AS Homepages " \
+                        "FROM (SELECT * FROM Publication WHERE ID IN (SELECT Publication_id FROM Keywords WHERE Keyword LIKE %s)) AS p " \
+                        "LEFT JOIN Author a ON p.ID = a.Publication_id " \
+                        "LEFT JOIN Keywords k ON p.ID = k.Publication_id " \
+                        "GROUP BY p.ID " \
+                        "ORDER BY p.DatePublished DESC"
                     cursor.execute(sql, ('%' + search_query + '%',))
                 else:
-                    # Search by other fields in Publication table
-                    sql = "SELECT p.*, GROUP_CONCAT(DISTINCT CONCAT(a.FirstName, ' ', a.LastName) SEPARATOR ', ') AS Authors, GROUP_CONCAT(DISTINCT k.Keyword SEPARATOR ', ') AS Keywords " \
-                          "FROM Publication p " \
-                          "LEFT JOIN Author a ON p.ID = a.Publication_id " \
-                          "LEFT JOIN Keywords k ON p.ID = k.Publication_id " \
-                          f"WHERE {search_field} LIKE %s " \
-                          "GROUP BY p.ID"
+                    sql = "SELECT p.*, GROUP_CONCAT(DISTINCT CONCAT(a.FirstName, ' ', a.LastName) SEPARATOR ', ') AS Authors, GROUP_CONCAT(DISTINCT k.Keyword SEPARATOR ', ') AS Keywords, GROUP_CONCAT(DISTINCT a.Institution SEPARATOR '|') AS Institutions, GROUP_CONCAT(DISTINCT a.Department SEPARATOR '|') AS Departments, GROUP_CONCAT(DISTINCT a.Email SEPARATOR '|') AS Emails, GROUP_CONCAT(DISTINCT a.Homepage SEPARATOR '|') AS Homepages " \
+                        "FROM Publication p " \
+                        "LEFT JOIN Author a ON p.ID = a.Publication_id " \
+                        "LEFT JOIN Keywords k ON p.ID = k.Publication_id " \
+                        f"WHERE {search_field} LIKE %s " \
+                        "GROUP BY p.ID " \
+                        "ORDER BY p.DatePublished DESC"
                     cursor.execute(sql, ('%' + search_query + '%',))
-                results = cursor.fetchall()
-                # Close database connection
+
+
+                    # Fetch results
+                    results = cursor.fetchall()
+
 
         finally:
             connection.close()  # Close database connection
@@ -197,8 +199,9 @@ def add_publication():
         pages = request.form['pages']
         doi = request.form['doi']
         link = request.form['link']
-        authors = request.form['authors']  # Assuming the authors are entered as a single string separated by commas
-        keywords = request.form['keywords']  # Assuming the authors are entered as a single string separated by commas
+        authors = request.form.getlist('authors[]') 
+        author_details = request.form.getlist('author_details[]') 
+        keywords = request.form['keywords'] 
 
         # Insert publication into Publication table
         connection = pymysql.connect(**db_config)
@@ -210,10 +213,15 @@ def add_publication():
                 publication_id = cursor.lastrowid  # Get the ID of the newly inserted publication
 
                 # Insert authors into Author table
-                authors_list = [author.strip() for author in authors.split(',')]  # Split authors by comma and remove leading/trailing whitespace
-                for author in authors_list:
-                    sql = "INSERT INTO Author (Publication_id, FirstName, LastName) VALUES (%s, %s, %s)"
-                    cursor.execute(sql, (publication_id, author.split()[0], ' '.join(author.split()[1:])))  # Split author into first name and last name
+                for i, author in enumerate(authors):
+                    # Get author details if available
+                    institution = author_details[i * 5].strip() if len(author_details) > i * 5 else None
+                    department = author_details[i * 5 + 1].strip() if len(author_details) > i * 5 + 1 else None
+                    email = author_details[i * 5 + 2].strip() if len(author_details) > i * 5 + 2 else None
+                    homepage = author_details[i * 5 + 3].strip() if len(author_details) > i * 5 + 3 else None
+
+                    sql = "INSERT INTO Author (Publication_id, FirstName, LastName, Institution, Department, Email, Homepage) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                    cursor.execute(sql, (publication_id, author.split()[0], ' '.join(author.split()[1:]), institution, department, email, homepage))
                     
                  # Split keywords input string into individual keywords
                 keywords = request.form['keywords'].split(',')
@@ -230,6 +238,9 @@ def add_publication():
         return render_template('homepage.html', add_mod_success=True)  # Redirect to the homepage after adding publication
     else:
         return render_template('add_publication.html')  # Render the add publication form page
+
+
+
 
 
 @app.route('/modify_publication/<int:publication_id>', methods=['GET', 'POST'])

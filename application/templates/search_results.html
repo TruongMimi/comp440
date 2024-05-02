@@ -25,21 +25,40 @@
             <div class="scrollable-results">
                 <ul>
                     {% for publication in results %}
-                        <li>
-                            <strong>Title:</strong> 
-                            <a href="/modify_publication/{{ publication.ID }}">{{ publication.Title }}</a> <br>
-                            <strong>Date Published:</strong> {{ publication.DatePublished }} <br>
-                            <strong>Author(s):</strong> 
-                            {% if publication.Authors %}
-                                {{ publication.Authors }} <br>
-                            {% else %}
-                                N/A <br>
-                            {% endif %}
-                            <strong>Keywords:</strong> {{ publication.Keywords }} <br>
-                            <strong>Link:</strong> <a href="{{ publication.Link }}">{{ publication.Link }}</a> <br>
-                            <strong>Pages:</strong> {{ publication.Pages }} <br>
-                        </li>
-                        <br> <!-- New line after each list entry -->
+                    <li>
+                        <strong>Title:</strong> 
+                        <a href="/modify_publication/{{ publication.ID }}">{{ publication.Title }}</a> <br>
+                        <strong>Date Published:</strong> {{ publication.DatePublished }} <br>
+                        {% if publication.Authors %}
+                            {% set authors_list = publication.Authors.split(', ') %}
+                            {% set num_authors = authors_list|length %}
+                            {% for author_index in range(num_authors) %}
+                                {% set author = authors_list[author_index] %}
+                                <strong>Author:</strong> {{ author }} <br>
+                                {% if publication.Institutions %}
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Institution:</strong> {{ publication.Institutions.split('|')[author_index] if publication.Institutions.split('|')[author_index] else 'N/A' }} <br>
+                                {% endif %}
+                                {% if publication.Departments %}
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Department:</strong> {{ publication.Departments.split('|')[author_index] if publication.Departments.split('|')[author_index] else 'N/A' }} <br>
+                                {% endif %}
+                                {% if publication.Emails %}
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Email:</strong> {{ publication.Emails.split('|')[author_index] if publication.Emails.split('|')[author_index] else 'N/A' }} <br>
+                                {% endif %}
+                                {% if publication.Homepages %}
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<strong>Homepage:</strong> {{ publication.Homepages.split('|')[author_index] if publication.Homepages.split('|')[author_index] else 'N/A' }} <br>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <strong>Author:</strong> N/A <br>
+                        {% endif %}
+                        <strong>Keywords:</strong> {{ publication.Keywords }} <br>
+                        <strong>Link:</strong> <a href="{{ publication.Link }}">{{ publication.Link }}</a> <br>
+                        <strong>Pages:</strong> {{ publication.Pages }} <br>
+                    </li>
+                    <br> <!-- New line after each list entry -->
+                    
+                    
+                    
                     {% endfor %}
                 </ul>
             </div>

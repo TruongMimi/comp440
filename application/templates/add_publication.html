@@ -93,42 +93,133 @@
             flex-grow: 1;
             margin-right: 10px; /* Adjust spacing between buttons */
         }
+
+        .main-content {
+            max-height: 600px; /* needed to have the results able to scroll to show everything*/
+            width: 400px;
+            overflow-y: auto; /* allows vertical scrolling */
+        }
+
     </style>
 </head>
-<div class="black-overlay">
-    <header class="header">
-        <h1>Add Publication</h1>
-    </header>
-    <main>
-        <form action="/add_publication" method="post">
-            <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title" required><br>
-            <label for="date_published">Date Published:</label><br>
-            <input type="date" id="date_published" name="date_published" required><br>
-            <label for="pages">Pages:</label><br>
-            <input type="text" id="pages" name="pages"><br>
-            <label for="doi">DOI:</label><br>
-            <input type="text" id="doi" name="doi"><br>
-            <label for="link">Link:</label><br>
-            <input type="text" id="link" name="link"><br>
-            <label for="authors">Authors (separate by commas):</label><br>
-            <input type="text" id="authors" name="authors"><br>
-            <label for="keywords">Keywords (separate by commas):</label><br>
-            <input type="text" id="keywords" name="keywords"><br><br>
-            
-            <div class="button-container">
-                <!-- Add Publication Button -->
-                <input class="button" type="submit" value="Add Publication">
-                
-                <!-- Back Button -->
-                <a href="/homepage" class="button">Back</a>
-            </div>
-            
-        </form>
+<body>
+    <div class="black-overlay">
+        <header>
+            <h1>Add Publication</h1>
+        </header>
+        <main class="main-content">
 
-    </main>
-    <footer class="footer">
-        &copy; 2024 Publication Listings
-    </footer>
+            <form action="/add_publication" method="post">
+                <label for="title">Title:</label><br>
+                <input type="text" id="title" name="title" required><br>
+                <label for="date_published">Date Published:</label><br>
+                <input type="date" id="date_published" name="date_published" required><br>
+                <label for="pages">Pages:</label><br>
+                <input type="text" id="pages" name="pages"><br>
+                <label for="doi">DOI:</label><br>
+                <input type="text" id="doi" name="doi"><br>
+                <label for="link">Link:</label><br>
+                <input type="text" id="link" name="link"><br>
+                <div id="authors_section">
+                    <label for="authors">Authors:</label><br>
+                    <input type="text" id="author_name_1" name="authors[]" placeholder="Enter author's name" required><br>
+                    <label for="institution">Institution:</label><br>
+                    <input type="text" id="institution_1" name="author_details[]" placeholder="Enter author's institution"><br>
+                    <label for="department">Department:</label><br>
+                    <input type="text" id="department_1" name="author_details[]" placeholder="Enter author's department"><br>
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email_1" name="author_details[]" placeholder="Enter author's email"><br>
+                    <label for="homepage">Homepage:</label><br>
+                    <input type="text" id="homepage_1" name="author_details[]" placeholder="Enter author's homepage"><br>
+                </div>
+                <button type="button" onclick="addAuthor()">Add Another Author</button><br><br>
+                <label for="keywords">Keywords (Separated by Commas):</label><br>
+                <input type="text" id="keywords" name="keywords"><br><br>
+                <input class="button" type="submit" value="Add Publication">
+                <a href="/homepage" class="button">Back</a>
+            </form>
+        </main>
+        <footer class="footer">
+            &copy; 2024 Publication Listings
+        </footer>
+    </div>
+
+    <script>
+        function addAuthor() {
+            var authorsSection = document.getElementById("authors_section");
+            var numAuthors = authorsSection.querySelectorAll('[id^="author_name"]').length + 1;
+            
+            var label = document.createElement("label");
+            label.htmlFor = "author_name_" + numAuthors;
+            label.textContent = "Author " + numAuthors + ":";
+            authorsSection.appendChild(label);
+            authorsSection.appendChild(document.createElement("br"));
+
+            var inputAuthor = document.createElement("input");
+            inputAuthor.type = "text";
+            inputAuthor.id = "author_name_" + numAuthors;
+            inputAuthor.name = "authors[]";
+            inputAuthor.placeholder = "Enter author's name";
+            inputAuthor.required = true;
+            authorsSection.appendChild(inputAuthor);
+            authorsSection.appendChild(document.createElement("br"));
+
+            var labelInst = document.createElement("label");
+            labelInst.htmlFor = "institution_" + numAuthors;
+            labelInst.textContent = "Institution:";
+            authorsSection.appendChild(labelInst);
+            authorsSection.appendChild(document.createElement("br"));
+
+            var inputInst = document.createElement("input");
+            inputInst.type = "text";
+            inputInst.id = "institution_" + numAuthors;
+            inputInst.name = "author_details[]";
+            inputInst.placeholder = "Enter author's institution";
+            authorsSection.appendChild(inputInst);
+            authorsSection.appendChild(document.createElement("br"));
+
+            var labelDept = document.createElement("label");
+            labelDept.htmlFor = "department_" + numAuthors;
+            labelDept.textContent = "Department:";
+            authorsSection.appendChild(labelDept);
+            authorsSection.appendChild(document.createElement("br"));
+
+            var inputDept = document.createElement("input");
+            inputDept.type = "text";
+            inputDept.id = "department_" + numAuthors;
+            inputDept.name = "author_details[]";
+            inputDept.placeholder = "Enter author's department";
+            authorsSection.appendChild(inputDept);
+            authorsSection.appendChild(document.createElement("br"));
+
+            var labelEmail = document.createElement("label");
+            labelEmail.htmlFor = "email_" + numAuthors;
+            labelEmail.textContent = "Email:";
+            authorsSection.appendChild(labelEmail);
+            authorsSection.appendChild(document.createElement("br"));
+
+            var inputEmail = document.createElement("input");
+            inputEmail.type = "email";
+            inputEmail.id = "email_" + numAuthors;
+            inputEmail.name = "author_details[]";
+            inputEmail.placeholder = "Enter author's email";
+            authorsSection.appendChild(inputEmail);
+            authorsSection.appendChild(document.createElement("br"));
+
+            var labelHomepage = document.createElement("label");
+            labelHomepage.htmlFor = "homepage_" + numAuthors;
+            labelHomepage.textContent = "Homepage:";
+            authorsSection.appendChild(labelHomepage);
+            authorsSection.appendChild(document.createElement("br"));
+
+            var inputHomepage = document.createElement("input");
+            inputHomepage.type = "text";
+            inputHomepage.id = "homepage_" + numAuthors;
+            inputHomepage.name = "author_details[]";
+            inputHomepage.placeholder = "Enter author's homepage";
+            authorsSection.appendChild(inputHomepage);
+            authorsSection.appendChild(document.createElement("br"));
+        }
+    </script>
 </body>
 </html>
