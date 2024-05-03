@@ -1,8 +1,15 @@
+<!--
+Sets up the delete_success page using css and html. 
+    - links the styles.css file to help format the page to be similar with all the other pages.
+    - needed to modify the css so that there is a black overlay container to match the other pages.
+    - establishes and designs all the buttons for the delete_success page. 
+-->
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Deletion Successful</title>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
+    <link rel="stylesheet" href="/static/styles.css">
     <style>
         body {
             background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
@@ -106,10 +113,8 @@
         <form action="/undo_delete_publication/{{ publication_id }}" method="post">
             <input type="hidden" name="_method" value="POST">
             <div class="button-container">
-                <!-- Undo Deletion Button -->
                 <input class="button" type="submit" value="Undo Deletion">
-                
-                <!-- Back Button -->
+
                 <a href="/homepage" class="button">Homepage</a>
             </div>
         </form>

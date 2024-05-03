@@ -1,12 +1,35 @@
-# We used PyMySQL its portabilty making it ideal for containerizing environments as we did in Docker.
-# There is no  need to install additional libraries within the containers
-
-# Order of demo: (REORG FUNCTIONS)
-# 1. User sign up
-# 2. User login
+# Order of demo:
+# 1. Index (login)
+# - show that a user that doesn't exist needs to be added 
+# 2. User sign up 
+# - show that email needs to have correct format
+# - show that the password must be at least 6 characters in length 
+# - show that the password is hashed in the database for the user
+# 3. User login
+# 4. Click search
+# 5. Use publication table in DB to search for things
+# - title: High-resolution chemical Abundances of the Nyx Stream
+# - date published: 2023-09-26
+# - author: search mimi truong
+# - Link: https://iopscience.iop.org/article/10.3847/1538-4357/acec4d
+# - Pages: Volume 955, Number 2
+# - keyword: Jets
+# 6. Select publication
+# 7. Modify publication
+# - Change part of the title 
+# - Save and search for the title again
+# 8. Select publication again
+# - show publication in DB first (id #1)
+# 9. Delete publication
+# 10. Confirm the deletion
+# 11. Show in the DB the the publication was deleted (was id #1 )
+# 12. Restore the publication
+# - show that the publication has been added back to the DB (last row)
 
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+# We used PyMySQL its portabilty making it ideal for containerizing environments as we did in Docker.
+# There is no need to install additional libraries within the containers
 import pymysql, re
 from collections import defaultdict
 from flask import abort
@@ -138,7 +161,7 @@ def login():
                     else:
                         return render_template('login.html', Login_failure=True, Signup_success=signup_success)
                 else:
-                    return render_template('login.html', Login_failure=True, Signup_success=signup_success)
+                    return render_template('login.html', Invalid_user=True, Signup_success=signup_success)
         finally:
             # This closes the database connection
             connection.close()
@@ -167,9 +190,15 @@ def search():
                         author_sql = "SELECT DISTINCT Publication_id FROM Author WHERE FirstName LIKE %s AND LastName LIKE %s"
                         cursor.execute(author_sql, ('%' + first_name + '%', '%' + last_name + '%'))
                     else:
-                        # This SQL statement puts together  the SQL query to search for either first name or last name
+                        # This SQL statement puts together the SQL query to search for either first name or last name
                         author_sql = "SELECT DISTINCT Publication_id FROM Author WHERE FirstName LIKE %s OR LastName LIKE %s"
                         cursor.execute(author_sql, ('%' + search_query + '%', '%' + search_query + '%'))
+                    publication_ids = [row['Publication_id'] for row in cursor.fetchall()]
+                    
+                elif search_field == 'Keywords':
+                    # Search by keywords
+                    keyword_sql = "SELECT DISTINCT Publication_id FROM Keywords WHERE Keyword LIKE %s"
+                    cursor.execute(keyword_sql, ('%' + search_query + '%',))
                     publication_ids = [row['Publication_id'] for row in cursor.fetchall()]
 
                 else:

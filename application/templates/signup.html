@@ -10,7 +10,7 @@ Sets up the sign up page using css and html.
                - passwords do not match
     - html creates the text boxes for the sign up page 
          - First name, last name, email, password, and password confirmation 
-    - estabilishes and designs all the buttons for the sign up page. 
+    - establishes and designs all the buttons for the sign up page. 
 -->
 
 
@@ -18,7 +18,7 @@ Sets up the sign up page using css and html.
 <html>
 <head>
     <title>User Sign Up</title>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
+    <link rel="stylesheet" href="/static/styles.css">
     <style>
         body {
             background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
@@ -106,7 +106,6 @@ Sets up the sign up page using css and html.
         </header>
         <main class="main-content">
 
-        <!-- error handing for the email and password-->
         {% if Signup_failure %}
             <p>
                 <div style="color: red;">
@@ -138,7 +137,6 @@ Sets up the sign up page using css and html.
                 </div>         
             </p>
         {% endif %}
-            <!-- formats the text boxes for the required input -->
             <form action="/signup" method="post">
                 <label for="firstName">First Name:</label><br>
                 <input type="text" id="firstName" name="firstName" required><br>

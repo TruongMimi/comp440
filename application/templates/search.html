@@ -3,14 +3,13 @@ Sets up the search page, allows the user to search for publications based on tit
 links the styles.css file to match the formats similar to other pages.
     - creates the input textboxes for what the users wants to search by
     - creates the buttons for search and back to navigate through the publication database website.
-
 -->
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Search Publications</title>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
+    <link rel="stylesheet" href="/static/styles.css">
     <style>
         body {
             background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
@@ -97,7 +96,6 @@ links the styles.css file to match the formats similar to other pages.
         <h1>Search Publications</h1>
     </header>
     <main>
-        <!--what the user can search by -->
         <form action="/search" method="post">
             <label for="search_field">Search by:</label>
             <select name="search_field" id="search_field">
@@ -112,11 +110,6 @@ links the styles.css file to match the formats similar to other pages.
             <input type="text" id="search_query" name="search_query">
             <button type="submit">Search</button>
         </form>
-        <ul>
-            {% for publication in results %}
-                <li>{{ publication.Title }} ({{ publication.DatePublished }})</li>
-            {% endfor %}
-        </ul>
         <div class="back-button">
             <a href="/homepage" class="button">Back</a>
         </div>

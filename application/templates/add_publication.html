@@ -1,10 +1,19 @@
+<!--
+Sets up the add_publication page using css and html. 
+    - links the styles.css file to help format the page to be similar with all the other pages.
+    - needed to modify the css so that there is a black overlay container to match the other pages.
+    - html creates the text boxes for the add_publication page 
+         - Title, date published, pages, doi, link, author(s) name(s), author(s) details, and keywords
+    - establishes and designs all the buttons for the add_publication page. 
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Publication</title>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
+    <link rel="stylesheet" href="/static/styles.css">
     <style>
         body {
             background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
@@ -144,6 +153,7 @@
         </footer>
     </div>
 
+    <!-- This script adds functionality to add multiple authors with their details-->
     <script>
         function addAuthor() {
             var authorsSection = document.getElementById("authors_section");

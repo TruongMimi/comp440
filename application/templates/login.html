@@ -1,8 +1,20 @@
+<!--
+Sets up the login page using css and html. 
+    - links the styles.css file to help format the page to be similar with all the other pages.
+    - needed to modify the css so that there is a black overlay container to match the other pages.
+    - Displays error messages for the login error handling 
+         - error handling for the login page includes 
+               - invalid email or password
+    - html creates the text boxes for the login page 
+         - Email and password
+    - establishes and designs all the buttons for the login page. 
+-->
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>User Login</title>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
+    <link rel="stylesheet" href="/static/styles.css">
     <style>
         body {
             background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
@@ -101,6 +113,14 @@
             <p>                
                 <div style="color: red;">
                     Invalid email or password. Please try again.
+                </div>             
+            </p>
+            {% endif %}
+
+            {% if Invalid_user %}
+            <p>                
+                <div style="color: red;">
+                    User was not found. Please sign up.
                 </div>             
             </p>
             {% endif %}

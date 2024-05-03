@@ -1,8 +1,15 @@
+<!--
+Sets up the search_results page, displays the results from the user's search
+links the styles.css file to match the formats similar to other pages.
+    - creates the results list that was returned for the user's search
+    - creates the button for back to navigate through the publication database website.
+-->
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Search Results for "{{ search_query }}"</title>
-    <link rel="stylesheet" href="/static/styles.css"> <!-- Link the styles.css file -->
+    <link rel="stylesheet" href="/static/styles.css">
     <style>
         body {
             background-image: url('https://media.istockphoto.com/id/519476132/photo/edge-of-open-book-pages.jpg?s=612x612&w=0&k=20&c=NljbavTkSaHBX_0g9Za8tCebyTTXVLSGJuw2In-qco0=');
@@ -24,6 +31,7 @@
             </div>
             <div class="scrollable-results">
                 <ul>
+                    <!-- This displays the results from the search query -->
                     {% for publication in results %}
                     <li>
                         <strong>Title:</strong> 
@@ -52,9 +60,8 @@
                         <strong>Link:</strong> <a href="{{ publication.Link }}">{{ publication.Link }}</a> <br>
                         <strong>Pages:</strong> {{ publication.Pages }} <br>
                     </li>
-                    <br> <!-- New line after each list entry -->
+                    <br>
                 {% endfor %}
-                
                 </ul>
             </div>
             <div class="back-button">
