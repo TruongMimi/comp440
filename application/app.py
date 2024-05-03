@@ -1,6 +1,7 @@
 # Order of demo:
 # talk about docker container
 # talk about pymysql 
+# talk about tables and csv imports
 # We used PyMySQL its portabilty making it ideal for containerizing environments as we did in Docker.
 # There is no need to install additional libraries within the containers. 
 # The application running within docker is able to connect and communicate to the local MySQL DB
