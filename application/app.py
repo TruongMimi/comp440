@@ -1,4 +1,9 @@
 # Order of demo:
+# talk about docker container
+# talk about pymysql 
+# We used PyMySQL its portabilty making it ideal for containerizing environments as we did in Docker.
+# There is no need to install additional libraries within the containers. 
+# The application running within docker is able to connect and communicate to the local MySQL DB
 # 1. Index (login)
 # - show that a user that doesn't exist needs to be added 
 # 2. User sign up 
@@ -28,8 +33,6 @@
 
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-# We used PyMySQL its portabilty making it ideal for containerizing environments as we did in Docker.
-# There is no need to install additional libraries within the containers
 import pymysql, re
 from collections import defaultdict
 from flask import abort
