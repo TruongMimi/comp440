@@ -81,7 +81,7 @@ def signup():
         connection = pymysql.connect(**db_config)
         try:
             with connection.cursor() as cursor:
-                # This queries the database to find if the email already exists
+                # This SQL statement queries the database to find if the email already exists
                 sql = "SELECT * FROM Users WHERE Email = %s"
                 cursor.execute(sql, (email,))
                 existing_user = cursor.fetchone()
@@ -90,7 +90,7 @@ def signup():
                 if existing_user:
                     return render_template('signup.html', Signup_failure=True)
 
-                # If the email doesn't exist, insert the new user into the Users table
+                # This SQL statement inserts the new user into the users table
                 sql_insert = "INSERT INTO Users (FirstName, LastName, Email, Password) VALUES (%s, %s, %s, %s)"
                 cursor.execute(sql_insert, (firstName, lastName, email, hashed_password))
                 connection.commit()
@@ -123,7 +123,7 @@ def login():
         # This opens a connection to the database using the database settings specified 
         connection = pymysql.connect(**db_config)
         try:
-             # This queries the database to find if the email enters exists in the database
+            # This SQL statement queries the database to find if the email enters exists in the database
             with connection.cursor() as cursor:
                 sql = "SELECT * FROM Users WHERE Email = %s"
                 cursor.execute(sql, (email,))
@@ -161,65 +161,63 @@ def search():
                 if search_field == 'Author':
                     # This query searches for the matching author name
                     if ' ' in search_query:
-                        # Split the search query into first name and last name
+                        # This splits the search query into first name and last name
                         first_name, last_name = search_query.split(' ')
-                        # Construct the SQL query to search for both first and last name
+                        # This SQL statement puts together the SQL query to search for both first and last name
                         author_sql = "SELECT DISTINCT Publication_id FROM Author WHERE FirstName LIKE %s AND LastName LIKE %s"
                         cursor.execute(author_sql, ('%' + first_name + '%', '%' + last_name + '%'))
                     else:
-                        # Construct the SQL query to search for either first name or last name
+                        # This SQL statement puts together  the SQL query to search for either first name or last name
                         author_sql = "SELECT DISTINCT Publication_id FROM Author WHERE FirstName LIKE %s OR LastName LIKE %s"
                         cursor.execute(author_sql, ('%' + search_query + '%', '%' + search_query + '%'))
                     publication_ids = [row['Publication_id'] for row in cursor.fetchall()]
 
                 else:
-                    # Search by other fields in Publication table
+                    # This SQL statement puts together the SQL query to search for the remaining fields (Title, DatePublished, Link, Pages)
                     sql = "SELECT DISTINCT ID FROM Publication WHERE {} LIKE %s".format(search_field)
                     cursor.execute(sql, ('%' + search_query + '%',))
                     publication_ids = [row['ID'] for row in cursor.fetchall()]
 
-
-                # Fetch author details for each publication
+                
                 author_details = {}
-                for publication_id in publication_ids:
+                # This SQL statement gets the author details for each publication
+                for publication_id in publication_ids:                    
                     author_sql = "SELECT DISTINCT FirstName, LastName, Institution, Department, Email, Homepage FROM Author WHERE Publication_id = %s"
                     cursor.execute(author_sql, (publication_id,))
                     authors = cursor.fetchall()
                     author_details[publication_id] = authors
-
-
-                # Fetch keyword details for each publication
+                
                 keyword_details = {}
+                # This SQL statement gets the keywords for each publication
                 for publication_id in publication_ids:
                     keyword_sql = "SELECT DISTINCT Keyword FROM Keywords WHERE Publication_id = %s"
                     cursor.execute(keyword_sql, (publication_id,))
                     keywords = [row['Keyword'] for row in cursor.fetchall()]
                     keyword_details[publication_id] = keywords
 
-                # Fetch publication details with ordering by DatePublished DESC
+                # This SQL statement gets the publication details and orders them by DatePublished DESC
                 publication_sql = "SELECT * FROM Publication WHERE ID IN ({}) ORDER BY DatePublished DESC".format(','.join(['%s'] * len(publication_ids)))
                 cursor.execute(publication_sql, publication_ids)
                 results = cursor.fetchall()
 
-                # Combine results with author and keyword details
+                # This combines everything to create the final set of results
                 for publication in results:
                     publication_id = publication['ID']
                     publication['Authors'] = author_details.get(publication_id, [])
                     publication['Keywords'] = keyword_details.get(publication_id, [])
 
         finally:
-            connection.close()  # Close database connection
-        print(results)
-        # Render search results page with the retrieved data
+            # This closes the database connection
+            connection.close()
         return render_template('search_results.html', search_query=search_query, results=results)
     else:
-        # Render the search form page
         return render_template('search.html')
-
+    
+    
+# Function for adding a new publication
 @app.route('/add_publication', methods=['GET', 'POST'])
 def add_publication():
     if request.method == 'POST':
-        # Get form data
         title = request.form['title']
         date_published = request.form['date_published']
         pages = request.form['pages']
@@ -229,190 +227,201 @@ def add_publication():
         author_details = request.form.getlist('author_details[]') 
         keywords = request.form['keywords'] 
 
-        # Insert publication into Publication table
+        # This opens a connection to the database using the database settings specified 
         connection = pymysql.connect(**db_config)
         try:
             with connection.cursor() as cursor:
-                # Execute the SQL command to insert the publication into the Publication table
+                # This SQL statement inserts the new publication into the publication table with the specified values
                 sql = "INSERT INTO Publication (Title, DatePublished, Pages, DOI, Link) VALUES (%s, %s, %s, %s, %s)"
                 cursor.execute(sql, (title, date_published, pages, doi, link))
-                publication_id = cursor.lastrowid  # Get the ID of the newly inserted publication
-
-                # Insert authors into Author table
+                # This gets the newly added publication_id
+                publication_id = cursor.lastrowid
+                
                 for i, author in enumerate(authors):
-                    # Get author details if available
                     institution = author_details[i * 5].strip() if len(author_details) > i * 5 else None
                     department = author_details[i * 5 + 1].strip() if len(author_details) > i * 5 + 1 else None
                     email = author_details[i * 5 + 2].strip() if len(author_details) > i * 5 + 2 else None
                     homepage = author_details[i * 5 + 3].strip() if len(author_details) > i * 5 + 3 else None
-
+                    
+                    # This SQL statement inserts the author(s) for the newly added publication into the author table with the specified values
                     sql = "INSERT INTO Author (Publication_id, FirstName, LastName, Institution, Department, Email, Homepage) VALUES (%s, %s, %s, %s, %s, %s, %s)"
                     cursor.execute(sql, (publication_id, author.split()[0], ' '.join(author.split()[1:]), institution, department, email, homepage))
                     
-                 # Split keywords input string into individual keywords
                 keywords = request.form['keywords'].split(',')
-
-                # Insert keywords into Keywords table
+                # This SQL statement inserts the keyword(s) for the newly added publication into the keywords table with the specified values
                 for keyword in keywords:
                     sql = "INSERT INTO Keywords (Publication_id, Keyword) VALUES (%s, %s)"
                     cursor.execute(sql, (publication_id, keyword.strip()))
-
-            connection.commit()  # Commit changes to the database
+                    
+            # This commits changes to the database
+            connection.commit()
         finally:
-            connection.close()  # Close database connection
+            # This closes the database connection
+            connection.close()
 
-        return render_template('homepage.html', add_mod_success=True)  # Redirect to the homepage after adding publication
+        return render_template('homepage.html', add_mod_success=True)
     else:
-        return render_template('add_publication.html')  # Render the add publication form page
+        return render_template('add_publication.html')
 
 
-
+# Function for modifying a publication
 @app.route('/modify_publication/<int:publication_id>', methods=['GET', 'POST'])
 def modify_publication(publication_id):
     if request.method == 'POST':
-        # Get form data
         title = request.form['title']
         date_published = request.form['date_published']
         pages = request.form['pages']
         doi = request.form['doi']
         link = request.form['link']
-        authors = request.form['authors']  # Assuming the authors are entered as a single string separated by commas
-        keywords = request.form['keywords']  # Assuming the authors are entered as a single string separated by commas
-
-        # Update publication in Publication table
+        authors = request.form['authors'] 
+        keywords = request.form['keywords']
+    
+        # This opens a connection to the database using the database settings specified 
         connection = pymysql.connect(**db_config)
         try:
             with connection.cursor() as cursor:
-                # Execute the SQL command to update the publication in the Publication table
+                # This SQL statement updates the specified publication with the modified values in the publication table
                 sql = "UPDATE Publication SET Title = %s, DatePublished = %s, Pages = %s, DOI = %s, Link = %s WHERE ID = %s"
                 cursor.execute(sql, (title, date_published, pages, doi, link, publication_id))
 
-                # Delete existing authors and keywords
+                # This SQL statement deletes the authors and keywords for the specified publication first to be able to add the modified values
                 sql_delete_authors = "DELETE FROM Author WHERE Publication_id = %s"
                 cursor.execute(sql_delete_authors, (publication_id,))
                 sql_delete_keywords = "DELETE FROM Keywords WHERE Publication_id = %s"
                 cursor.execute(sql_delete_keywords, (publication_id,))
 
-                # Insert authors into Author table
-                if authors.strip():  # Check if the author's name is not empty
+                if authors.strip():
                     author_parts = authors.split()
                     if len(author_parts) == 1:
                         first_name = author_parts[0]
-                        last_name = ""  # Set last name to empty if only one name is provided
+                        last_name = ""
                     else:
                         first_name = author_parts[0]
-                        last_name = ' '.join(author_parts[1:])  # Join all parts after the first one as the last name
+                        last_name = ' '.join(author_parts[1:])
+                        
+                    # This SQL statement inserts the author(s) into the author table
                     sql_insert_author = "INSERT INTO Author (Publication_id, FirstName, LastName) VALUES (%s, %s, %s)"
                     cursor.execute(sql_insert_author, (publication_id, first_name, last_name))
 
+                # This will split the keywords input string into individual keywords to insert correctly into the keywords table
+                keywords_list = [keyword.strip() for keyword in keywords.split(',')]
 
-                # Split keywords input string into individual keywords
-                keywords_list = [keyword.strip() for keyword in keywords.split(',')]  # Split keywords by comma and remove leading/trailing whitespace
-
-                # Insert keywords into Keywords table
+                # This SQL statement inserts each keyword for the specified publication into the keywords table
                 for keyword in keywords_list:
                     sql_insert_keyword = "INSERT INTO Keywords (Publication_id, Keyword) VALUES (%s, %s)"
                     cursor.execute(sql_insert_keyword, (publication_id, keyword))
 
-            connection.commit()  # Commit changes to the database
+            # This commits changes to the database
+            connection.commit()
         finally:
-            connection.close()  # Close database connection
-
-        return redirect(url_for('homepage', pub_mod_success=True))  # Redirect to the homepage after modifying publication
+            # This closes the database connection
+            connection.close()
+        return redirect(url_for('homepage', pub_mod_success=True))
+    
+    # This case is for when the modify_publication page is rendered
     else:
-        # Retrieve publication details from the database
         connection = pymysql.connect(**db_config)
         try:
             with connection.cursor() as cursor:
-                # Execute the SQL command to retrieve publication details
+                # This SQL statement gets the publication details
                 sql = "SELECT * FROM Publication WHERE ID = %s"
                 cursor.execute(sql, (publication_id,))
                 publication = cursor.fetchone()
-                # Get authors
+                
+                # This SQL statement gets the author details for the publication
                 sql_authors = "SELECT FirstName, LastName FROM Author WHERE Publication_id = %s"
                 cursor.execute(sql_authors, (publication_id,))
                 authors = cursor.fetchall()
-                # Get keywords
+                
+                # This SQL statement gets the keywords for the publication
                 sql_keywords = "SELECT Keyword FROM Keywords WHERE Publication_id = %s"
                 cursor.execute(sql_keywords, (publication_id,))
                 keywords = cursor.fetchall()
         finally:
-            connection.close()  # Close database connection
+            # This closes the database connection
+            connection.close()
 
         return render_template('modify_publication.html', publication=publication, authors=authors, keywords=keywords)
     
     
 
-
-# Define a function to retrieve publication details from the database
+# Function to retrieve the publication details when the publication is going to be deleted
 def get_publication_details(publication_id):
     connection = pymysql.connect(**db_config)
     try:
         with connection.cursor() as cursor:
-            # Execute the SQL command to retrieve publication details
+            # This SQL statement retrieves the publication details from the database
             sql = "SELECT * FROM Publication WHERE ID = %s"
             cursor.execute(sql, (publication_id,))
             publication = cursor.fetchone()
             if publication:
-                # Get authors
+                # This SQL statement retrieves the author(s) for the publication from the database
                 sql_authors = "SELECT FirstName, LastName FROM Author WHERE Publication_id = %s"
                 cursor.execute(sql_authors, (publication_id,))
                 authors = cursor.fetchall()
                 publication['Authors'] = authors
-                # Get keywords
+                
+                # This SQL statement retrieves the keyword(s) for the publication from the database
                 sql_keywords = "SELECT Keyword FROM Keywords WHERE Publication_id = %s"
                 cursor.execute(sql_keywords, (publication_id,))
                 keywords = cursor.fetchall()
                 publication['Keywords'] = keywords
+                
             return publication
     finally:
-        connection.close()  # Close database connection
+        # This closes the database connection
+        connection.close()
 
-
-# Dictionary to store temporarily deleted publications
+# This dictionary temporarily stores deleted publications to be able to restore deleted publications
 deleted_publications = defaultdict(list)
 
-
+# Function to delete the publication
 @app.route('/delete_publication/<int:publication_id>', methods=['POST'])
 def delete_publication(publication_id):
-    # Retrieve publication details before deletion
+    # This calls the function and passes the publication_id to get the publication details
     publication_details = get_publication_details(publication_id)
     
-    # Delete associated keywords first
+    # This opens a connection to the database using the database settings specified 
     connection = pymysql.connect(**db_config)
     try:
         with connection.cursor() as cursor:
-            # Delete keywords associated with the publication
+            # This SQL statement deletes the keywords linked to the publication
             sql_delete_keywords = "DELETE FROM Keywords WHERE Publication_id = %s"
             cursor.execute(sql_delete_keywords, (publication_id,))
-        
-        connection.commit()  # Commit changes to the database
+            
+        # This commits changes to the database
+        connection.commit()
     finally:
-        connection.close()  # Close database connection
-    
-    # Delete associated authors
+        # This closes the database connection
+        connection.close() 
+
+    # This opens a connection to the database using the database settings specified 
     connection = pymysql.connect(**db_config)
     try:
         with connection.cursor() as cursor:
-            # Delete authors associated with the publication
+            # This SQL statement deletes the authors linked to the publication
             sql_delete_authors = "DELETE FROM Author WHERE Publication_id = %s"
             cursor.execute(sql_delete_authors, (publication_id,))
-        
-        connection.commit()  # Commit changes to the database
+            
+        # This commits changes to the database
+        connection.commit()
     finally:
-        connection.close()  # Close database connection
+        # This closes the database connection
+        connection.close()
     
-    # Now, delete the publication from the Publication table
+    # This opens a connection to the database using the database settings specified 
     connection = pymysql.connect(**db_config)
     try:
         with connection.cursor() as cursor:
-            # Execute the SQL command to delete the publication from the Publication table
+            # This SQL statement deletes the publication from the publication table
             sql_delete_publication = "DELETE FROM Publication WHERE ID = %s"
             cursor.execute(sql_delete_publication, (publication_id,))
         
-        connection.commit()  # Commit changes to the database
+        # This commits changes to the database
+        connection.commit()
     finally:
-        connection.close()  # Close database connection
+        # This closes the database connection
+        connection.close()
 
     # Store the deleted publication details temporarily
     deleted_publications[publication_id] = publication_details
@@ -420,34 +429,34 @@ def delete_publication(publication_id):
     return render_template('delete_success.html', publication_id=publication_id)  # Render delete success page
 
 
-# Add a route for confirming the deletion
+# Function to confirm the deletion of the publication
 @app.route('/confirm_delete_publication/<int:publication_id>', methods=['GET', 'POST'])
 def confirm_delete_publication(publication_id):
-    # Retrieve publication details from the database
+    # This calls the function and passes the publication_id to get the publication details
     publication_details = get_publication_details(publication_id)
+    
+    # This handles if the publication is not found
     if not publication_details:
-        abort(404)  # Publication not found, return 404 error
-
+        abort(404)
+        
     return render_template('confirm_delete_publication.html', publication_id=publication_id)
 
 
-
-
-# Add a route for undoing the delete
+# Function to restore the deleted publication
 @app.route('/undo_delete_publication/<int:publication_id>', methods=['POST'])
 def undo_delete_publication(publication_id):
-    # Retrieve the deleted publication details from the temporary storage
+    # This retrieves the deleted publication to be able to restore it
     publication_details = deleted_publications.pop(publication_id, None)
     
     if publication_details:
-        # Restore the deleted publication
+        # This calls the function and passes the deleted publication to restore the publication 
         restore_publication(publication_details)
     
-    return render_template('undo_delete_success.html') # Redirect to the homepage after undoing delete
+    return render_template('undo_delete_success.html')
 
-# Define a function to restore a deleted publication
+
+# Function to restore the deleted publication
 def restore_publication(publication_details):
-    # Retrieve publication details
     title = publication_details['Title']
     date_published = publication_details['DatePublished']
     pages = publication_details['Pages']
@@ -456,30 +465,32 @@ def restore_publication(publication_details):
     authors = publication_details['Authors']
     keywords = publication_details['Keywords']
     
-    # Insert publication into Publication table
+    # This opens a connection to the database using the database settings specified 
     connection = pymysql.connect(**db_config)
     try:
         with connection.cursor() as cursor:
-            # Execute the SQL command to insert the publication into the Publication table
+            # This SQL statement inserts the publication into the publication table to restore it
             sql_insert_publication = "INSERT INTO Publication (Title, DatePublished, Pages, DOI, Link) VALUES (%s, %s, %s, %s, %s)"
             cursor.execute(sql_insert_publication, (title, date_published, pages, doi, link))
             publication_id = cursor.lastrowid  # Get the ID of the newly inserted publication
 
-            # Insert authors into Author table
+            # This SQL statement inserts the authors for the publication into the author table to restore the data
             for author in authors:
                 first_name, last_name = author['FirstName'], author['LastName']
                 sql_insert_author = "INSERT INTO Author (Publication_id, FirstName, LastName) VALUES (%s, %s, %s)"
                 cursor.execute(sql_insert_author, (publication_id, first_name, last_name))
 
-            # Insert keywords into Keywords table
+            # This SQL statement inserts the keywords for the publication into the keywords table to restore the data
             for keyword in keywords:
                 keyword = keyword['Keyword']
                 sql_insert_keyword = "INSERT INTO Keywords (Publication_id, Keyword) VALUES (%s, %s)"
                 cursor.execute(sql_insert_keyword, (publication_id, keyword))
 
-        connection.commit()  # Commit changes to the database
+        # This commits changes to the database
+        connection.commit()
     finally:
-        connection.close()  # Close database connection
+        # This closes the database connection
+        connection.close()
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
