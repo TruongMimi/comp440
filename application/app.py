@@ -1,6 +1,36 @@
-# Katrina Ortiz and Mimi Truong
-# COMP 440
-# 5/02/2024
+# Order of demo:
+# talk about docker container
+# talk about pymysql 
+# talk about tables and csv imports - show schema_creation.sql file
+# We used PyMySQL its portabilty making it ideal for containerizing environments as we did in Docker.
+# There is no need to install additional libraries within the containers. 
+# The application running within docker is able to connect and communicate to the local MySQL DB
+# 1. Index (login)
+# - show that a user that doesn't exist needs to be added 
+# 2. User sign up 
+# - show that email needs to have correct format
+# - show that the password must be at least 6 characters in length 
+# - show that the password is hashed in the database for the user
+# 3. User login
+# 4. Click search
+# 5. Use publication table in DB to search for things
+# - title: High-resolution chemical Abundances of the Nyx Stream
+# - date published: 2023-09-26
+# - author: search mimi truong
+# - Link: https://iopscience.iop.org/article/10.3847/1538-4357/acec4d
+# - Pages: Volume 955, Number 2
+# - keyword: Jets
+# 6. Select publication
+# 7. Modify publication
+# - Change part of the title 
+# - Save and search for the title again
+# 8. Select publication again
+# - show publication in DB first (id #1)
+# 9. Delete publication
+# 10. Confirm the deletion
+# 11. Show in the DB the the publication was deleted (was id #1 )
+# 12. Restore the publication
+# - show that the publication has been added back to the DB (last row)
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import pymysql, re
