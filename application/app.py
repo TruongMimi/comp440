@@ -14,7 +14,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
-app.secret_key = 's3CretK3y'  # Set a secret key for session management
+app.secret_key = 's3CretK3y'
 
 # MySQL connection configuration
 db_config = {
@@ -25,14 +25,13 @@ db_config = {
     'cursorclass': pymysql.cursors.DictCursor
 }
 
-# Function to validate email format
-def validate_email(email):
-    return re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email)
-
+# Function to render login page upon navigating to the application
 @app.route('/')
 def index():
     return render_template('login.html')
 
+
+# Function to render the homepage 
 @app.route('/homepage')
 def homepage():
     login_success = request.args.get('login_success', False)
@@ -40,6 +39,8 @@ def homepage():
     add_mod_success = request.args.get('add_mod_success', False)
     return render_template('homepage.html', login_success=login_success, pub_mod_success=pub_mod_success, add_mod_success=add_mod_success)
 
+
+# Function the render the signup page with the respective errors that occurred from the main signup page
 @app.route('/signup_page')
 def signup_page():
     signup_failure = request.args.get('signup_failure', False)
@@ -47,75 +48,45 @@ def signup_page():
     return render_template('index.html', Password_mismatch=password_mismatch, Signup_failure=signup_failure )
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    signup_success = request.args.get('Signup_success', False)
-    login_failure = request.args.get('Login_failure', False)
-   
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
+# Function to validate email format during user signup
+def validate_email(email):
+    return re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email)
 
-        # Query the database to find user by email
-        connection = pymysql.connect(**db_config)
-        try:
-            with connection.cursor() as cursor:
-                sql = "SELECT * FROM Users WHERE Email = %s"
-                cursor.execute(sql, (email,))
-                user = cursor.fetchone()
-
-                if user:
-                    # Check if the entered password matches the hashed password in the database
-                    if check_password_hash(user['Password'], password):
-                        # Store user ID in session
-                        session['user_id'] = user['ID']
-                        return redirect(url_for('homepage', login_success=True))
-                    else:
-                        return render_template('login.html', Login_failure=True, Signup_success=signup_success)
-                else:
-                    return render_template('login.html', Login_failure=True, Signup_success=signup_success)
-        finally:
-            connection.close()
-
-    return render_template('login.html', Signup_success=signup_success)
-
-
-
+# Function for user sign up
 @app.route('/signup', methods=['POST'])
 def signup():
- 
     try:
-        # Get form data
         firstName = request.form['firstName']
         lastName = request.form['lastName']
         email = request.form['email']
         password = request.form['password']
         confirmPassword = request.form['confirmPassword']
 
-        # Validate password length
+        # This ensures that the password is not less than 6 characters
         if len(password) < 6:
             return render_template('signup.html', Password_error=True)
         
-        # Validate email format
+        # This validates the email format
         if not validate_email(email):
             return render_template('signup.html', Email_error=True)
             
-        # Check if passwords match
+        # This checks if the passwords match
         if password != confirmPassword:
             return render_template('signup.html', Password_mismatch=True)
 
-        # Hash the password
+        # This hashes the password to secure the password before inserting it into the database
         hashed_password = generate_password_hash(password)
 
-        # Check if the email already exists
+        # This opens a connection to the database using the database settings specified 
         connection = pymysql.connect(**db_config)
         try:
             with connection.cursor() as cursor:
-                # Execute SQL query to check if the email exists
+                # This queries the database to find if the email already exists
                 sql = "SELECT * FROM Users WHERE Email = %s"
                 cursor.execute(sql, (email,))
                 existing_user = cursor.fetchone()
 
+                # If the user exists, the signup page is rendered with a message indicating that the email already exists
                 if existing_user:
                     return render_template('signup.html', Signup_failure=True)
 
@@ -125,65 +96,120 @@ def signup():
                 connection.commit()
 
         except pymysql.Error as e:
-            # Handle database errors
+            # This handles any database error that might have occurred
             flash("An error occurred. Please try again later.", "error")
             return redirect(url_for('signup_page'))
 
         finally:
-            connection.close()  # Close database connection
+            # This closes the database connection
+            connection.close() 
         
-    except Exception as e: # ADD ERROR MESSAGE
-        # Handle any exceptions that occur during the signup process
+    except Exception as e:
+        # This handles any exceptions that might have occurred during the signup process
         flash('An error occurred during signup: {}'.format(str(e)), 'error')  # Flash error message
 
     return redirect(url_for('login', Signup_success=True))
 
 
+# Function for logging in
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    signup_success = request.args.get('Signup_success', False)
+   
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        # This opens a connection to the database using the database settings specified 
+        connection = pymysql.connect(**db_config)
+        try:
+             # This queries the database to find if the email enters exists in the database
+            with connection.cursor() as cursor:
+                sql = "SELECT * FROM Users WHERE Email = %s"
+                cursor.execute(sql, (email,))
+                user = cursor.fetchone()
+
+                if user:
+                    # This checks if the user entered password matches the hashed password in the database
+                    if check_password_hash(user['Password'], password):
+                        # This stores the user ID in the session
+                        session['user_id'] = user['ID']
+                        return redirect(url_for('homepage', login_success=True))
+                    else:
+                        return render_template('login.html', Login_failure=True, Signup_success=signup_success)
+                else:
+                    return render_template('login.html', Login_failure=True, Signup_success=signup_success)
+        finally:
+            # This closes the database connection
+            connection.close()
+    return render_template('login.html', Signup_success=signup_success)
+
+
+# Function for searching the publications table with the specified parameters
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     if request.method == 'POST':
-        # Handle search form submission and database query here
+        # This gets the search parameters of the field to be searched and what to search for
         search_field = request.form['search_field']
         search_query = request.form['search_query']
 
-        # Perform database query based on search query and field
+        # This opens a connection to the database using the database settings specified 
         connection = pymysql.connect(**db_config)
         try:
             with connection.cursor() as cursor:
+                # This puts together a query that will join the publication, author, and keyword tables and search for the matching author from the user specified parameter 
                 if search_field == 'Author':
-                    sql = "SELECT p.*, GROUP_CONCAT(DISTINCT CONCAT(a.FirstName, ' ', a.LastName) SEPARATOR ', ') AS Authors, GROUP_CONCAT(DISTINCT k.Keyword SEPARATOR ', ') AS Keywords, GROUP_CONCAT(DISTINCT a.Institution SEPARATOR '|') AS Institutions, GROUP_CONCAT(DISTINCT a.Department SEPARATOR '|') AS Departments, GROUP_CONCAT(DISTINCT a.Email SEPARATOR '|') AS Emails, GROUP_CONCAT(DISTINCT a.Homepage SEPARATOR '|') AS Homepages " \
-                        "FROM (SELECT * FROM Publication WHERE ID IN (SELECT Publication_id FROM Author WHERE FirstName LIKE %s OR LastName LIKE %s)) AS p " \
-                        "LEFT JOIN Author a ON p.ID = a.Publication_id " \
-                        "LEFT JOIN Keywords k ON p.ID = k.Publication_id " \
-                        "GROUP BY p.ID " \
-                        "ORDER BY p.DatePublished DESC"
-                    cursor.execute(sql, ('%' + search_query + '%', '%' + search_query + '%'))
-                elif search_field == 'Keywords':
-                    sql = "SELECT p.*, GROUP_CONCAT(DISTINCT CONCAT(a.FirstName, ' ', a.LastName) SEPARATOR ', ') AS Authors, GROUP_CONCAT(DISTINCT k.Keyword SEPARATOR ', ') AS Keywords, GROUP_CONCAT(DISTINCT a.Institution SEPARATOR '|') AS Institutions, GROUP_CONCAT(DISTINCT a.Department SEPARATOR '|') AS Departments, GROUP_CONCAT(DISTINCT a.Email SEPARATOR '|') AS Emails, GROUP_CONCAT(DISTINCT a.Homepage SEPARATOR '|') AS Homepages " \
-                        "FROM (SELECT * FROM Publication WHERE ID IN (SELECT Publication_id FROM Keywords WHERE Keyword LIKE %s)) AS p " \
-                        "LEFT JOIN Author a ON p.ID = a.Publication_id " \
-                        "LEFT JOIN Keywords k ON p.ID = k.Publication_id " \
-                        "GROUP BY p.ID " \
-                        "ORDER BY p.DatePublished DESC"
-                    cursor.execute(sql, ('%' + search_query + '%',))
+                    # This query searches for the matching author name
+                    if ' ' in search_query:
+                        # Split the search query into first name and last name
+                        first_name, last_name = search_query.split(' ')
+                        # Construct the SQL query to search for both first and last name
+                        author_sql = "SELECT DISTINCT Publication_id FROM Author WHERE FirstName LIKE %s AND LastName LIKE %s"
+                        cursor.execute(author_sql, ('%' + first_name + '%', '%' + last_name + '%'))
+                    else:
+                        # Construct the SQL query to search for either first name or last name
+                        author_sql = "SELECT DISTINCT Publication_id FROM Author WHERE FirstName LIKE %s OR LastName LIKE %s"
+                        cursor.execute(author_sql, ('%' + search_query + '%', '%' + search_query + '%'))
+                    publication_ids = [row['Publication_id'] for row in cursor.fetchall()]
+
                 else:
-                    sql = "SELECT p.*, GROUP_CONCAT(DISTINCT CONCAT(a.FirstName, ' ', a.LastName) SEPARATOR ', ') AS Authors, GROUP_CONCAT(DISTINCT k.Keyword SEPARATOR ', ') AS Keywords, GROUP_CONCAT(DISTINCT a.Institution SEPARATOR '|') AS Institutions, GROUP_CONCAT(DISTINCT a.Department SEPARATOR '|') AS Departments, GROUP_CONCAT(DISTINCT a.Email SEPARATOR '|') AS Emails, GROUP_CONCAT(DISTINCT a.Homepage SEPARATOR '|') AS Homepages " \
-                        "FROM Publication p " \
-                        "LEFT JOIN Author a ON p.ID = a.Publication_id " \
-                        "LEFT JOIN Keywords k ON p.ID = k.Publication_id " \
-                        f"WHERE {search_field} LIKE %s " \
-                        "GROUP BY p.ID " \
-                        "ORDER BY p.DatePublished DESC"
+                    # Search by other fields in Publication table
+                    sql = "SELECT DISTINCT ID FROM Publication WHERE {} LIKE %s".format(search_field)
                     cursor.execute(sql, ('%' + search_query + '%',))
+                    publication_ids = [row['ID'] for row in cursor.fetchall()]
 
 
-                    # Fetch results
-                    results = cursor.fetchall()
+                # Fetch author details for each publication
+                author_details = {}
+                for publication_id in publication_ids:
+                    author_sql = "SELECT DISTINCT FirstName, LastName, Institution, Department, Email, Homepage FROM Author WHERE Publication_id = %s"
+                    cursor.execute(author_sql, (publication_id,))
+                    authors = cursor.fetchall()
+                    author_details[publication_id] = authors
 
+
+                # Fetch keyword details for each publication
+                keyword_details = {}
+                for publication_id in publication_ids:
+                    keyword_sql = "SELECT DISTINCT Keyword FROM Keywords WHERE Publication_id = %s"
+                    cursor.execute(keyword_sql, (publication_id,))
+                    keywords = [row['Keyword'] for row in cursor.fetchall()]
+                    keyword_details[publication_id] = keywords
+
+                # Fetch publication details with ordering by DatePublished DESC
+                publication_sql = "SELECT * FROM Publication WHERE ID IN ({}) ORDER BY DatePublished DESC".format(','.join(['%s'] * len(publication_ids)))
+                cursor.execute(publication_sql, publication_ids)
+                results = cursor.fetchall()
+
+                # Combine results with author and keyword details
+                for publication in results:
+                    publication_id = publication['ID']
+                    publication['Authors'] = author_details.get(publication_id, [])
+                    publication['Keywords'] = keyword_details.get(publication_id, [])
 
         finally:
             connection.close()  # Close database connection
-
+        print(results)
         # Render search results page with the retrieved data
         return render_template('search_results.html', search_query=search_query, results=results)
     else:
@@ -238,8 +264,6 @@ def add_publication():
         return render_template('homepage.html', add_mod_success=True)  # Redirect to the homepage after adding publication
     else:
         return render_template('add_publication.html')  # Render the add publication form page
-
-
 
 
 
@@ -318,6 +342,8 @@ def modify_publication(publication_id):
         return render_template('modify_publication.html', publication=publication, authors=authors, keywords=keywords)
     
     
+
+
 # Define a function to retrieve publication details from the database
 def get_publication_details(publication_id):
     connection = pymysql.connect(**db_config)
@@ -342,46 +368,9 @@ def get_publication_details(publication_id):
     finally:
         connection.close()  # Close database connection
 
-# Define a function to restore a deleted publication
-def restore_publication(publication_details):
-    # Retrieve publication details
-    title = publication_details['Title']
-    date_published = publication_details['DatePublished']
-    pages = publication_details['Pages']
-    doi = publication_details['DOI']
-    link = publication_details['Link']
-    authors = publication_details['Authors']
-    keywords = publication_details['Keywords']
-    
-    # Insert publication into Publication table
-    connection = pymysql.connect(**db_config)
-    try:
-        with connection.cursor() as cursor:
-            # Execute the SQL command to insert the publication into the Publication table
-            sql_insert_publication = "INSERT INTO Publication (Title, DatePublished, Pages, DOI, Link) VALUES (%s, %s, %s, %s, %s)"
-            cursor.execute(sql_insert_publication, (title, date_published, pages, doi, link))
-            publication_id = cursor.lastrowid  # Get the ID of the newly inserted publication
-
-            # Insert authors into Author table
-            for author in authors:
-                first_name, last_name = author['FirstName'], author['LastName']
-                sql_insert_author = "INSERT INTO Author (Publication_id, FirstName, LastName) VALUES (%s, %s, %s)"
-                cursor.execute(sql_insert_author, (publication_id, first_name, last_name))
-
-            # Insert keywords into Keywords table
-            for keyword in keywords:
-                keyword = keyword['Keyword']
-                sql_insert_keyword = "INSERT INTO Keywords (Publication_id, Keyword) VALUES (%s, %s)"
-                cursor.execute(sql_insert_keyword, (publication_id, keyword))
-
-        connection.commit()  # Commit changes to the database
-    finally:
-        connection.close()  # Close database connection
-
 
 # Dictionary to store temporarily deleted publications
 deleted_publications = defaultdict(list)
-
 
 
 @app.route('/delete_publication/<int:publication_id>', methods=['POST'])
@@ -441,6 +430,9 @@ def confirm_delete_publication(publication_id):
 
     return render_template('confirm_delete_publication.html', publication_id=publication_id)
 
+
+
+
 # Add a route for undoing the delete
 @app.route('/undo_delete_publication/<int:publication_id>', methods=['POST'])
 def undo_delete_publication(publication_id):
@@ -453,6 +445,41 @@ def undo_delete_publication(publication_id):
     
     return render_template('undo_delete_success.html') # Redirect to the homepage after undoing delete
 
+# Define a function to restore a deleted publication
+def restore_publication(publication_details):
+    # Retrieve publication details
+    title = publication_details['Title']
+    date_published = publication_details['DatePublished']
+    pages = publication_details['Pages']
+    doi = publication_details['DOI']
+    link = publication_details['Link']
+    authors = publication_details['Authors']
+    keywords = publication_details['Keywords']
+    
+    # Insert publication into Publication table
+    connection = pymysql.connect(**db_config)
+    try:
+        with connection.cursor() as cursor:
+            # Execute the SQL command to insert the publication into the Publication table
+            sql_insert_publication = "INSERT INTO Publication (Title, DatePublished, Pages, DOI, Link) VALUES (%s, %s, %s, %s, %s)"
+            cursor.execute(sql_insert_publication, (title, date_published, pages, doi, link))
+            publication_id = cursor.lastrowid  # Get the ID of the newly inserted publication
+
+            # Insert authors into Author table
+            for author in authors:
+                first_name, last_name = author['FirstName'], author['LastName']
+                sql_insert_author = "INSERT INTO Author (Publication_id, FirstName, LastName) VALUES (%s, %s, %s)"
+                cursor.execute(sql_insert_author, (publication_id, first_name, last_name))
+
+            # Insert keywords into Keywords table
+            for keyword in keywords:
+                keyword = keyword['Keyword']
+                sql_insert_keyword = "INSERT INTO Keywords (Publication_id, Keyword) VALUES (%s, %s)"
+                cursor.execute(sql_insert_keyword, (publication_id, keyword))
+
+        connection.commit()  # Commit changes to the database
+    finally:
+        connection.close()  # Close database connection
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

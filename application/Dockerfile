@@ -4,7 +4,7 @@ FROM python:3.9-slim
 # Install necessary modules
 RUN pip install Flask pymysql cryptography
 
-# Install Nginx and MariaDB client
+# Install Nginx and nano
 RUN apt-get update && apt-get install -y nginx nano && rm -rf /var/lib/apt/lists/*
 
 # Copy files to root of container
